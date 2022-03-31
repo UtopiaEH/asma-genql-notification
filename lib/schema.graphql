@@ -1,0 +1,1426 @@
+schema {
+  query: query_root
+  mutation: mutation_root
+  subscription: subscription_root
+}
+
+"""whether this query should be cached (Hasura Cloud only)"""
+directive @cached(
+  """measured in seconds"""
+  ttl: Int! = 60
+
+  """refresh the cache entry"""
+  refresh: Boolean! = false
+) on QUERY
+
+"""
+Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'.
+"""
+input Boolean_comparison_exp {
+  _eq: Boolean
+  _gt: Boolean
+  _gte: Boolean
+  _in: [Boolean!]
+  _is_null: Boolean
+  _lt: Boolean
+  _lte: Boolean
+  _neq: Boolean
+  _nin: [Boolean!]
+}
+
+"""
+Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'.
+"""
+input String_comparison_exp {
+  _eq: String
+  _gt: String
+  _gte: String
+
+  """does the column match the given case-insensitive pattern"""
+  _ilike: String
+  _in: [String!]
+
+  """
+  does the column match the given POSIX regular expression, case insensitive
+  """
+  _iregex: String
+  _is_null: Boolean
+
+  """does the column match the given pattern"""
+  _like: String
+  _lt: String
+  _lte: String
+  _neq: String
+
+  """does the column NOT match the given case-insensitive pattern"""
+  _nilike: String
+  _nin: [String!]
+
+  """
+  does the column NOT match the given POSIX regular expression, case insensitive
+  """
+  _niregex: String
+
+  """does the column NOT match the given pattern"""
+  _nlike: String
+
+  """
+  does the column NOT match the given POSIX regular expression, case sensitive
+  """
+  _nregex: String
+
+  """does the column NOT match the given SQL regular expression"""
+  _nsimilar: String
+
+  """
+  does the column match the given POSIX regular expression, case sensitive
+  """
+  _regex: String
+
+  """does the column match the given SQL regular expression"""
+  _similar: String
+}
+
+"""mutation root"""
+type mutation_root {
+  """
+  delete data from the table: "notifications"
+  """
+  delete_notifications(
+    """filter the rows which have to be deleted"""
+    where: notifications_bool_exp!
+  ): notifications_mutation_response
+
+  """
+  delete single row from the table: "notifications"
+  """
+  delete_notifications_by_pk(id: uuid!): notifications
+
+  """
+  delete data from the table: "service_enums"
+  """
+  delete_service_enums(
+    """filter the rows which have to be deleted"""
+    where: service_enums_bool_exp!
+  ): service_enums_mutation_response
+
+  """
+  delete single row from the table: "service_enums"
+  """
+  delete_service_enums_by_pk(service: String!): service_enums
+
+  """
+  delete data from the table: "services"
+  """
+  delete_services(
+    """filter the rows which have to be deleted"""
+    where: services_bool_exp!
+  ): services_mutation_response
+
+  """
+  delete single row from the table: "services"
+  """
+  delete_services_by_pk(id: uuid!): services
+
+  """
+  delete data from the table: "severity_enums"
+  """
+  delete_severity_enums(
+    """filter the rows which have to be deleted"""
+    where: severity_enums_bool_exp!
+  ): severity_enums_mutation_response
+
+  """
+  delete single row from the table: "severity_enums"
+  """
+  delete_severity_enums_by_pk(severity: String!): severity_enums
+
+  """
+  insert data into the table: "notifications"
+  """
+  insert_notifications(
+    """the rows to be inserted"""
+    objects: [notifications_insert_input!]!
+
+    """on conflict condition"""
+    on_conflict: notifications_on_conflict
+  ): notifications_mutation_response
+
+  """
+  insert a single row into the table: "notifications"
+  """
+  insert_notifications_one(
+    """the row to be inserted"""
+    object: notifications_insert_input!
+
+    """on conflict condition"""
+    on_conflict: notifications_on_conflict
+  ): notifications
+
+  """
+  insert data into the table: "service_enums"
+  """
+  insert_service_enums(
+    """the rows to be inserted"""
+    objects: [service_enums_insert_input!]!
+
+    """on conflict condition"""
+    on_conflict: service_enums_on_conflict
+  ): service_enums_mutation_response
+
+  """
+  insert a single row into the table: "service_enums"
+  """
+  insert_service_enums_one(
+    """the row to be inserted"""
+    object: service_enums_insert_input!
+
+    """on conflict condition"""
+    on_conflict: service_enums_on_conflict
+  ): service_enums
+
+  """
+  insert data into the table: "services"
+  """
+  insert_services(
+    """the rows to be inserted"""
+    objects: [services_insert_input!]!
+
+    """on conflict condition"""
+    on_conflict: services_on_conflict
+  ): services_mutation_response
+
+  """
+  insert a single row into the table: "services"
+  """
+  insert_services_one(
+    """the row to be inserted"""
+    object: services_insert_input!
+
+    """on conflict condition"""
+    on_conflict: services_on_conflict
+  ): services
+
+  """
+  insert data into the table: "severity_enums"
+  """
+  insert_severity_enums(
+    """the rows to be inserted"""
+    objects: [severity_enums_insert_input!]!
+
+    """on conflict condition"""
+    on_conflict: severity_enums_on_conflict
+  ): severity_enums_mutation_response
+
+  """
+  insert a single row into the table: "severity_enums"
+  """
+  insert_severity_enums_one(
+    """the row to be inserted"""
+    object: severity_enums_insert_input!
+
+    """on conflict condition"""
+    on_conflict: severity_enums_on_conflict
+  ): severity_enums
+
+  """
+  update data of the table: "notifications"
+  """
+  update_notifications(
+    """sets the columns of the filtered rows to the given values"""
+    _set: notifications_set_input
+
+    """filter the rows which have to be updated"""
+    where: notifications_bool_exp!
+  ): notifications_mutation_response
+
+  """
+  update single row of the table: "notifications"
+  """
+  update_notifications_by_pk(
+    """sets the columns of the filtered rows to the given values"""
+    _set: notifications_set_input
+    pk_columns: notifications_pk_columns_input!
+  ): notifications
+
+  """
+  update data of the table: "service_enums"
+  """
+  update_service_enums(
+    """sets the columns of the filtered rows to the given values"""
+    _set: service_enums_set_input
+
+    """filter the rows which have to be updated"""
+    where: service_enums_bool_exp!
+  ): service_enums_mutation_response
+
+  """
+  update single row of the table: "service_enums"
+  """
+  update_service_enums_by_pk(
+    """sets the columns of the filtered rows to the given values"""
+    _set: service_enums_set_input
+    pk_columns: service_enums_pk_columns_input!
+  ): service_enums
+
+  """
+  update data of the table: "services"
+  """
+  update_services(
+    """sets the columns of the filtered rows to the given values"""
+    _set: services_set_input
+
+    """filter the rows which have to be updated"""
+    where: services_bool_exp!
+  ): services_mutation_response
+
+  """
+  update single row of the table: "services"
+  """
+  update_services_by_pk(
+    """sets the columns of the filtered rows to the given values"""
+    _set: services_set_input
+    pk_columns: services_pk_columns_input!
+  ): services
+
+  """
+  update data of the table: "severity_enums"
+  """
+  update_severity_enums(
+    """sets the columns of the filtered rows to the given values"""
+    _set: severity_enums_set_input
+
+    """filter the rows which have to be updated"""
+    where: severity_enums_bool_exp!
+  ): severity_enums_mutation_response
+
+  """
+  update single row of the table: "severity_enums"
+  """
+  update_severity_enums_by_pk(
+    """sets the columns of the filtered rows to the given values"""
+    _set: severity_enums_set_input
+    pk_columns: severity_enums_pk_columns_input!
+  ): severity_enums
+}
+
+"""
+columns and relationships of "notifications"
+"""
+type notifications {
+  id: uuid!
+  path: String
+  seen: Boolean!
+
+  """An object relationship"""
+  service: services!
+  service_id: uuid!
+  severity: severity_enums_enum!
+  subject_id: uuid
+}
+
+"""
+aggregated selection of "notifications"
+"""
+type notifications_aggregate {
+  aggregate: notifications_aggregate_fields
+  nodes: [notifications!]!
+}
+
+"""
+aggregate fields of "notifications"
+"""
+type notifications_aggregate_fields {
+  count(columns: [notifications_select_column!], distinct: Boolean): Int!
+  max: notifications_max_fields
+  min: notifications_min_fields
+}
+
+"""
+Boolean expression to filter rows from the table "notifications". All fields are combined with a logical 'AND'.
+"""
+input notifications_bool_exp {
+  _and: [notifications_bool_exp!]
+  _not: notifications_bool_exp
+  _or: [notifications_bool_exp!]
+  id: uuid_comparison_exp
+  path: String_comparison_exp
+  seen: Boolean_comparison_exp
+  service: services_bool_exp
+  service_id: uuid_comparison_exp
+  severity: severity_enums_enum_comparison_exp
+  subject_id: uuid_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "notifications"
+"""
+enum notifications_constraint {
+  """unique or primary key constraint"""
+  notifications_pkey
+}
+
+"""
+input type for inserting data into table "notifications"
+"""
+input notifications_insert_input {
+  id: uuid
+  path: String
+  seen: Boolean
+  service: services_obj_rel_insert_input
+  service_id: uuid
+  severity: severity_enums_enum
+  subject_id: uuid
+}
+
+"""aggregate max on columns"""
+type notifications_max_fields {
+  id: uuid
+  path: String
+  service_id: uuid
+  subject_id: uuid
+}
+
+"""aggregate min on columns"""
+type notifications_min_fields {
+  id: uuid
+  path: String
+  service_id: uuid
+  subject_id: uuid
+}
+
+"""
+response of any mutation on the table "notifications"
+"""
+type notifications_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+
+  """data from the rows affected by the mutation"""
+  returning: [notifications!]!
+}
+
+"""
+on conflict condition type for table "notifications"
+"""
+input notifications_on_conflict {
+  constraint: notifications_constraint!
+  update_columns: [notifications_update_column!]! = []
+  where: notifications_bool_exp
+}
+
+"""Ordering options when selecting data from "notifications"."""
+input notifications_order_by {
+  id: order_by
+  path: order_by
+  seen: order_by
+  service: services_order_by
+  service_id: order_by
+  severity: order_by
+  subject_id: order_by
+}
+
+"""primary key columns input for table: notifications"""
+input notifications_pk_columns_input {
+  id: uuid!
+}
+
+"""
+select columns of table "notifications"
+"""
+enum notifications_select_column {
+  """column name"""
+  id
+
+  """column name"""
+  path
+
+  """column name"""
+  seen
+
+  """column name"""
+  service_id
+
+  """column name"""
+  severity
+
+  """column name"""
+  subject_id
+}
+
+"""
+input type for updating data in table "notifications"
+"""
+input notifications_set_input {
+  id: uuid
+  path: String
+  seen: Boolean
+  service_id: uuid
+  severity: severity_enums_enum
+  subject_id: uuid
+}
+
+"""
+update columns of table "notifications"
+"""
+enum notifications_update_column {
+  """column name"""
+  id
+
+  """column name"""
+  path
+
+  """column name"""
+  seen
+
+  """column name"""
+  service_id
+
+  """column name"""
+  severity
+
+  """column name"""
+  subject_id
+}
+
+"""column ordering options"""
+enum order_by {
+  """in ascending order, nulls last"""
+  asc
+
+  """in ascending order, nulls first"""
+  asc_nulls_first
+
+  """in ascending order, nulls last"""
+  asc_nulls_last
+
+  """in descending order, nulls first"""
+  desc
+
+  """in descending order, nulls first"""
+  desc_nulls_first
+
+  """in descending order, nulls last"""
+  desc_nulls_last
+}
+
+type query_root {
+  """
+  fetch data from the table: "notifications"
+  """
+  notifications(
+    """distinct select on columns"""
+    distinct_on: [notifications_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [notifications_order_by!]
+
+    """filter the rows returned"""
+    where: notifications_bool_exp
+  ): [notifications!]!
+
+  """
+  fetch aggregated fields from the table: "notifications"
+  """
+  notifications_aggregate(
+    """distinct select on columns"""
+    distinct_on: [notifications_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [notifications_order_by!]
+
+    """filter the rows returned"""
+    where: notifications_bool_exp
+  ): notifications_aggregate!
+
+  """fetch data from the table: "notifications" using primary key columns"""
+  notifications_by_pk(id: uuid!): notifications
+
+  """
+  fetch data from the table: "service_enums"
+  """
+  service_enums(
+    """distinct select on columns"""
+    distinct_on: [service_enums_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [service_enums_order_by!]
+
+    """filter the rows returned"""
+    where: service_enums_bool_exp
+  ): [service_enums!]!
+
+  """
+  fetch aggregated fields from the table: "service_enums"
+  """
+  service_enums_aggregate(
+    """distinct select on columns"""
+    distinct_on: [service_enums_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [service_enums_order_by!]
+
+    """filter the rows returned"""
+    where: service_enums_bool_exp
+  ): service_enums_aggregate!
+
+  """fetch data from the table: "service_enums" using primary key columns"""
+  service_enums_by_pk(service: String!): service_enums
+
+  """
+  fetch data from the table: "services"
+  """
+  services(
+    """distinct select on columns"""
+    distinct_on: [services_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [services_order_by!]
+
+    """filter the rows returned"""
+    where: services_bool_exp
+  ): [services!]!
+
+  """
+  fetch aggregated fields from the table: "services"
+  """
+  services_aggregate(
+    """distinct select on columns"""
+    distinct_on: [services_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [services_order_by!]
+
+    """filter the rows returned"""
+    where: services_bool_exp
+  ): services_aggregate!
+
+  """fetch data from the table: "services" using primary key columns"""
+  services_by_pk(id: uuid!): services
+
+  """
+  fetch data from the table: "severity_enums"
+  """
+  severity_enums(
+    """distinct select on columns"""
+    distinct_on: [severity_enums_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [severity_enums_order_by!]
+
+    """filter the rows returned"""
+    where: severity_enums_bool_exp
+  ): [severity_enums!]!
+
+  """
+  fetch aggregated fields from the table: "severity_enums"
+  """
+  severity_enums_aggregate(
+    """distinct select on columns"""
+    distinct_on: [severity_enums_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [severity_enums_order_by!]
+
+    """filter the rows returned"""
+    where: severity_enums_bool_exp
+  ): severity_enums_aggregate!
+
+  """fetch data from the table: "severity_enums" using primary key columns"""
+  severity_enums_by_pk(severity: String!): severity_enums
+}
+
+"""
+columns and relationships of "service_enums"
+"""
+type service_enums {
+  description: String!
+  service: String!
+}
+
+"""
+aggregated selection of "service_enums"
+"""
+type service_enums_aggregate {
+  aggregate: service_enums_aggregate_fields
+  nodes: [service_enums!]!
+}
+
+"""
+aggregate fields of "service_enums"
+"""
+type service_enums_aggregate_fields {
+  count(columns: [service_enums_select_column!], distinct: Boolean): Int!
+  max: service_enums_max_fields
+  min: service_enums_min_fields
+}
+
+"""
+Boolean expression to filter rows from the table "service_enums". All fields are combined with a logical 'AND'.
+"""
+input service_enums_bool_exp {
+  _and: [service_enums_bool_exp!]
+  _not: service_enums_bool_exp
+  _or: [service_enums_bool_exp!]
+  description: String_comparison_exp
+  service: String_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "service_enums"
+"""
+enum service_enums_constraint {
+  """unique or primary key constraint"""
+  service_enums_pkey
+}
+
+enum service_enums_enum {
+  """async_chat_notification_service"""
+  async_chat
+
+  """calendar_notification_service"""
+  calendar
+
+  """qnr_notification_service"""
+  qnr
+}
+
+"""
+Boolean expression to compare columns of type "service_enums_enum". All fields are combined with logical 'AND'.
+"""
+input service_enums_enum_comparison_exp {
+  _eq: service_enums_enum
+  _in: [service_enums_enum!]
+  _is_null: Boolean
+  _neq: service_enums_enum
+  _nin: [service_enums_enum!]
+}
+
+"""
+input type for inserting data into table "service_enums"
+"""
+input service_enums_insert_input {
+  description: String
+  service: String
+}
+
+"""aggregate max on columns"""
+type service_enums_max_fields {
+  description: String
+  service: String
+}
+
+"""aggregate min on columns"""
+type service_enums_min_fields {
+  description: String
+  service: String
+}
+
+"""
+response of any mutation on the table "service_enums"
+"""
+type service_enums_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+
+  """data from the rows affected by the mutation"""
+  returning: [service_enums!]!
+}
+
+"""
+on conflict condition type for table "service_enums"
+"""
+input service_enums_on_conflict {
+  constraint: service_enums_constraint!
+  update_columns: [service_enums_update_column!]! = []
+  where: service_enums_bool_exp
+}
+
+"""Ordering options when selecting data from "service_enums"."""
+input service_enums_order_by {
+  description: order_by
+  service: order_by
+}
+
+"""primary key columns input for table: service_enums"""
+input service_enums_pk_columns_input {
+  service: String!
+}
+
+"""
+select columns of table "service_enums"
+"""
+enum service_enums_select_column {
+  """column name"""
+  description
+
+  """column name"""
+  service
+}
+
+"""
+input type for updating data in table "service_enums"
+"""
+input service_enums_set_input {
+  description: String
+  service: String
+}
+
+"""
+update columns of table "service_enums"
+"""
+enum service_enums_update_column {
+  """column name"""
+  description
+
+  """column name"""
+  service
+}
+
+"""
+columns and relationships of "services"
+"""
+type services {
+  customer_id: uuid!
+  email_ch: Boolean!
+  enabled: Boolean!
+  id: uuid!
+  message: String
+  push_ch: Boolean!
+  service: service_enums_enum!
+  sms_ch: Boolean!
+  title: String
+  updated_at: timestamptz!
+  user_id: uuid!
+}
+
+"""
+aggregated selection of "services"
+"""
+type services_aggregate {
+  aggregate: services_aggregate_fields
+  nodes: [services!]!
+}
+
+"""
+aggregate fields of "services"
+"""
+type services_aggregate_fields {
+  count(columns: [services_select_column!], distinct: Boolean): Int!
+  max: services_max_fields
+  min: services_min_fields
+}
+
+"""
+Boolean expression to filter rows from the table "services". All fields are combined with a logical 'AND'.
+"""
+input services_bool_exp {
+  _and: [services_bool_exp!]
+  _not: services_bool_exp
+  _or: [services_bool_exp!]
+  customer_id: uuid_comparison_exp
+  email_ch: Boolean_comparison_exp
+  enabled: Boolean_comparison_exp
+  id: uuid_comparison_exp
+  message: String_comparison_exp
+  push_ch: Boolean_comparison_exp
+  service: service_enums_enum_comparison_exp
+  sms_ch: Boolean_comparison_exp
+  title: String_comparison_exp
+  updated_at: timestamptz_comparison_exp
+  user_id: uuid_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "services"
+"""
+enum services_constraint {
+  """unique or primary key constraint"""
+  services_pkey
+
+  """unique or primary key constraint"""
+  services_service_key
+}
+
+"""
+input type for inserting data into table "services"
+"""
+input services_insert_input {
+  customer_id: uuid
+  email_ch: Boolean
+  enabled: Boolean
+  id: uuid
+  message: String
+  push_ch: Boolean
+  service: service_enums_enum
+  sms_ch: Boolean
+  title: String
+  updated_at: timestamptz
+  user_id: uuid
+}
+
+"""aggregate max on columns"""
+type services_max_fields {
+  customer_id: uuid
+  id: uuid
+  message: String
+  title: String
+  updated_at: timestamptz
+  user_id: uuid
+}
+
+"""aggregate min on columns"""
+type services_min_fields {
+  customer_id: uuid
+  id: uuid
+  message: String
+  title: String
+  updated_at: timestamptz
+  user_id: uuid
+}
+
+"""
+response of any mutation on the table "services"
+"""
+type services_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+
+  """data from the rows affected by the mutation"""
+  returning: [services!]!
+}
+
+"""
+input type for inserting object relation for remote table "services"
+"""
+input services_obj_rel_insert_input {
+  data: services_insert_input!
+
+  """on conflict condition"""
+  on_conflict: services_on_conflict
+}
+
+"""
+on conflict condition type for table "services"
+"""
+input services_on_conflict {
+  constraint: services_constraint!
+  update_columns: [services_update_column!]! = []
+  where: services_bool_exp
+}
+
+"""Ordering options when selecting data from "services"."""
+input services_order_by {
+  customer_id: order_by
+  email_ch: order_by
+  enabled: order_by
+  id: order_by
+  message: order_by
+  push_ch: order_by
+  service: order_by
+  sms_ch: order_by
+  title: order_by
+  updated_at: order_by
+  user_id: order_by
+}
+
+"""primary key columns input for table: services"""
+input services_pk_columns_input {
+  id: uuid!
+}
+
+"""
+select columns of table "services"
+"""
+enum services_select_column {
+  """column name"""
+  customer_id
+
+  """column name"""
+  email_ch
+
+  """column name"""
+  enabled
+
+  """column name"""
+  id
+
+  """column name"""
+  message
+
+  """column name"""
+  push_ch
+
+  """column name"""
+  service
+
+  """column name"""
+  sms_ch
+
+  """column name"""
+  title
+
+  """column name"""
+  updated_at
+
+  """column name"""
+  user_id
+}
+
+"""
+input type for updating data in table "services"
+"""
+input services_set_input {
+  customer_id: uuid
+  email_ch: Boolean
+  enabled: Boolean
+  id: uuid
+  message: String
+  push_ch: Boolean
+  service: service_enums_enum
+  sms_ch: Boolean
+  title: String
+  updated_at: timestamptz
+  user_id: uuid
+}
+
+"""
+update columns of table "services"
+"""
+enum services_update_column {
+  """column name"""
+  customer_id
+
+  """column name"""
+  email_ch
+
+  """column name"""
+  enabled
+
+  """column name"""
+  id
+
+  """column name"""
+  message
+
+  """column name"""
+  push_ch
+
+  """column name"""
+  service
+
+  """column name"""
+  sms_ch
+
+  """column name"""
+  title
+
+  """column name"""
+  updated_at
+
+  """column name"""
+  user_id
+}
+
+"""
+columns and relationships of "severity_enums"
+"""
+type severity_enums {
+  description: String!
+  severity: String!
+}
+
+"""
+aggregated selection of "severity_enums"
+"""
+type severity_enums_aggregate {
+  aggregate: severity_enums_aggregate_fields
+  nodes: [severity_enums!]!
+}
+
+"""
+aggregate fields of "severity_enums"
+"""
+type severity_enums_aggregate_fields {
+  count(columns: [severity_enums_select_column!], distinct: Boolean): Int!
+  max: severity_enums_max_fields
+  min: severity_enums_min_fields
+}
+
+"""
+Boolean expression to filter rows from the table "severity_enums". All fields are combined with a logical 'AND'.
+"""
+input severity_enums_bool_exp {
+  _and: [severity_enums_bool_exp!]
+  _not: severity_enums_bool_exp
+  _or: [severity_enums_bool_exp!]
+  description: String_comparison_exp
+  severity: String_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "severity_enums"
+"""
+enum severity_enums_constraint {
+  """unique or primary key constraint"""
+  severity_enums_pkey
+}
+
+enum severity_enums_enum {
+  """"""
+  important
+
+  """"""
+  regular
+
+  """"""
+  urgent
+}
+
+"""
+Boolean expression to compare columns of type "severity_enums_enum". All fields are combined with logical 'AND'.
+"""
+input severity_enums_enum_comparison_exp {
+  _eq: severity_enums_enum
+  _in: [severity_enums_enum!]
+  _is_null: Boolean
+  _neq: severity_enums_enum
+  _nin: [severity_enums_enum!]
+}
+
+"""
+input type for inserting data into table "severity_enums"
+"""
+input severity_enums_insert_input {
+  description: String
+  severity: String
+}
+
+"""aggregate max on columns"""
+type severity_enums_max_fields {
+  description: String
+  severity: String
+}
+
+"""aggregate min on columns"""
+type severity_enums_min_fields {
+  description: String
+  severity: String
+}
+
+"""
+response of any mutation on the table "severity_enums"
+"""
+type severity_enums_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+
+  """data from the rows affected by the mutation"""
+  returning: [severity_enums!]!
+}
+
+"""
+on conflict condition type for table "severity_enums"
+"""
+input severity_enums_on_conflict {
+  constraint: severity_enums_constraint!
+  update_columns: [severity_enums_update_column!]! = []
+  where: severity_enums_bool_exp
+}
+
+"""Ordering options when selecting data from "severity_enums"."""
+input severity_enums_order_by {
+  description: order_by
+  severity: order_by
+}
+
+"""primary key columns input for table: severity_enums"""
+input severity_enums_pk_columns_input {
+  severity: String!
+}
+
+"""
+select columns of table "severity_enums"
+"""
+enum severity_enums_select_column {
+  """column name"""
+  description
+
+  """column name"""
+  severity
+}
+
+"""
+input type for updating data in table "severity_enums"
+"""
+input severity_enums_set_input {
+  description: String
+  severity: String
+}
+
+"""
+update columns of table "severity_enums"
+"""
+enum severity_enums_update_column {
+  """column name"""
+  description
+
+  """column name"""
+  severity
+}
+
+type subscription_root {
+  """
+  fetch data from the table: "notifications"
+  """
+  notifications(
+    """distinct select on columns"""
+    distinct_on: [notifications_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [notifications_order_by!]
+
+    """filter the rows returned"""
+    where: notifications_bool_exp
+  ): [notifications!]!
+
+  """
+  fetch aggregated fields from the table: "notifications"
+  """
+  notifications_aggregate(
+    """distinct select on columns"""
+    distinct_on: [notifications_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [notifications_order_by!]
+
+    """filter the rows returned"""
+    where: notifications_bool_exp
+  ): notifications_aggregate!
+
+  """fetch data from the table: "notifications" using primary key columns"""
+  notifications_by_pk(id: uuid!): notifications
+
+  """
+  fetch data from the table: "service_enums"
+  """
+  service_enums(
+    """distinct select on columns"""
+    distinct_on: [service_enums_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [service_enums_order_by!]
+
+    """filter the rows returned"""
+    where: service_enums_bool_exp
+  ): [service_enums!]!
+
+  """
+  fetch aggregated fields from the table: "service_enums"
+  """
+  service_enums_aggregate(
+    """distinct select on columns"""
+    distinct_on: [service_enums_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [service_enums_order_by!]
+
+    """filter the rows returned"""
+    where: service_enums_bool_exp
+  ): service_enums_aggregate!
+
+  """fetch data from the table: "service_enums" using primary key columns"""
+  service_enums_by_pk(service: String!): service_enums
+
+  """
+  fetch data from the table: "services"
+  """
+  services(
+    """distinct select on columns"""
+    distinct_on: [services_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [services_order_by!]
+
+    """filter the rows returned"""
+    where: services_bool_exp
+  ): [services!]!
+
+  """
+  fetch aggregated fields from the table: "services"
+  """
+  services_aggregate(
+    """distinct select on columns"""
+    distinct_on: [services_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [services_order_by!]
+
+    """filter the rows returned"""
+    where: services_bool_exp
+  ): services_aggregate!
+
+  """fetch data from the table: "services" using primary key columns"""
+  services_by_pk(id: uuid!): services
+
+  """
+  fetch data from the table: "severity_enums"
+  """
+  severity_enums(
+    """distinct select on columns"""
+    distinct_on: [severity_enums_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [severity_enums_order_by!]
+
+    """filter the rows returned"""
+    where: severity_enums_bool_exp
+  ): [severity_enums!]!
+
+  """
+  fetch aggregated fields from the table: "severity_enums"
+  """
+  severity_enums_aggregate(
+    """distinct select on columns"""
+    distinct_on: [severity_enums_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [severity_enums_order_by!]
+
+    """filter the rows returned"""
+    where: severity_enums_bool_exp
+  ): severity_enums_aggregate!
+
+  """fetch data from the table: "severity_enums" using primary key columns"""
+  severity_enums_by_pk(severity: String!): severity_enums
+}
+
+scalar timestamptz
+
+"""
+Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'.
+"""
+input timestamptz_comparison_exp {
+  _eq: timestamptz
+  _gt: timestamptz
+  _gte: timestamptz
+  _in: [timestamptz!]
+  _is_null: Boolean
+  _lt: timestamptz
+  _lte: timestamptz
+  _neq: timestamptz
+  _nin: [timestamptz!]
+}
+
+scalar uuid
+
+"""
+Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'.
+"""
+input uuid_comparison_exp {
+  _eq: uuid
+  _gt: uuid
+  _gte: uuid
+  _in: [uuid!]
+  _is_null: Boolean
+  _lt: uuid
+  _lte: uuid
+  _neq: uuid
+  _nin: [uuid!]
+}
