@@ -136,6 +136,19 @@ type mutation_root {
   delete_severity_enums_by_pk(severity: String!): severity_enums
 
   """
+  delete data from the table: "triggers_enums"
+  """
+  delete_triggers_enums(
+    """filter the rows which have to be deleted"""
+    where: triggers_enums_bool_exp!
+  ): triggers_enums_mutation_response
+
+  """
+  delete single row from the table: "triggers_enums"
+  """
+  delete_triggers_enums_by_pk(trigger: String!): triggers_enums
+
+  """
   insert data into the table: "notifications"
   """
   insert_notifications(
@@ -224,6 +237,28 @@ type mutation_root {
   ): severity_enums
 
   """
+  insert data into the table: "triggers_enums"
+  """
+  insert_triggers_enums(
+    """the rows to be inserted"""
+    objects: [triggers_enums_insert_input!]!
+
+    """on conflict condition"""
+    on_conflict: triggers_enums_on_conflict
+  ): triggers_enums_mutation_response
+
+  """
+  insert a single row into the table: "triggers_enums"
+  """
+  insert_triggers_enums_one(
+    """the row to be inserted"""
+    object: triggers_enums_insert_input!
+
+    """on conflict condition"""
+    on_conflict: triggers_enums_on_conflict
+  ): triggers_enums
+
+  """
   update data of the table: "notifications"
   """
   update_notifications(
@@ -302,12 +337,34 @@ type mutation_root {
     _set: severity_enums_set_input
     pk_columns: severity_enums_pk_columns_input!
   ): severity_enums
+
+  """
+  update data of the table: "triggers_enums"
+  """
+  update_triggers_enums(
+    """sets the columns of the filtered rows to the given values"""
+    _set: triggers_enums_set_input
+
+    """filter the rows which have to be updated"""
+    where: triggers_enums_bool_exp!
+  ): triggers_enums_mutation_response
+
+  """
+  update single row of the table: "triggers_enums"
+  """
+  update_triggers_enums_by_pk(
+    """sets the columns of the filtered rows to the given values"""
+    _set: triggers_enums_set_input
+    pk_columns: triggers_enums_pk_columns_input!
+  ): triggers_enums
 }
 
 """
 columns and relationships of "notifications"
 """
 type notifications {
+  created_at: timestamptz!
+  deleted_at: timestamptz
   id: uuid!
   path: String
   seen: Boolean!
@@ -317,6 +374,8 @@ type notifications {
   service_id: uuid!
   severity: severity_enums_enum!
   subject_id: uuid
+  trigger_type: triggers_enums_enum
+  updated_at: timestamptz
 }
 
 """
@@ -343,6 +402,8 @@ input notifications_bool_exp {
   _and: [notifications_bool_exp!]
   _not: notifications_bool_exp
   _or: [notifications_bool_exp!]
+  created_at: timestamptz_comparison_exp
+  deleted_at: timestamptz_comparison_exp
   id: uuid_comparison_exp
   path: String_comparison_exp
   seen: Boolean_comparison_exp
@@ -350,6 +411,8 @@ input notifications_bool_exp {
   service_id: uuid_comparison_exp
   severity: severity_enums_enum_comparison_exp
   subject_id: uuid_comparison_exp
+  trigger_type: triggers_enums_enum_comparison_exp
+  updated_at: timestamptz_comparison_exp
 }
 
 """
@@ -364,6 +427,8 @@ enum notifications_constraint {
 input type for inserting data into table "notifications"
 """
 input notifications_insert_input {
+  created_at: timestamptz
+  deleted_at: timestamptz
   id: uuid
   path: String
   seen: Boolean
@@ -371,22 +436,30 @@ input notifications_insert_input {
   service_id: uuid
   severity: severity_enums_enum
   subject_id: uuid
+  trigger_type: triggers_enums_enum
+  updated_at: timestamptz
 }
 
 """aggregate max on columns"""
 type notifications_max_fields {
+  created_at: timestamptz
+  deleted_at: timestamptz
   id: uuid
   path: String
   service_id: uuid
   subject_id: uuid
+  updated_at: timestamptz
 }
 
 """aggregate min on columns"""
 type notifications_min_fields {
+  created_at: timestamptz
+  deleted_at: timestamptz
   id: uuid
   path: String
   service_id: uuid
   subject_id: uuid
+  updated_at: timestamptz
 }
 
 """
@@ -411,6 +484,8 @@ input notifications_on_conflict {
 
 """Ordering options when selecting data from "notifications"."""
 input notifications_order_by {
+  created_at: order_by
+  deleted_at: order_by
   id: order_by
   path: order_by
   seen: order_by
@@ -418,6 +493,8 @@ input notifications_order_by {
   service_id: order_by
   severity: order_by
   subject_id: order_by
+  trigger_type: order_by
+  updated_at: order_by
 }
 
 """primary key columns input for table: notifications"""
@@ -430,6 +507,12 @@ select columns of table "notifications"
 """
 enum notifications_select_column {
   """column name"""
+  created_at
+
+  """column name"""
+  deleted_at
+
+  """column name"""
   id
 
   """column name"""
@@ -446,18 +529,28 @@ enum notifications_select_column {
 
   """column name"""
   subject_id
+
+  """column name"""
+  trigger_type
+
+  """column name"""
+  updated_at
 }
 
 """
 input type for updating data in table "notifications"
 """
 input notifications_set_input {
+  created_at: timestamptz
+  deleted_at: timestamptz
   id: uuid
   path: String
   seen: Boolean
   service_id: uuid
   severity: severity_enums_enum
   subject_id: uuid
+  trigger_type: triggers_enums_enum
+  updated_at: timestamptz
 }
 
 """
@@ -465,6 +558,12 @@ update columns of table "notifications"
 """
 enum notifications_update_column {
   """column name"""
+  created_at
+
+  """column name"""
+  deleted_at
+
+  """column name"""
   id
 
   """column name"""
@@ -481,6 +580,12 @@ enum notifications_update_column {
 
   """column name"""
   subject_id
+
+  """column name"""
+  trigger_type
+
+  """column name"""
+  updated_at
 }
 
 """column ordering options"""
@@ -676,6 +781,49 @@ type query_root {
 
   """fetch data from the table: "severity_enums" using primary key columns"""
   severity_enums_by_pk(severity: String!): severity_enums
+
+  """
+  fetch data from the table: "triggers_enums"
+  """
+  triggers_enums(
+    """distinct select on columns"""
+    distinct_on: [triggers_enums_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [triggers_enums_order_by!]
+
+    """filter the rows returned"""
+    where: triggers_enums_bool_exp
+  ): [triggers_enums!]!
+
+  """
+  fetch aggregated fields from the table: "triggers_enums"
+  """
+  triggers_enums_aggregate(
+    """distinct select on columns"""
+    distinct_on: [triggers_enums_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [triggers_enums_order_by!]
+
+    """filter the rows returned"""
+    where: triggers_enums_bool_exp
+  ): triggers_enums_aggregate!
+
+  """fetch data from the table: "triggers_enums" using primary key columns"""
+  triggers_enums_by_pk(trigger: String!): triggers_enums
 }
 
 """
@@ -1389,6 +1537,49 @@ type subscription_root {
 
   """fetch data from the table: "severity_enums" using primary key columns"""
   severity_enums_by_pk(severity: String!): severity_enums
+
+  """
+  fetch data from the table: "triggers_enums"
+  """
+  triggers_enums(
+    """distinct select on columns"""
+    distinct_on: [triggers_enums_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [triggers_enums_order_by!]
+
+    """filter the rows returned"""
+    where: triggers_enums_bool_exp
+  ): [triggers_enums!]!
+
+  """
+  fetch aggregated fields from the table: "triggers_enums"
+  """
+  triggers_enums_aggregate(
+    """distinct select on columns"""
+    distinct_on: [triggers_enums_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [triggers_enums_order_by!]
+
+    """filter the rows returned"""
+    where: triggers_enums_bool_exp
+  ): triggers_enums_aggregate!
+
+  """fetch data from the table: "triggers_enums" using primary key columns"""
+  triggers_enums_by_pk(trigger: String!): triggers_enums
 }
 
 scalar timestamptz
@@ -1406,6 +1597,149 @@ input timestamptz_comparison_exp {
   _lte: timestamptz
   _neq: timestamptz
   _nin: [timestamptz!]
+}
+
+"""
+columns and relationships of "triggers_enums"
+"""
+type triggers_enums {
+  description: String
+  trigger: String!
+}
+
+"""
+aggregated selection of "triggers_enums"
+"""
+type triggers_enums_aggregate {
+  aggregate: triggers_enums_aggregate_fields
+  nodes: [triggers_enums!]!
+}
+
+"""
+aggregate fields of "triggers_enums"
+"""
+type triggers_enums_aggregate_fields {
+  count(columns: [triggers_enums_select_column!], distinct: Boolean): Int!
+  max: triggers_enums_max_fields
+  min: triggers_enums_min_fields
+}
+
+"""
+Boolean expression to filter rows from the table "triggers_enums". All fields are combined with a logical 'AND'.
+"""
+input triggers_enums_bool_exp {
+  _and: [triggers_enums_bool_exp!]
+  _not: triggers_enums_bool_exp
+  _or: [triggers_enums_bool_exp!]
+  description: String_comparison_exp
+  trigger: String_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "triggers_enums"
+"""
+enum triggers_enums_constraint {
+  """unique or primary key constraint"""
+  triggers_enums_pkey
+}
+
+enum triggers_enums_enum {
+  create_ticket
+
+  """"""
+  insert_ticket_user
+}
+
+"""
+Boolean expression to compare columns of type "triggers_enums_enum". All fields are combined with logical 'AND'.
+"""
+input triggers_enums_enum_comparison_exp {
+  _eq: triggers_enums_enum
+  _in: [triggers_enums_enum!]
+  _is_null: Boolean
+  _neq: triggers_enums_enum
+  _nin: [triggers_enums_enum!]
+}
+
+"""
+input type for inserting data into table "triggers_enums"
+"""
+input triggers_enums_insert_input {
+  description: String
+  trigger: String
+}
+
+"""aggregate max on columns"""
+type triggers_enums_max_fields {
+  description: String
+  trigger: String
+}
+
+"""aggregate min on columns"""
+type triggers_enums_min_fields {
+  description: String
+  trigger: String
+}
+
+"""
+response of any mutation on the table "triggers_enums"
+"""
+type triggers_enums_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+
+  """data from the rows affected by the mutation"""
+  returning: [triggers_enums!]!
+}
+
+"""
+on conflict condition type for table "triggers_enums"
+"""
+input triggers_enums_on_conflict {
+  constraint: triggers_enums_constraint!
+  update_columns: [triggers_enums_update_column!]! = []
+  where: triggers_enums_bool_exp
+}
+
+"""Ordering options when selecting data from "triggers_enums"."""
+input triggers_enums_order_by {
+  description: order_by
+  trigger: order_by
+}
+
+"""primary key columns input for table: triggers_enums"""
+input triggers_enums_pk_columns_input {
+  trigger: String!
+}
+
+"""
+select columns of table "triggers_enums"
+"""
+enum triggers_enums_select_column {
+  """column name"""
+  description
+
+  """column name"""
+  trigger
+}
+
+"""
+input type for updating data in table "triggers_enums"
+"""
+input triggers_enums_set_input {
+  description: String
+  trigger: String
+}
+
+"""
+update columns of table "triggers_enums"
+"""
+enum triggers_enums_update_column {
+  """column name"""
+  description
+
+  """column name"""
+  trigger
 }
 
 scalar uuid

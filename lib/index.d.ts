@@ -73,21 +73,29 @@ export declare const enumnotificationsConstraint: {
 }
 
 export declare const enumnotificationsSelectColumn: {
+  readonly created_at: 'created_at'
+  readonly deleted_at: 'deleted_at'
   readonly id: 'id'
   readonly path: 'path'
   readonly seen: 'seen'
   readonly service_id: 'service_id'
   readonly severity: 'severity'
   readonly subject_id: 'subject_id'
+  readonly trigger_type: 'trigger_type'
+  readonly updated_at: 'updated_at'
 }
 
 export declare const enumnotificationsUpdateColumn: {
+  readonly created_at: 'created_at'
+  readonly deleted_at: 'deleted_at'
   readonly id: 'id'
   readonly path: 'path'
   readonly seen: 'seen'
   readonly service_id: 'service_id'
   readonly severity: 'severity'
   readonly subject_id: 'subject_id'
+  readonly trigger_type: 'trigger_type'
+  readonly updated_at: 'updated_at'
 }
 
 export declare const enumorderBy: {
@@ -170,4 +178,23 @@ export declare const enumseverityEnumsSelectColumn: {
 export declare const enumseverityEnumsUpdateColumn: {
   readonly description: 'description'
   readonly severity: 'severity'
+}
+
+export declare const enumtriggersEnumsConstraint: {
+  readonly triggers_enums_pkey: 'triggers_enums_pkey'
+}
+
+export declare const enumtriggersEnumsEnum: {
+  readonly create_ticket: 'create_ticket'
+  readonly insert_ticket_user: 'insert_ticket_user'
+}
+
+export declare const enumtriggersEnumsSelectColumn: {
+  readonly description: 'description'
+  readonly trigger: 'trigger'
+}
+
+export declare const enumtriggersEnumsUpdateColumn: {
+  readonly description: 'description'
+  readonly trigger: 'trigger'
 }

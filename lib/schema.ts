@@ -27,6 +27,10 @@ export interface mutation_root {
     delete_severity_enums?: severity_enums_mutation_response
     /** delete single row from the table: "severity_enums" */
     delete_severity_enums_by_pk?: severity_enums
+    /** delete data from the table: "triggers_enums" */
+    delete_triggers_enums?: triggers_enums_mutation_response
+    /** delete single row from the table: "triggers_enums" */
+    delete_triggers_enums_by_pk?: triggers_enums
     /** insert data into the table: "notifications" */
     insert_notifications?: notifications_mutation_response
     /** insert a single row into the table: "notifications" */
@@ -43,6 +47,10 @@ export interface mutation_root {
     insert_severity_enums?: severity_enums_mutation_response
     /** insert a single row into the table: "severity_enums" */
     insert_severity_enums_one?: severity_enums
+    /** insert data into the table: "triggers_enums" */
+    insert_triggers_enums?: triggers_enums_mutation_response
+    /** insert a single row into the table: "triggers_enums" */
+    insert_triggers_enums_one?: triggers_enums
     /** update data of the table: "notifications" */
     update_notifications?: notifications_mutation_response
     /** update single row of the table: "notifications" */
@@ -59,12 +67,18 @@ export interface mutation_root {
     update_severity_enums?: severity_enums_mutation_response
     /** update single row of the table: "severity_enums" */
     update_severity_enums_by_pk?: severity_enums
+    /** update data of the table: "triggers_enums" */
+    update_triggers_enums?: triggers_enums_mutation_response
+    /** update single row of the table: "triggers_enums" */
+    update_triggers_enums_by_pk?: triggers_enums
     __typename: 'mutation_root'
 }
 
 
 /** columns and relationships of "notifications" */
 export interface notifications {
+    created_at: Scalars['timestamptz']
+    deleted_at?: Scalars['timestamptz']
     id: Scalars['uuid']
     path?: Scalars['String']
     seen: Scalars['Boolean']
@@ -73,6 +87,8 @@ export interface notifications {
     service_id: Scalars['uuid']
     severity: severity_enums_enum
     subject_id?: Scalars['uuid']
+    trigger_type?: triggers_enums_enum
+    updated_at?: Scalars['timestamptz']
     __typename: 'notifications'
 }
 
@@ -100,20 +116,26 @@ export type notifications_constraint = 'notifications_pkey'
 
 /** aggregate max on columns */
 export interface notifications_max_fields {
+    created_at?: Scalars['timestamptz']
+    deleted_at?: Scalars['timestamptz']
     id?: Scalars['uuid']
     path?: Scalars['String']
     service_id?: Scalars['uuid']
     subject_id?: Scalars['uuid']
+    updated_at?: Scalars['timestamptz']
     __typename: 'notifications_max_fields'
 }
 
 
 /** aggregate min on columns */
 export interface notifications_min_fields {
+    created_at?: Scalars['timestamptz']
+    deleted_at?: Scalars['timestamptz']
     id?: Scalars['uuid']
     path?: Scalars['String']
     service_id?: Scalars['uuid']
     subject_id?: Scalars['uuid']
+    updated_at?: Scalars['timestamptz']
     __typename: 'notifications_min_fields'
 }
 
@@ -129,11 +151,11 @@ export interface notifications_mutation_response {
 
 
 /** select columns of table "notifications" */
-export type notifications_select_column = 'id' | 'path' | 'seen' | 'service_id' | 'severity' | 'subject_id'
+export type notifications_select_column = 'created_at' | 'deleted_at' | 'id' | 'path' | 'seen' | 'service_id' | 'severity' | 'subject_id' | 'trigger_type' | 'updated_at'
 
 
 /** update columns of table "notifications" */
-export type notifications_update_column = 'id' | 'path' | 'seen' | 'service_id' | 'severity' | 'subject_id'
+export type notifications_update_column = 'created_at' | 'deleted_at' | 'id' | 'path' | 'seen' | 'service_id' | 'severity' | 'subject_id' | 'trigger_type' | 'updated_at'
 
 
 /** column ordering options */
@@ -164,6 +186,12 @@ export interface query_root {
     severity_enums_aggregate: severity_enums_aggregate
     /** fetch data from the table: "severity_enums" using primary key columns */
     severity_enums_by_pk?: severity_enums
+    /** fetch data from the table: "triggers_enums" */
+    triggers_enums: triggers_enums[]
+    /** fetch aggregated fields from the table: "triggers_enums" */
+    triggers_enums_aggregate: triggers_enums_aggregate
+    /** fetch data from the table: "triggers_enums" using primary key columns */
+    triggers_enums_by_pk?: triggers_enums
     __typename: 'query_root'
 }
 
@@ -402,8 +430,79 @@ export interface subscription_root {
     severity_enums_aggregate: severity_enums_aggregate
     /** fetch data from the table: "severity_enums" using primary key columns */
     severity_enums_by_pk?: severity_enums
+    /** fetch data from the table: "triggers_enums" */
+    triggers_enums: triggers_enums[]
+    /** fetch aggregated fields from the table: "triggers_enums" */
+    triggers_enums_aggregate: triggers_enums_aggregate
+    /** fetch data from the table: "triggers_enums" using primary key columns */
+    triggers_enums_by_pk?: triggers_enums
     __typename: 'subscription_root'
 }
+
+
+/** columns and relationships of "triggers_enums" */
+export interface triggers_enums {
+    description?: Scalars['String']
+    trigger: Scalars['String']
+    __typename: 'triggers_enums'
+}
+
+
+/** aggregated selection of "triggers_enums" */
+export interface triggers_enums_aggregate {
+    aggregate?: triggers_enums_aggregate_fields
+    nodes: triggers_enums[]
+    __typename: 'triggers_enums_aggregate'
+}
+
+
+/** aggregate fields of "triggers_enums" */
+export interface triggers_enums_aggregate_fields {
+    count: Scalars['Int']
+    max?: triggers_enums_max_fields
+    min?: triggers_enums_min_fields
+    __typename: 'triggers_enums_aggregate_fields'
+}
+
+
+/** unique or primary key constraints on table "triggers_enums" */
+export type triggers_enums_constraint = 'triggers_enums_pkey'
+
+export type triggers_enums_enum = 'create_ticket' | 'insert_ticket_user'
+
+
+/** aggregate max on columns */
+export interface triggers_enums_max_fields {
+    description?: Scalars['String']
+    trigger?: Scalars['String']
+    __typename: 'triggers_enums_max_fields'
+}
+
+
+/** aggregate min on columns */
+export interface triggers_enums_min_fields {
+    description?: Scalars['String']
+    trigger?: Scalars['String']
+    __typename: 'triggers_enums_min_fields'
+}
+
+
+/** response of any mutation on the table "triggers_enums" */
+export interface triggers_enums_mutation_response {
+    /** number of rows affected by the mutation */
+    affected_rows: Scalars['Int']
+    /** data from the rows affected by the mutation */
+    returning: triggers_enums[]
+    __typename: 'triggers_enums_mutation_response'
+}
+
+
+/** select columns of table "triggers_enums" */
+export type triggers_enums_select_column = 'description' | 'trigger'
+
+
+/** update columns of table "triggers_enums" */
+export type triggers_enums_update_column = 'description' | 'trigger'
 
 export type Query = query_root
 export type Mutation = mutation_root
@@ -464,6 +563,12 @@ export interface mutation_rootRequest{
     where: severity_enums_bool_exp},severity_enums_mutation_responseRequest]
     /** delete single row from the table: "severity_enums" */
     delete_severity_enums_by_pk?: [{severity: Scalars['String']},severity_enumsRequest]
+    /** delete data from the table: "triggers_enums" */
+    delete_triggers_enums?: [{
+    /** filter the rows which have to be deleted */
+    where: triggers_enums_bool_exp},triggers_enums_mutation_responseRequest]
+    /** delete single row from the table: "triggers_enums" */
+    delete_triggers_enums_by_pk?: [{trigger: Scalars['String']},triggers_enumsRequest]
     /** insert data into the table: "notifications" */
     insert_notifications?: [{
     /** the rows to be inserted */
@@ -512,6 +617,18 @@ export interface mutation_rootRequest{
     object: severity_enums_insert_input,
     /** on conflict condition */
     on_conflict?: (severity_enums_on_conflict | null)},severity_enumsRequest]
+    /** insert data into the table: "triggers_enums" */
+    insert_triggers_enums?: [{
+    /** the rows to be inserted */
+    objects: triggers_enums_insert_input[],
+    /** on conflict condition */
+    on_conflict?: (triggers_enums_on_conflict | null)},triggers_enums_mutation_responseRequest]
+    /** insert a single row into the table: "triggers_enums" */
+    insert_triggers_enums_one?: [{
+    /** the row to be inserted */
+    object: triggers_enums_insert_input,
+    /** on conflict condition */
+    on_conflict?: (triggers_enums_on_conflict | null)},triggers_enumsRequest]
     /** update data of the table: "notifications" */
     update_notifications?: [{
     /** sets the columns of the filtered rows to the given values */
@@ -552,6 +669,16 @@ export interface mutation_rootRequest{
     update_severity_enums_by_pk?: [{
     /** sets the columns of the filtered rows to the given values */
     _set?: (severity_enums_set_input | null),pk_columns: severity_enums_pk_columns_input},severity_enumsRequest]
+    /** update data of the table: "triggers_enums" */
+    update_triggers_enums?: [{
+    /** sets the columns of the filtered rows to the given values */
+    _set?: (triggers_enums_set_input | null),
+    /** filter the rows which have to be updated */
+    where: triggers_enums_bool_exp},triggers_enums_mutation_responseRequest]
+    /** update single row of the table: "triggers_enums" */
+    update_triggers_enums_by_pk?: [{
+    /** sets the columns of the filtered rows to the given values */
+    _set?: (triggers_enums_set_input | null),pk_columns: triggers_enums_pk_columns_input},triggers_enumsRequest]
     __typename?: boolean | number
     __scalar?: boolean | number
 }
@@ -559,6 +686,8 @@ export interface mutation_rootRequest{
 
 /** columns and relationships of "notifications" */
 export interface notificationsRequest{
+    created_at?: boolean | number
+    deleted_at?: boolean | number
     id?: boolean | number
     path?: boolean | number
     seen?: boolean | number
@@ -567,6 +696,8 @@ export interface notificationsRequest{
     service_id?: boolean | number
     severity?: boolean | number
     subject_id?: boolean | number
+    trigger_type?: boolean | number
+    updated_at?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
@@ -592,19 +723,22 @@ export interface notifications_aggregate_fieldsRequest{
 
 
 /** Boolean expression to filter rows from the table "notifications". All fields are combined with a logical 'AND'. */
-export interface notifications_bool_exp {_and?: (notifications_bool_exp[] | null),_not?: (notifications_bool_exp | null),_or?: (notifications_bool_exp[] | null),id?: (uuid_comparison_exp | null),path?: (String_comparison_exp | null),seen?: (Boolean_comparison_exp | null),service?: (services_bool_exp | null),service_id?: (uuid_comparison_exp | null),severity?: (severity_enums_enum_comparison_exp | null),subject_id?: (uuid_comparison_exp | null)}
+export interface notifications_bool_exp {_and?: (notifications_bool_exp[] | null),_not?: (notifications_bool_exp | null),_or?: (notifications_bool_exp[] | null),created_at?: (timestamptz_comparison_exp | null),deleted_at?: (timestamptz_comparison_exp | null),id?: (uuid_comparison_exp | null),path?: (String_comparison_exp | null),seen?: (Boolean_comparison_exp | null),service?: (services_bool_exp | null),service_id?: (uuid_comparison_exp | null),severity?: (severity_enums_enum_comparison_exp | null),subject_id?: (uuid_comparison_exp | null),trigger_type?: (triggers_enums_enum_comparison_exp | null),updated_at?: (timestamptz_comparison_exp | null)}
 
 
 /** input type for inserting data into table "notifications" */
-export interface notifications_insert_input {id?: (Scalars['uuid'] | null),path?: (Scalars['String'] | null),seen?: (Scalars['Boolean'] | null),service?: (services_obj_rel_insert_input | null),service_id?: (Scalars['uuid'] | null),severity?: (severity_enums_enum | null),subject_id?: (Scalars['uuid'] | null)}
+export interface notifications_insert_input {created_at?: (Scalars['timestamptz'] | null),deleted_at?: (Scalars['timestamptz'] | null),id?: (Scalars['uuid'] | null),path?: (Scalars['String'] | null),seen?: (Scalars['Boolean'] | null),service?: (services_obj_rel_insert_input | null),service_id?: (Scalars['uuid'] | null),severity?: (severity_enums_enum | null),subject_id?: (Scalars['uuid'] | null),trigger_type?: (triggers_enums_enum | null),updated_at?: (Scalars['timestamptz'] | null)}
 
 
 /** aggregate max on columns */
 export interface notifications_max_fieldsRequest{
+    created_at?: boolean | number
+    deleted_at?: boolean | number
     id?: boolean | number
     path?: boolean | number
     service_id?: boolean | number
     subject_id?: boolean | number
+    updated_at?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
@@ -612,10 +746,13 @@ export interface notifications_max_fieldsRequest{
 
 /** aggregate min on columns */
 export interface notifications_min_fieldsRequest{
+    created_at?: boolean | number
+    deleted_at?: boolean | number
     id?: boolean | number
     path?: boolean | number
     service_id?: boolean | number
     subject_id?: boolean | number
+    updated_at?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
@@ -637,7 +774,7 @@ export interface notifications_on_conflict {constraint: notifications_constraint
 
 
 /** Ordering options when selecting data from "notifications". */
-export interface notifications_order_by {id?: (order_by | null),path?: (order_by | null),seen?: (order_by | null),service?: (services_order_by | null),service_id?: (order_by | null),severity?: (order_by | null),subject_id?: (order_by | null)}
+export interface notifications_order_by {created_at?: (order_by | null),deleted_at?: (order_by | null),id?: (order_by | null),path?: (order_by | null),seen?: (order_by | null),service?: (services_order_by | null),service_id?: (order_by | null),severity?: (order_by | null),subject_id?: (order_by | null),trigger_type?: (order_by | null),updated_at?: (order_by | null)}
 
 
 /** primary key columns input for table: notifications */
@@ -645,7 +782,7 @@ export interface notifications_pk_columns_input {id: Scalars['uuid']}
 
 
 /** input type for updating data in table "notifications" */
-export interface notifications_set_input {id?: (Scalars['uuid'] | null),path?: (Scalars['String'] | null),seen?: (Scalars['Boolean'] | null),service_id?: (Scalars['uuid'] | null),severity?: (severity_enums_enum | null),subject_id?: (Scalars['uuid'] | null)}
+export interface notifications_set_input {created_at?: (Scalars['timestamptz'] | null),deleted_at?: (Scalars['timestamptz'] | null),id?: (Scalars['uuid'] | null),path?: (Scalars['String'] | null),seen?: (Scalars['Boolean'] | null),service_id?: (Scalars['uuid'] | null),severity?: (severity_enums_enum | null),subject_id?: (Scalars['uuid'] | null),trigger_type?: (triggers_enums_enum | null),updated_at?: (Scalars['timestamptz'] | null)}
 
 export interface query_rootRequest{
     /** fetch data from the table: "notifications" */
@@ -752,6 +889,32 @@ export interface query_rootRequest{
     where?: (severity_enums_bool_exp | null)},severity_enums_aggregateRequest] | severity_enums_aggregateRequest
     /** fetch data from the table: "severity_enums" using primary key columns */
     severity_enums_by_pk?: [{severity: Scalars['String']},severity_enumsRequest]
+    /** fetch data from the table: "triggers_enums" */
+    triggers_enums?: [{
+    /** distinct select on columns */
+    distinct_on?: (triggers_enums_select_column[] | null),
+    /** limit the number of rows returned */
+    limit?: (Scalars['Int'] | null),
+    /** skip the first n rows. Use only with order_by */
+    offset?: (Scalars['Int'] | null),
+    /** sort the rows by one or more columns */
+    order_by?: (triggers_enums_order_by[] | null),
+    /** filter the rows returned */
+    where?: (triggers_enums_bool_exp | null)},triggers_enumsRequest] | triggers_enumsRequest
+    /** fetch aggregated fields from the table: "triggers_enums" */
+    triggers_enums_aggregate?: [{
+    /** distinct select on columns */
+    distinct_on?: (triggers_enums_select_column[] | null),
+    /** limit the number of rows returned */
+    limit?: (Scalars['Int'] | null),
+    /** skip the first n rows. Use only with order_by */
+    offset?: (Scalars['Int'] | null),
+    /** sort the rows by one or more columns */
+    order_by?: (triggers_enums_order_by[] | null),
+    /** filter the rows returned */
+    where?: (triggers_enums_bool_exp | null)},triggers_enums_aggregateRequest] | triggers_enums_aggregateRequest
+    /** fetch data from the table: "triggers_enums" using primary key columns */
+    triggers_enums_by_pk?: [{trigger: Scalars['String']},triggers_enumsRequest]
     __typename?: boolean | number
     __scalar?: boolean | number
 }
@@ -1135,6 +1298,32 @@ export interface subscription_rootRequest{
     where?: (severity_enums_bool_exp | null)},severity_enums_aggregateRequest] | severity_enums_aggregateRequest
     /** fetch data from the table: "severity_enums" using primary key columns */
     severity_enums_by_pk?: [{severity: Scalars['String']},severity_enumsRequest]
+    /** fetch data from the table: "triggers_enums" */
+    triggers_enums?: [{
+    /** distinct select on columns */
+    distinct_on?: (triggers_enums_select_column[] | null),
+    /** limit the number of rows returned */
+    limit?: (Scalars['Int'] | null),
+    /** skip the first n rows. Use only with order_by */
+    offset?: (Scalars['Int'] | null),
+    /** sort the rows by one or more columns */
+    order_by?: (triggers_enums_order_by[] | null),
+    /** filter the rows returned */
+    where?: (triggers_enums_bool_exp | null)},triggers_enumsRequest] | triggers_enumsRequest
+    /** fetch aggregated fields from the table: "triggers_enums" */
+    triggers_enums_aggregate?: [{
+    /** distinct select on columns */
+    distinct_on?: (triggers_enums_select_column[] | null),
+    /** limit the number of rows returned */
+    limit?: (Scalars['Int'] | null),
+    /** skip the first n rows. Use only with order_by */
+    offset?: (Scalars['Int'] | null),
+    /** sort the rows by one or more columns */
+    order_by?: (triggers_enums_order_by[] | null),
+    /** filter the rows returned */
+    where?: (triggers_enums_bool_exp | null)},triggers_enums_aggregateRequest] | triggers_enums_aggregateRequest
+    /** fetch data from the table: "triggers_enums" using primary key columns */
+    triggers_enums_by_pk?: [{trigger: Scalars['String']},triggers_enumsRequest]
     __typename?: boolean | number
     __scalar?: boolean | number
 }
@@ -1142,6 +1331,91 @@ export interface subscription_rootRequest{
 
 /** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
 export interface timestamptz_comparison_exp {_eq?: (Scalars['timestamptz'] | null),_gt?: (Scalars['timestamptz'] | null),_gte?: (Scalars['timestamptz'] | null),_in?: (Scalars['timestamptz'][] | null),_is_null?: (Scalars['Boolean'] | null),_lt?: (Scalars['timestamptz'] | null),_lte?: (Scalars['timestamptz'] | null),_neq?: (Scalars['timestamptz'] | null),_nin?: (Scalars['timestamptz'][] | null)}
+
+
+/** columns and relationships of "triggers_enums" */
+export interface triggers_enumsRequest{
+    description?: boolean | number
+    trigger?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** aggregated selection of "triggers_enums" */
+export interface triggers_enums_aggregateRequest{
+    aggregate?: triggers_enums_aggregate_fieldsRequest
+    nodes?: triggers_enumsRequest
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** aggregate fields of "triggers_enums" */
+export interface triggers_enums_aggregate_fieldsRequest{
+    count?: [{columns?: (triggers_enums_select_column[] | null),distinct?: (Scalars['Boolean'] | null)}] | boolean | number
+    max?: triggers_enums_max_fieldsRequest
+    min?: triggers_enums_min_fieldsRequest
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** Boolean expression to filter rows from the table "triggers_enums". All fields are combined with a logical 'AND'. */
+export interface triggers_enums_bool_exp {_and?: (triggers_enums_bool_exp[] | null),_not?: (triggers_enums_bool_exp | null),_or?: (triggers_enums_bool_exp[] | null),description?: (String_comparison_exp | null),trigger?: (String_comparison_exp | null)}
+
+
+/** Boolean expression to compare columns of type "triggers_enums_enum". All fields are combined with logical 'AND'. */
+export interface triggers_enums_enum_comparison_exp {_eq?: (triggers_enums_enum | null),_in?: (triggers_enums_enum[] | null),_is_null?: (Scalars['Boolean'] | null),_neq?: (triggers_enums_enum | null),_nin?: (triggers_enums_enum[] | null)}
+
+
+/** input type for inserting data into table "triggers_enums" */
+export interface triggers_enums_insert_input {description?: (Scalars['String'] | null),trigger?: (Scalars['String'] | null)}
+
+
+/** aggregate max on columns */
+export interface triggers_enums_max_fieldsRequest{
+    description?: boolean | number
+    trigger?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** aggregate min on columns */
+export interface triggers_enums_min_fieldsRequest{
+    description?: boolean | number
+    trigger?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** response of any mutation on the table "triggers_enums" */
+export interface triggers_enums_mutation_responseRequest{
+    /** number of rows affected by the mutation */
+    affected_rows?: boolean | number
+    /** data from the rows affected by the mutation */
+    returning?: triggers_enumsRequest
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** on conflict condition type for table "triggers_enums" */
+export interface triggers_enums_on_conflict {constraint: triggers_enums_constraint,update_columns: triggers_enums_update_column[],where?: (triggers_enums_bool_exp | null)}
+
+
+/** Ordering options when selecting data from "triggers_enums". */
+export interface triggers_enums_order_by {description?: (order_by | null),trigger?: (order_by | null)}
+
+
+/** primary key columns input for table: triggers_enums */
+export interface triggers_enums_pk_columns_input {trigger: Scalars['String']}
+
+
+/** input type for updating data in table "triggers_enums" */
+export interface triggers_enums_set_input {description?: (Scalars['String'] | null),trigger?: (Scalars['String'] | null)}
 
 
 /** Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'. */
@@ -1368,6 +1642,54 @@ export const issubscription_root = (obj?: { __typename?: any } | null): obj is s
 
 
 
+const triggers_enums_possibleTypes = ['triggers_enums']
+export const istriggers_enums = (obj?: { __typename?: any } | null): obj is triggers_enums => {
+  if (!obj?.__typename) throw new Error('__typename is missing in "istriggers_enums"')
+  return triggers_enums_possibleTypes.includes(obj.__typename)
+}
+
+
+
+const triggers_enums_aggregate_possibleTypes = ['triggers_enums_aggregate']
+export const istriggers_enums_aggregate = (obj?: { __typename?: any } | null): obj is triggers_enums_aggregate => {
+  if (!obj?.__typename) throw new Error('__typename is missing in "istriggers_enums_aggregate"')
+  return triggers_enums_aggregate_possibleTypes.includes(obj.__typename)
+}
+
+
+
+const triggers_enums_aggregate_fields_possibleTypes = ['triggers_enums_aggregate_fields']
+export const istriggers_enums_aggregate_fields = (obj?: { __typename?: any } | null): obj is triggers_enums_aggregate_fields => {
+  if (!obj?.__typename) throw new Error('__typename is missing in "istriggers_enums_aggregate_fields"')
+  return triggers_enums_aggregate_fields_possibleTypes.includes(obj.__typename)
+}
+
+
+
+const triggers_enums_max_fields_possibleTypes = ['triggers_enums_max_fields']
+export const istriggers_enums_max_fields = (obj?: { __typename?: any } | null): obj is triggers_enums_max_fields => {
+  if (!obj?.__typename) throw new Error('__typename is missing in "istriggers_enums_max_fields"')
+  return triggers_enums_max_fields_possibleTypes.includes(obj.__typename)
+}
+
+
+
+const triggers_enums_min_fields_possibleTypes = ['triggers_enums_min_fields']
+export const istriggers_enums_min_fields = (obj?: { __typename?: any } | null): obj is triggers_enums_min_fields => {
+  if (!obj?.__typename) throw new Error('__typename is missing in "istriggers_enums_min_fields"')
+  return triggers_enums_min_fields_possibleTypes.includes(obj.__typename)
+}
+
+
+
+const triggers_enums_mutation_response_possibleTypes = ['triggers_enums_mutation_response']
+export const istriggers_enums_mutation_response = (obj?: { __typename?: any } | null): obj is triggers_enums_mutation_response => {
+  if (!obj?.__typename) throw new Error('__typename is missing in "istriggers_enums_mutation_response"')
+  return triggers_enums_mutation_response_possibleTypes.includes(obj.__typename)
+}
+
+
+
 /** mutation root */
 export interface mutation_rootPromiseChain{
     
@@ -1402,6 +1724,14 @@ where: severity_enums_bool_exp}) => severity_enums_mutation_responsePromiseChain
     
 /** delete single row from the table: "severity_enums" */
 delete_severity_enums_by_pk: ((args: {severity: Scalars['String']}) => severity_enumsPromiseChain & {get: <R extends severity_enumsRequest>(request: R, defaultValue?: (FieldsSelection<severity_enums, R> | undefined)) => Promise<(FieldsSelection<severity_enums, R> | undefined)>}),
+    
+/** delete data from the table: "triggers_enums" */
+delete_triggers_enums: ((args: {
+/** filter the rows which have to be deleted */
+where: triggers_enums_bool_exp}) => triggers_enums_mutation_responsePromiseChain & {get: <R extends triggers_enums_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<triggers_enums_mutation_response, R> | undefined)) => Promise<(FieldsSelection<triggers_enums_mutation_response, R> | undefined)>}),
+    
+/** delete single row from the table: "triggers_enums" */
+delete_triggers_enums_by_pk: ((args: {trigger: Scalars['String']}) => triggers_enumsPromiseChain & {get: <R extends triggers_enumsRequest>(request: R, defaultValue?: (FieldsSelection<triggers_enums, R> | undefined)) => Promise<(FieldsSelection<triggers_enums, R> | undefined)>}),
     
 /** insert data into the table: "notifications" */
 insert_notifications: ((args: {
@@ -1459,6 +1789,20 @@ object: severity_enums_insert_input,
 /** on conflict condition */
 on_conflict?: (severity_enums_on_conflict | null)}) => severity_enumsPromiseChain & {get: <R extends severity_enumsRequest>(request: R, defaultValue?: (FieldsSelection<severity_enums, R> | undefined)) => Promise<(FieldsSelection<severity_enums, R> | undefined)>}),
     
+/** insert data into the table: "triggers_enums" */
+insert_triggers_enums: ((args: {
+/** the rows to be inserted */
+objects: triggers_enums_insert_input[],
+/** on conflict condition */
+on_conflict?: (triggers_enums_on_conflict | null)}) => triggers_enums_mutation_responsePromiseChain & {get: <R extends triggers_enums_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<triggers_enums_mutation_response, R> | undefined)) => Promise<(FieldsSelection<triggers_enums_mutation_response, R> | undefined)>}),
+    
+/** insert a single row into the table: "triggers_enums" */
+insert_triggers_enums_one: ((args: {
+/** the row to be inserted */
+object: triggers_enums_insert_input,
+/** on conflict condition */
+on_conflict?: (triggers_enums_on_conflict | null)}) => triggers_enumsPromiseChain & {get: <R extends triggers_enumsRequest>(request: R, defaultValue?: (FieldsSelection<triggers_enums, R> | undefined)) => Promise<(FieldsSelection<triggers_enums, R> | undefined)>}),
+    
 /** update data of the table: "notifications" */
 update_notifications: ((args: {
 /** sets the columns of the filtered rows to the given values */
@@ -1505,7 +1849,19 @@ where: severity_enums_bool_exp}) => severity_enums_mutation_responsePromiseChain
 /** update single row of the table: "severity_enums" */
 update_severity_enums_by_pk: ((args: {
 /** sets the columns of the filtered rows to the given values */
-_set?: (severity_enums_set_input | null),pk_columns: severity_enums_pk_columns_input}) => severity_enumsPromiseChain & {get: <R extends severity_enumsRequest>(request: R, defaultValue?: (FieldsSelection<severity_enums, R> | undefined)) => Promise<(FieldsSelection<severity_enums, R> | undefined)>})
+_set?: (severity_enums_set_input | null),pk_columns: severity_enums_pk_columns_input}) => severity_enumsPromiseChain & {get: <R extends severity_enumsRequest>(request: R, defaultValue?: (FieldsSelection<severity_enums, R> | undefined)) => Promise<(FieldsSelection<severity_enums, R> | undefined)>}),
+    
+/** update data of the table: "triggers_enums" */
+update_triggers_enums: ((args: {
+/** sets the columns of the filtered rows to the given values */
+_set?: (triggers_enums_set_input | null),
+/** filter the rows which have to be updated */
+where: triggers_enums_bool_exp}) => triggers_enums_mutation_responsePromiseChain & {get: <R extends triggers_enums_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<triggers_enums_mutation_response, R> | undefined)) => Promise<(FieldsSelection<triggers_enums_mutation_response, R> | undefined)>}),
+    
+/** update single row of the table: "triggers_enums" */
+update_triggers_enums_by_pk: ((args: {
+/** sets the columns of the filtered rows to the given values */
+_set?: (triggers_enums_set_input | null),pk_columns: triggers_enums_pk_columns_input}) => triggers_enumsPromiseChain & {get: <R extends triggers_enumsRequest>(request: R, defaultValue?: (FieldsSelection<triggers_enums, R> | undefined)) => Promise<(FieldsSelection<triggers_enums, R> | undefined)>})
 }
 
 
@@ -1543,6 +1899,14 @@ where: severity_enums_bool_exp}) => severity_enums_mutation_responseObservableCh
     
 /** delete single row from the table: "severity_enums" */
 delete_severity_enums_by_pk: ((args: {severity: Scalars['String']}) => severity_enumsObservableChain & {get: <R extends severity_enumsRequest>(request: R, defaultValue?: (FieldsSelection<severity_enums, R> | undefined)) => Observable<(FieldsSelection<severity_enums, R> | undefined)>}),
+    
+/** delete data from the table: "triggers_enums" */
+delete_triggers_enums: ((args: {
+/** filter the rows which have to be deleted */
+where: triggers_enums_bool_exp}) => triggers_enums_mutation_responseObservableChain & {get: <R extends triggers_enums_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<triggers_enums_mutation_response, R> | undefined)) => Observable<(FieldsSelection<triggers_enums_mutation_response, R> | undefined)>}),
+    
+/** delete single row from the table: "triggers_enums" */
+delete_triggers_enums_by_pk: ((args: {trigger: Scalars['String']}) => triggers_enumsObservableChain & {get: <R extends triggers_enumsRequest>(request: R, defaultValue?: (FieldsSelection<triggers_enums, R> | undefined)) => Observable<(FieldsSelection<triggers_enums, R> | undefined)>}),
     
 /** insert data into the table: "notifications" */
 insert_notifications: ((args: {
@@ -1600,6 +1964,20 @@ object: severity_enums_insert_input,
 /** on conflict condition */
 on_conflict?: (severity_enums_on_conflict | null)}) => severity_enumsObservableChain & {get: <R extends severity_enumsRequest>(request: R, defaultValue?: (FieldsSelection<severity_enums, R> | undefined)) => Observable<(FieldsSelection<severity_enums, R> | undefined)>}),
     
+/** insert data into the table: "triggers_enums" */
+insert_triggers_enums: ((args: {
+/** the rows to be inserted */
+objects: triggers_enums_insert_input[],
+/** on conflict condition */
+on_conflict?: (triggers_enums_on_conflict | null)}) => triggers_enums_mutation_responseObservableChain & {get: <R extends triggers_enums_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<triggers_enums_mutation_response, R> | undefined)) => Observable<(FieldsSelection<triggers_enums_mutation_response, R> | undefined)>}),
+    
+/** insert a single row into the table: "triggers_enums" */
+insert_triggers_enums_one: ((args: {
+/** the row to be inserted */
+object: triggers_enums_insert_input,
+/** on conflict condition */
+on_conflict?: (triggers_enums_on_conflict | null)}) => triggers_enumsObservableChain & {get: <R extends triggers_enumsRequest>(request: R, defaultValue?: (FieldsSelection<triggers_enums, R> | undefined)) => Observable<(FieldsSelection<triggers_enums, R> | undefined)>}),
+    
 /** update data of the table: "notifications" */
 update_notifications: ((args: {
 /** sets the columns of the filtered rows to the given values */
@@ -1646,12 +2024,26 @@ where: severity_enums_bool_exp}) => severity_enums_mutation_responseObservableCh
 /** update single row of the table: "severity_enums" */
 update_severity_enums_by_pk: ((args: {
 /** sets the columns of the filtered rows to the given values */
-_set?: (severity_enums_set_input | null),pk_columns: severity_enums_pk_columns_input}) => severity_enumsObservableChain & {get: <R extends severity_enumsRequest>(request: R, defaultValue?: (FieldsSelection<severity_enums, R> | undefined)) => Observable<(FieldsSelection<severity_enums, R> | undefined)>})
+_set?: (severity_enums_set_input | null),pk_columns: severity_enums_pk_columns_input}) => severity_enumsObservableChain & {get: <R extends severity_enumsRequest>(request: R, defaultValue?: (FieldsSelection<severity_enums, R> | undefined)) => Observable<(FieldsSelection<severity_enums, R> | undefined)>}),
+    
+/** update data of the table: "triggers_enums" */
+update_triggers_enums: ((args: {
+/** sets the columns of the filtered rows to the given values */
+_set?: (triggers_enums_set_input | null),
+/** filter the rows which have to be updated */
+where: triggers_enums_bool_exp}) => triggers_enums_mutation_responseObservableChain & {get: <R extends triggers_enums_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<triggers_enums_mutation_response, R> | undefined)) => Observable<(FieldsSelection<triggers_enums_mutation_response, R> | undefined)>}),
+    
+/** update single row of the table: "triggers_enums" */
+update_triggers_enums_by_pk: ((args: {
+/** sets the columns of the filtered rows to the given values */
+_set?: (triggers_enums_set_input | null),pk_columns: triggers_enums_pk_columns_input}) => triggers_enumsObservableChain & {get: <R extends triggers_enumsRequest>(request: R, defaultValue?: (FieldsSelection<triggers_enums, R> | undefined)) => Observable<(FieldsSelection<triggers_enums, R> | undefined)>})
 }
 
 
 /** columns and relationships of "notifications" */
 export interface notificationsPromiseChain{
+    created_at: ({get: (request?: boolean|number, defaultValue?: Scalars['timestamptz']) => Promise<Scalars['timestamptz']>}),
+    deleted_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Promise<(Scalars['timestamptz'] | undefined)>}),
     id: ({get: (request?: boolean|number, defaultValue?: Scalars['uuid']) => Promise<Scalars['uuid']>}),
     path: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Promise<(Scalars['String'] | undefined)>}),
     seen: ({get: (request?: boolean|number, defaultValue?: Scalars['Boolean']) => Promise<Scalars['Boolean']>}),
@@ -1660,12 +2052,16 @@ export interface notificationsPromiseChain{
 service: (servicesPromiseChain & {get: <R extends servicesRequest>(request: R, defaultValue?: FieldsSelection<services, R>) => Promise<FieldsSelection<services, R>>}),
     service_id: ({get: (request?: boolean|number, defaultValue?: Scalars['uuid']) => Promise<Scalars['uuid']>}),
     severity: ({get: (request?: boolean|number, defaultValue?: severity_enums_enum) => Promise<severity_enums_enum>}),
-    subject_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>})
+    subject_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>}),
+    trigger_type: ({get: (request?: boolean|number, defaultValue?: (triggers_enums_enum | undefined)) => Promise<(triggers_enums_enum | undefined)>}),
+    updated_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Promise<(Scalars['timestamptz'] | undefined)>})
 }
 
 
 /** columns and relationships of "notifications" */
 export interface notificationsObservableChain{
+    created_at: ({get: (request?: boolean|number, defaultValue?: Scalars['timestamptz']) => Observable<Scalars['timestamptz']>}),
+    deleted_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Observable<(Scalars['timestamptz'] | undefined)>}),
     id: ({get: (request?: boolean|number, defaultValue?: Scalars['uuid']) => Observable<Scalars['uuid']>}),
     path: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Observable<(Scalars['String'] | undefined)>}),
     seen: ({get: (request?: boolean|number, defaultValue?: Scalars['Boolean']) => Observable<Scalars['Boolean']>}),
@@ -1674,7 +2070,9 @@ export interface notificationsObservableChain{
 service: (servicesObservableChain & {get: <R extends servicesRequest>(request: R, defaultValue?: FieldsSelection<services, R>) => Observable<FieldsSelection<services, R>>}),
     service_id: ({get: (request?: boolean|number, defaultValue?: Scalars['uuid']) => Observable<Scalars['uuid']>}),
     severity: ({get: (request?: boolean|number, defaultValue?: severity_enums_enum) => Observable<severity_enums_enum>}),
-    subject_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>})
+    subject_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>}),
+    trigger_type: ({get: (request?: boolean|number, defaultValue?: (triggers_enums_enum | undefined)) => Observable<(triggers_enums_enum | undefined)>}),
+    updated_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Observable<(Scalars['timestamptz'] | undefined)>})
 }
 
 
@@ -1710,37 +2108,49 @@ export interface notifications_aggregate_fieldsObservableChain{
 
 /** aggregate max on columns */
 export interface notifications_max_fieldsPromiseChain{
+    created_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Promise<(Scalars['timestamptz'] | undefined)>}),
+    deleted_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Promise<(Scalars['timestamptz'] | undefined)>}),
     id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>}),
     path: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Promise<(Scalars['String'] | undefined)>}),
     service_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>}),
-    subject_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>})
+    subject_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>}),
+    updated_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Promise<(Scalars['timestamptz'] | undefined)>})
 }
 
 
 /** aggregate max on columns */
 export interface notifications_max_fieldsObservableChain{
+    created_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Observable<(Scalars['timestamptz'] | undefined)>}),
+    deleted_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Observable<(Scalars['timestamptz'] | undefined)>}),
     id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>}),
     path: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Observable<(Scalars['String'] | undefined)>}),
     service_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>}),
-    subject_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>})
+    subject_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>}),
+    updated_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Observable<(Scalars['timestamptz'] | undefined)>})
 }
 
 
 /** aggregate min on columns */
 export interface notifications_min_fieldsPromiseChain{
+    created_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Promise<(Scalars['timestamptz'] | undefined)>}),
+    deleted_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Promise<(Scalars['timestamptz'] | undefined)>}),
     id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>}),
     path: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Promise<(Scalars['String'] | undefined)>}),
     service_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>}),
-    subject_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>})
+    subject_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>}),
+    updated_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Promise<(Scalars['timestamptz'] | undefined)>})
 }
 
 
 /** aggregate min on columns */
 export interface notifications_min_fieldsObservableChain{
+    created_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Observable<(Scalars['timestamptz'] | undefined)>}),
+    deleted_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Observable<(Scalars['timestamptz'] | undefined)>}),
     id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>}),
     path: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Observable<(Scalars['String'] | undefined)>}),
     service_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>}),
-    subject_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>})
+    subject_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>}),
+    updated_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Observable<(Scalars['timestamptz'] | undefined)>})
 }
 
 
@@ -1881,7 +2291,36 @@ order_by?: (severity_enums_order_by[] | null),
 where?: (severity_enums_bool_exp | null)}) => severity_enums_aggregatePromiseChain & {get: <R extends severity_enums_aggregateRequest>(request: R, defaultValue?: FieldsSelection<severity_enums_aggregate, R>) => Promise<FieldsSelection<severity_enums_aggregate, R>>})&(severity_enums_aggregatePromiseChain & {get: <R extends severity_enums_aggregateRequest>(request: R, defaultValue?: FieldsSelection<severity_enums_aggregate, R>) => Promise<FieldsSelection<severity_enums_aggregate, R>>}),
     
 /** fetch data from the table: "severity_enums" using primary key columns */
-severity_enums_by_pk: ((args: {severity: Scalars['String']}) => severity_enumsPromiseChain & {get: <R extends severity_enumsRequest>(request: R, defaultValue?: (FieldsSelection<severity_enums, R> | undefined)) => Promise<(FieldsSelection<severity_enums, R> | undefined)>})
+severity_enums_by_pk: ((args: {severity: Scalars['String']}) => severity_enumsPromiseChain & {get: <R extends severity_enumsRequest>(request: R, defaultValue?: (FieldsSelection<severity_enums, R> | undefined)) => Promise<(FieldsSelection<severity_enums, R> | undefined)>}),
+    
+/** fetch data from the table: "triggers_enums" */
+triggers_enums: ((args?: {
+/** distinct select on columns */
+distinct_on?: (triggers_enums_select_column[] | null),
+/** limit the number of rows returned */
+limit?: (Scalars['Int'] | null),
+/** skip the first n rows. Use only with order_by */
+offset?: (Scalars['Int'] | null),
+/** sort the rows by one or more columns */
+order_by?: (triggers_enums_order_by[] | null),
+/** filter the rows returned */
+where?: (triggers_enums_bool_exp | null)}) => {get: <R extends triggers_enumsRequest>(request: R, defaultValue?: FieldsSelection<triggers_enums, R>[]) => Promise<FieldsSelection<triggers_enums, R>[]>})&({get: <R extends triggers_enumsRequest>(request: R, defaultValue?: FieldsSelection<triggers_enums, R>[]) => Promise<FieldsSelection<triggers_enums, R>[]>}),
+    
+/** fetch aggregated fields from the table: "triggers_enums" */
+triggers_enums_aggregate: ((args?: {
+/** distinct select on columns */
+distinct_on?: (triggers_enums_select_column[] | null),
+/** limit the number of rows returned */
+limit?: (Scalars['Int'] | null),
+/** skip the first n rows. Use only with order_by */
+offset?: (Scalars['Int'] | null),
+/** sort the rows by one or more columns */
+order_by?: (triggers_enums_order_by[] | null),
+/** filter the rows returned */
+where?: (triggers_enums_bool_exp | null)}) => triggers_enums_aggregatePromiseChain & {get: <R extends triggers_enums_aggregateRequest>(request: R, defaultValue?: FieldsSelection<triggers_enums_aggregate, R>) => Promise<FieldsSelection<triggers_enums_aggregate, R>>})&(triggers_enums_aggregatePromiseChain & {get: <R extends triggers_enums_aggregateRequest>(request: R, defaultValue?: FieldsSelection<triggers_enums_aggregate, R>) => Promise<FieldsSelection<triggers_enums_aggregate, R>>}),
+    
+/** fetch data from the table: "triggers_enums" using primary key columns */
+triggers_enums_by_pk: ((args: {trigger: Scalars['String']}) => triggers_enumsPromiseChain & {get: <R extends triggers_enumsRequest>(request: R, defaultValue?: (FieldsSelection<triggers_enums, R> | undefined)) => Promise<(FieldsSelection<triggers_enums, R> | undefined)>})
 }
 
 export interface query_rootObservableChain{
@@ -2000,7 +2439,36 @@ order_by?: (severity_enums_order_by[] | null),
 where?: (severity_enums_bool_exp | null)}) => severity_enums_aggregateObservableChain & {get: <R extends severity_enums_aggregateRequest>(request: R, defaultValue?: FieldsSelection<severity_enums_aggregate, R>) => Observable<FieldsSelection<severity_enums_aggregate, R>>})&(severity_enums_aggregateObservableChain & {get: <R extends severity_enums_aggregateRequest>(request: R, defaultValue?: FieldsSelection<severity_enums_aggregate, R>) => Observable<FieldsSelection<severity_enums_aggregate, R>>}),
     
 /** fetch data from the table: "severity_enums" using primary key columns */
-severity_enums_by_pk: ((args: {severity: Scalars['String']}) => severity_enumsObservableChain & {get: <R extends severity_enumsRequest>(request: R, defaultValue?: (FieldsSelection<severity_enums, R> | undefined)) => Observable<(FieldsSelection<severity_enums, R> | undefined)>})
+severity_enums_by_pk: ((args: {severity: Scalars['String']}) => severity_enumsObservableChain & {get: <R extends severity_enumsRequest>(request: R, defaultValue?: (FieldsSelection<severity_enums, R> | undefined)) => Observable<(FieldsSelection<severity_enums, R> | undefined)>}),
+    
+/** fetch data from the table: "triggers_enums" */
+triggers_enums: ((args?: {
+/** distinct select on columns */
+distinct_on?: (triggers_enums_select_column[] | null),
+/** limit the number of rows returned */
+limit?: (Scalars['Int'] | null),
+/** skip the first n rows. Use only with order_by */
+offset?: (Scalars['Int'] | null),
+/** sort the rows by one or more columns */
+order_by?: (triggers_enums_order_by[] | null),
+/** filter the rows returned */
+where?: (triggers_enums_bool_exp | null)}) => {get: <R extends triggers_enumsRequest>(request: R, defaultValue?: FieldsSelection<triggers_enums, R>[]) => Observable<FieldsSelection<triggers_enums, R>[]>})&({get: <R extends triggers_enumsRequest>(request: R, defaultValue?: FieldsSelection<triggers_enums, R>[]) => Observable<FieldsSelection<triggers_enums, R>[]>}),
+    
+/** fetch aggregated fields from the table: "triggers_enums" */
+triggers_enums_aggregate: ((args?: {
+/** distinct select on columns */
+distinct_on?: (triggers_enums_select_column[] | null),
+/** limit the number of rows returned */
+limit?: (Scalars['Int'] | null),
+/** skip the first n rows. Use only with order_by */
+offset?: (Scalars['Int'] | null),
+/** sort the rows by one or more columns */
+order_by?: (triggers_enums_order_by[] | null),
+/** filter the rows returned */
+where?: (triggers_enums_bool_exp | null)}) => triggers_enums_aggregateObservableChain & {get: <R extends triggers_enums_aggregateRequest>(request: R, defaultValue?: FieldsSelection<triggers_enums_aggregate, R>) => Observable<FieldsSelection<triggers_enums_aggregate, R>>})&(triggers_enums_aggregateObservableChain & {get: <R extends triggers_enums_aggregateRequest>(request: R, defaultValue?: FieldsSelection<triggers_enums_aggregate, R>) => Observable<FieldsSelection<triggers_enums_aggregate, R>>}),
+    
+/** fetch data from the table: "triggers_enums" using primary key columns */
+triggers_enums_by_pk: ((args: {trigger: Scalars['String']}) => triggers_enumsObservableChain & {get: <R extends triggers_enumsRequest>(request: R, defaultValue?: (FieldsSelection<triggers_enums, R> | undefined)) => Observable<(FieldsSelection<triggers_enums, R> | undefined)>})
 }
 
 
@@ -2435,7 +2903,36 @@ order_by?: (severity_enums_order_by[] | null),
 where?: (severity_enums_bool_exp | null)}) => severity_enums_aggregatePromiseChain & {get: <R extends severity_enums_aggregateRequest>(request: R, defaultValue?: FieldsSelection<severity_enums_aggregate, R>) => Promise<FieldsSelection<severity_enums_aggregate, R>>})&(severity_enums_aggregatePromiseChain & {get: <R extends severity_enums_aggregateRequest>(request: R, defaultValue?: FieldsSelection<severity_enums_aggregate, R>) => Promise<FieldsSelection<severity_enums_aggregate, R>>}),
     
 /** fetch data from the table: "severity_enums" using primary key columns */
-severity_enums_by_pk: ((args: {severity: Scalars['String']}) => severity_enumsPromiseChain & {get: <R extends severity_enumsRequest>(request: R, defaultValue?: (FieldsSelection<severity_enums, R> | undefined)) => Promise<(FieldsSelection<severity_enums, R> | undefined)>})
+severity_enums_by_pk: ((args: {severity: Scalars['String']}) => severity_enumsPromiseChain & {get: <R extends severity_enumsRequest>(request: R, defaultValue?: (FieldsSelection<severity_enums, R> | undefined)) => Promise<(FieldsSelection<severity_enums, R> | undefined)>}),
+    
+/** fetch data from the table: "triggers_enums" */
+triggers_enums: ((args?: {
+/** distinct select on columns */
+distinct_on?: (triggers_enums_select_column[] | null),
+/** limit the number of rows returned */
+limit?: (Scalars['Int'] | null),
+/** skip the first n rows. Use only with order_by */
+offset?: (Scalars['Int'] | null),
+/** sort the rows by one or more columns */
+order_by?: (triggers_enums_order_by[] | null),
+/** filter the rows returned */
+where?: (triggers_enums_bool_exp | null)}) => {get: <R extends triggers_enumsRequest>(request: R, defaultValue?: FieldsSelection<triggers_enums, R>[]) => Promise<FieldsSelection<triggers_enums, R>[]>})&({get: <R extends triggers_enumsRequest>(request: R, defaultValue?: FieldsSelection<triggers_enums, R>[]) => Promise<FieldsSelection<triggers_enums, R>[]>}),
+    
+/** fetch aggregated fields from the table: "triggers_enums" */
+triggers_enums_aggregate: ((args?: {
+/** distinct select on columns */
+distinct_on?: (triggers_enums_select_column[] | null),
+/** limit the number of rows returned */
+limit?: (Scalars['Int'] | null),
+/** skip the first n rows. Use only with order_by */
+offset?: (Scalars['Int'] | null),
+/** sort the rows by one or more columns */
+order_by?: (triggers_enums_order_by[] | null),
+/** filter the rows returned */
+where?: (triggers_enums_bool_exp | null)}) => triggers_enums_aggregatePromiseChain & {get: <R extends triggers_enums_aggregateRequest>(request: R, defaultValue?: FieldsSelection<triggers_enums_aggregate, R>) => Promise<FieldsSelection<triggers_enums_aggregate, R>>})&(triggers_enums_aggregatePromiseChain & {get: <R extends triggers_enums_aggregateRequest>(request: R, defaultValue?: FieldsSelection<triggers_enums_aggregate, R>) => Promise<FieldsSelection<triggers_enums_aggregate, R>>}),
+    
+/** fetch data from the table: "triggers_enums" using primary key columns */
+triggers_enums_by_pk: ((args: {trigger: Scalars['String']}) => triggers_enumsPromiseChain & {get: <R extends triggers_enumsRequest>(request: R, defaultValue?: (FieldsSelection<triggers_enums, R> | undefined)) => Promise<(FieldsSelection<triggers_enums, R> | undefined)>})
 }
 
 export interface subscription_rootObservableChain{
@@ -2554,5 +3051,128 @@ order_by?: (severity_enums_order_by[] | null),
 where?: (severity_enums_bool_exp | null)}) => severity_enums_aggregateObservableChain & {get: <R extends severity_enums_aggregateRequest>(request: R, defaultValue?: FieldsSelection<severity_enums_aggregate, R>) => Observable<FieldsSelection<severity_enums_aggregate, R>>})&(severity_enums_aggregateObservableChain & {get: <R extends severity_enums_aggregateRequest>(request: R, defaultValue?: FieldsSelection<severity_enums_aggregate, R>) => Observable<FieldsSelection<severity_enums_aggregate, R>>}),
     
 /** fetch data from the table: "severity_enums" using primary key columns */
-severity_enums_by_pk: ((args: {severity: Scalars['String']}) => severity_enumsObservableChain & {get: <R extends severity_enumsRequest>(request: R, defaultValue?: (FieldsSelection<severity_enums, R> | undefined)) => Observable<(FieldsSelection<severity_enums, R> | undefined)>})
+severity_enums_by_pk: ((args: {severity: Scalars['String']}) => severity_enumsObservableChain & {get: <R extends severity_enumsRequest>(request: R, defaultValue?: (FieldsSelection<severity_enums, R> | undefined)) => Observable<(FieldsSelection<severity_enums, R> | undefined)>}),
+    
+/** fetch data from the table: "triggers_enums" */
+triggers_enums: ((args?: {
+/** distinct select on columns */
+distinct_on?: (triggers_enums_select_column[] | null),
+/** limit the number of rows returned */
+limit?: (Scalars['Int'] | null),
+/** skip the first n rows. Use only with order_by */
+offset?: (Scalars['Int'] | null),
+/** sort the rows by one or more columns */
+order_by?: (triggers_enums_order_by[] | null),
+/** filter the rows returned */
+where?: (triggers_enums_bool_exp | null)}) => {get: <R extends triggers_enumsRequest>(request: R, defaultValue?: FieldsSelection<triggers_enums, R>[]) => Observable<FieldsSelection<triggers_enums, R>[]>})&({get: <R extends triggers_enumsRequest>(request: R, defaultValue?: FieldsSelection<triggers_enums, R>[]) => Observable<FieldsSelection<triggers_enums, R>[]>}),
+    
+/** fetch aggregated fields from the table: "triggers_enums" */
+triggers_enums_aggregate: ((args?: {
+/** distinct select on columns */
+distinct_on?: (triggers_enums_select_column[] | null),
+/** limit the number of rows returned */
+limit?: (Scalars['Int'] | null),
+/** skip the first n rows. Use only with order_by */
+offset?: (Scalars['Int'] | null),
+/** sort the rows by one or more columns */
+order_by?: (triggers_enums_order_by[] | null),
+/** filter the rows returned */
+where?: (triggers_enums_bool_exp | null)}) => triggers_enums_aggregateObservableChain & {get: <R extends triggers_enums_aggregateRequest>(request: R, defaultValue?: FieldsSelection<triggers_enums_aggregate, R>) => Observable<FieldsSelection<triggers_enums_aggregate, R>>})&(triggers_enums_aggregateObservableChain & {get: <R extends triggers_enums_aggregateRequest>(request: R, defaultValue?: FieldsSelection<triggers_enums_aggregate, R>) => Observable<FieldsSelection<triggers_enums_aggregate, R>>}),
+    
+/** fetch data from the table: "triggers_enums" using primary key columns */
+triggers_enums_by_pk: ((args: {trigger: Scalars['String']}) => triggers_enumsObservableChain & {get: <R extends triggers_enumsRequest>(request: R, defaultValue?: (FieldsSelection<triggers_enums, R> | undefined)) => Observable<(FieldsSelection<triggers_enums, R> | undefined)>})
+}
+
+
+/** columns and relationships of "triggers_enums" */
+export interface triggers_enumsPromiseChain{
+    description: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Promise<(Scalars['String'] | undefined)>}),
+    trigger: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Promise<Scalars['String']>})
+}
+
+
+/** columns and relationships of "triggers_enums" */
+export interface triggers_enumsObservableChain{
+    description: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Observable<(Scalars['String'] | undefined)>}),
+    trigger: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Observable<Scalars['String']>})
+}
+
+
+/** aggregated selection of "triggers_enums" */
+export interface triggers_enums_aggregatePromiseChain{
+    aggregate: (triggers_enums_aggregate_fieldsPromiseChain & {get: <R extends triggers_enums_aggregate_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<triggers_enums_aggregate_fields, R> | undefined)) => Promise<(FieldsSelection<triggers_enums_aggregate_fields, R> | undefined)>}),
+    nodes: ({get: <R extends triggers_enumsRequest>(request: R, defaultValue?: FieldsSelection<triggers_enums, R>[]) => Promise<FieldsSelection<triggers_enums, R>[]>})
+}
+
+
+/** aggregated selection of "triggers_enums" */
+export interface triggers_enums_aggregateObservableChain{
+    aggregate: (triggers_enums_aggregate_fieldsObservableChain & {get: <R extends triggers_enums_aggregate_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<triggers_enums_aggregate_fields, R> | undefined)) => Observable<(FieldsSelection<triggers_enums_aggregate_fields, R> | undefined)>}),
+    nodes: ({get: <R extends triggers_enumsRequest>(request: R, defaultValue?: FieldsSelection<triggers_enums, R>[]) => Observable<FieldsSelection<triggers_enums, R>[]>})
+}
+
+
+/** aggregate fields of "triggers_enums" */
+export interface triggers_enums_aggregate_fieldsPromiseChain{
+    count: ((args?: {columns?: (triggers_enums_select_column[] | null),distinct?: (Scalars['Boolean'] | null)}) => {get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Promise<Scalars['Int']>})&({get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Promise<Scalars['Int']>}),
+    max: (triggers_enums_max_fieldsPromiseChain & {get: <R extends triggers_enums_max_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<triggers_enums_max_fields, R> | undefined)) => Promise<(FieldsSelection<triggers_enums_max_fields, R> | undefined)>}),
+    min: (triggers_enums_min_fieldsPromiseChain & {get: <R extends triggers_enums_min_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<triggers_enums_min_fields, R> | undefined)) => Promise<(FieldsSelection<triggers_enums_min_fields, R> | undefined)>})
+}
+
+
+/** aggregate fields of "triggers_enums" */
+export interface triggers_enums_aggregate_fieldsObservableChain{
+    count: ((args?: {columns?: (triggers_enums_select_column[] | null),distinct?: (Scalars['Boolean'] | null)}) => {get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Observable<Scalars['Int']>})&({get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Observable<Scalars['Int']>}),
+    max: (triggers_enums_max_fieldsObservableChain & {get: <R extends triggers_enums_max_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<triggers_enums_max_fields, R> | undefined)) => Observable<(FieldsSelection<triggers_enums_max_fields, R> | undefined)>}),
+    min: (triggers_enums_min_fieldsObservableChain & {get: <R extends triggers_enums_min_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<triggers_enums_min_fields, R> | undefined)) => Observable<(FieldsSelection<triggers_enums_min_fields, R> | undefined)>})
+}
+
+
+/** aggregate max on columns */
+export interface triggers_enums_max_fieldsPromiseChain{
+    description: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Promise<(Scalars['String'] | undefined)>}),
+    trigger: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Promise<(Scalars['String'] | undefined)>})
+}
+
+
+/** aggregate max on columns */
+export interface triggers_enums_max_fieldsObservableChain{
+    description: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Observable<(Scalars['String'] | undefined)>}),
+    trigger: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Observable<(Scalars['String'] | undefined)>})
+}
+
+
+/** aggregate min on columns */
+export interface triggers_enums_min_fieldsPromiseChain{
+    description: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Promise<(Scalars['String'] | undefined)>}),
+    trigger: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Promise<(Scalars['String'] | undefined)>})
+}
+
+
+/** aggregate min on columns */
+export interface triggers_enums_min_fieldsObservableChain{
+    description: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Observable<(Scalars['String'] | undefined)>}),
+    trigger: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Observable<(Scalars['String'] | undefined)>})
+}
+
+
+/** response of any mutation on the table "triggers_enums" */
+export interface triggers_enums_mutation_responsePromiseChain{
+    
+/** number of rows affected by the mutation */
+affected_rows: ({get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Promise<Scalars['Int']>}),
+    
+/** data from the rows affected by the mutation */
+returning: ({get: <R extends triggers_enumsRequest>(request: R, defaultValue?: FieldsSelection<triggers_enums, R>[]) => Promise<FieldsSelection<triggers_enums, R>[]>})
+}
+
+
+/** response of any mutation on the table "triggers_enums" */
+export interface triggers_enums_mutation_responseObservableChain{
+    
+/** number of rows affected by the mutation */
+affected_rows: ({get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Observable<Scalars['Int']>}),
+    
+/** data from the rows affected by the mutation */
+returning: ({get: <R extends triggers_enumsRequest>(request: R, defaultValue?: FieldsSelection<triggers_enums, R>[]) => Observable<FieldsSelection<triggers_enums, R>[]>})
 }
