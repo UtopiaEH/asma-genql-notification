@@ -4,7 +4,7 @@ export type Scalars = {
     Boolean: boolean,
     Int: number,
     String: string,
-    timestamptz: any,
+    timestamptz: string,
     uuid: string,
 }
 
