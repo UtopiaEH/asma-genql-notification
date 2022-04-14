@@ -68,34 +68,50 @@ export declare const generateSubscriptionOp: (
   fields: subscription_rootRequest & { __name?: string },
 ) => GraphqlOperation
 
-export declare const enumnotificationsConstraint: {
-  readonly notifications_pkey: 'notifications_pkey'
+export declare const enumasyncChatNotificationsConstraint: {
+  readonly async_chat_notifications_pkey: 'async_chat_notifications_pkey'
 }
 
-export declare const enumnotificationsSelectColumn: {
+export declare const enumasyncChatNotificationsSelectColumn: {
   readonly created_at: 'created_at'
   readonly deleted_at: 'deleted_at'
   readonly id: 'id'
-  readonly path: 'path'
+  readonly message: 'message'
   readonly seen: 'seen'
   readonly service_id: 'service_id'
   readonly severity: 'severity'
-  readonly subject_id: 'subject_id'
-  readonly trigger_type: 'trigger_type'
+  readonly ticket_id: 'ticket_id'
+  readonly trigger: 'trigger'
   readonly updated_at: 'updated_at'
 }
 
-export declare const enumnotificationsUpdateColumn: {
+export declare const enumasyncChatNotificationsUpdateColumn: {
   readonly created_at: 'created_at'
   readonly deleted_at: 'deleted_at'
   readonly id: 'id'
-  readonly path: 'path'
+  readonly message: 'message'
   readonly seen: 'seen'
   readonly service_id: 'service_id'
   readonly severity: 'severity'
-  readonly subject_id: 'subject_id'
-  readonly trigger_type: 'trigger_type'
+  readonly ticket_id: 'ticket_id'
+  readonly trigger: 'trigger'
   readonly updated_at: 'updated_at'
+}
+
+export declare const enumasyncChatTicketsConstraint: {
+  readonly async_chat_tickets_pkey: 'async_chat_tickets_pkey'
+}
+
+export declare const enumasyncChatTicketsSelectColumn: {
+  readonly created_at: 'created_at'
+  readonly id: 'id'
+  readonly title: 'title'
+}
+
+export declare const enumasyncChatTicketsUpdateColumn: {
+  readonly created_at: 'created_at'
+  readonly id: 'id'
+  readonly title: 'title'
 }
 
 export declare const enumorderBy: {
@@ -107,94 +123,96 @@ export declare const enumorderBy: {
   readonly desc_nulls_last: 'desc_nulls_last'
 }
 
-export declare const enumserviceEnumsConstraint: {
-  readonly service_enums_pkey: 'service_enums_pkey'
+export declare const enumserviceConstraint: {
+  readonly service_pkey: 'service_pkey'
 }
 
-export declare const enumserviceEnumsEnum: {
+export declare const enumserviceEnum: {
   readonly async_chat: 'async_chat'
   readonly calendar: 'calendar'
   readonly qnr: 'qnr'
 }
 
-export declare const enumserviceEnumsSelectColumn: {
+export declare const enumserviceSelectColumn: {
   readonly description: 'description'
-  readonly service: 'service'
+  readonly name: 'name'
 }
 
-export declare const enumserviceEnumsUpdateColumn: {
+export declare const enumserviceUpdateColumn: {
   readonly description: 'description'
-  readonly service: 'service'
+  readonly name: 'name'
 }
 
 export declare const enumservicesConstraint: {
   readonly services_pkey: 'services_pkey'
-  readonly services_service_key: 'services_service_key'
 }
 
 export declare const enumservicesSelectColumn: {
+  readonly created_at: 'created_at'
   readonly customer_id: 'customer_id'
-  readonly email_ch: 'email_ch'
+  readonly email_channel: 'email_channel'
   readonly enabled: 'enabled'
   readonly id: 'id'
   readonly message: 'message'
-  readonly push_ch: 'push_ch'
+  readonly push_channel: 'push_channel'
   readonly service: 'service'
-  readonly sms_ch: 'sms_ch'
+  readonly sms_channel: 'sms_channel'
   readonly title: 'title'
   readonly updated_at: 'updated_at'
   readonly user_id: 'user_id'
 }
 
 export declare const enumservicesUpdateColumn: {
+  readonly created_at: 'created_at'
   readonly customer_id: 'customer_id'
-  readonly email_ch: 'email_ch'
+  readonly email_channel: 'email_channel'
   readonly enabled: 'enabled'
   readonly id: 'id'
   readonly message: 'message'
-  readonly push_ch: 'push_ch'
+  readonly push_channel: 'push_channel'
   readonly service: 'service'
-  readonly sms_ch: 'sms_ch'
+  readonly sms_channel: 'sms_channel'
   readonly title: 'title'
   readonly updated_at: 'updated_at'
   readonly user_id: 'user_id'
 }
 
-export declare const enumseverityEnumsConstraint: {
-  readonly severity_enums_pkey: 'severity_enums_pkey'
+export declare const enumseverityConstraint: {
+  readonly severity_pkey: 'severity_pkey'
 }
 
-export declare const enumseverityEnumsEnum: {
+export declare const enumseverityEnum: {
   readonly important: 'important'
   readonly regular: 'regular'
   readonly urgent: 'urgent'
 }
 
-export declare const enumseverityEnumsSelectColumn: {
+export declare const enumseveritySelectColumn: {
   readonly description: 'description'
-  readonly severity: 'severity'
+  readonly name: 'name'
 }
 
-export declare const enumseverityEnumsUpdateColumn: {
+export declare const enumseverityUpdateColumn: {
   readonly description: 'description'
-  readonly severity: 'severity'
+  readonly name: 'name'
 }
 
-export declare const enumtriggersEnumsConstraint: {
-  readonly triggers_enums_pkey: 'triggers_enums_pkey'
+export declare const enumtriggerConstraint: {
+  readonly trigger_pkey: 'trigger_pkey'
 }
 
-export declare const enumtriggersEnumsEnum: {
-  readonly create_ticket: 'create_ticket'
+export declare const enumtriggerEnum: {
+  readonly insert_ticket: 'insert_ticket'
+  readonly insert_ticket_message: 'insert_ticket_message'
   readonly insert_ticket_user: 'insert_ticket_user'
 }
 
-export declare const enumtriggersEnumsSelectColumn: {
+export declare const enumtriggerSelectColumn: {
   readonly description: 'description'
-  readonly trigger: 'trigger'
+  readonly name: 'name'
 }
 
-export declare const enumtriggersEnumsUpdateColumn: {
+export declare const enumtriggerUpdateColumn: {
   readonly description: 'description'
-  readonly trigger: 'trigger'
+  readonly name: 'name'
 }
