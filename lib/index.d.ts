@@ -68,50 +68,34 @@ export declare const generateSubscriptionOp: (
   fields: subscription_rootRequest & { __name?: string },
 ) => GraphqlOperation
 
-export declare const enumasyncChatNotificationsConstraint: {
-  readonly async_chat_notifications_pkey: 'async_chat_notifications_pkey'
+export declare const enumnotificationsConstraint: {
+  readonly notifications_pkey: 'notifications_pkey'
 }
 
-export declare const enumasyncChatNotificationsSelectColumn: {
+export declare const enumnotificationsSelectColumn: {
   readonly created_at: 'created_at'
   readonly deleted_at: 'deleted_at'
   readonly id: 'id'
   readonly message: 'message'
   readonly seen: 'seen'
   readonly service_id: 'service_id'
-  readonly severity: 'severity'
-  readonly ticket_id: 'ticket_id'
+  readonly subject_id: 'subject_id'
+  readonly title: 'title'
   readonly trigger: 'trigger'
   readonly updated_at: 'updated_at'
 }
 
-export declare const enumasyncChatNotificationsUpdateColumn: {
+export declare const enumnotificationsUpdateColumn: {
   readonly created_at: 'created_at'
   readonly deleted_at: 'deleted_at'
   readonly id: 'id'
   readonly message: 'message'
   readonly seen: 'seen'
   readonly service_id: 'service_id'
-  readonly severity: 'severity'
-  readonly ticket_id: 'ticket_id'
+  readonly subject_id: 'subject_id'
+  readonly title: 'title'
   readonly trigger: 'trigger'
   readonly updated_at: 'updated_at'
-}
-
-export declare const enumasyncChatTicketsConstraint: {
-  readonly async_chat_tickets_pkey: 'async_chat_tickets_pkey'
-}
-
-export declare const enumasyncChatTicketsSelectColumn: {
-  readonly created_at: 'created_at'
-  readonly id: 'id'
-  readonly title: 'title'
-}
-
-export declare const enumasyncChatTicketsUpdateColumn: {
-  readonly created_at: 'created_at'
-  readonly id: 'id'
-  readonly title: 'title'
 }
 
 export declare const enumorderBy: {
@@ -181,12 +165,6 @@ export declare const enumseverityConstraint: {
   readonly severity_pkey: 'severity_pkey'
 }
 
-export declare const enumseverityEnum: {
-  readonly important: 'important'
-  readonly regular: 'regular'
-  readonly urgent: 'urgent'
-}
-
 export declare const enumseveritySelectColumn: {
   readonly description: 'description'
   readonly name: 'name'
@@ -204,15 +182,12 @@ export declare const enumtriggerConstraint: {
 export declare const enumtriggerEnum: {
   readonly insert_ticket: 'insert_ticket'
   readonly insert_ticket_message: 'insert_ticket_message'
-  readonly insert_ticket_user: 'insert_ticket_user'
 }
 
 export declare const enumtriggerSelectColumn: {
-  readonly description: 'description'
   readonly name: 'name'
 }
 
 export declare const enumtriggerUpdateColumn: {
-  readonly description: 'description'
   readonly name: 'name'
 }

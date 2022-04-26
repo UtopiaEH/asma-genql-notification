@@ -81,500 +81,20 @@ input String_comparison_exp {
   _similar: String
 }
 
-"""
-columns and relationships of "async_chat_notifications"
-"""
-type async_chat_notifications {
-  """An object relationship"""
-  async_chat_ticket: async_chat_tickets!
-  created_at: timestamptz!
-  deleted_at: timestamptz
-  id: uuid!
-  message: String!
-  seen: Boolean!
-
-  """An object relationship"""
-  service: services!
-  service_id: uuid!
-  severity: severity_enum!
-  ticket_id: uuid!
-  trigger: trigger_enum!
-  updated_at: timestamptz!
-}
-
-"""
-aggregated selection of "async_chat_notifications"
-"""
-type async_chat_notifications_aggregate {
-  aggregate: async_chat_notifications_aggregate_fields
-  nodes: [async_chat_notifications!]!
-}
-
-"""
-aggregate fields of "async_chat_notifications"
-"""
-type async_chat_notifications_aggregate_fields {
-  count(columns: [async_chat_notifications_select_column!], distinct: Boolean): Int!
-  max: async_chat_notifications_max_fields
-  min: async_chat_notifications_min_fields
-}
-
-"""
-order by aggregate values of table "async_chat_notifications"
-"""
-input async_chat_notifications_aggregate_order_by {
-  count: order_by
-  max: async_chat_notifications_max_order_by
-  min: async_chat_notifications_min_order_by
-}
-
-"""
-input type for inserting array relation for remote table "async_chat_notifications"
-"""
-input async_chat_notifications_arr_rel_insert_input {
-  data: [async_chat_notifications_insert_input!]!
-
-  """on conflict condition"""
-  on_conflict: async_chat_notifications_on_conflict
-}
-
-"""
-Boolean expression to filter rows from the table "async_chat_notifications". All fields are combined with a logical 'AND'.
-"""
-input async_chat_notifications_bool_exp {
-  _and: [async_chat_notifications_bool_exp!]
-  _not: async_chat_notifications_bool_exp
-  _or: [async_chat_notifications_bool_exp!]
-  async_chat_ticket: async_chat_tickets_bool_exp
-  created_at: timestamptz_comparison_exp
-  deleted_at: timestamptz_comparison_exp
-  id: uuid_comparison_exp
-  message: String_comparison_exp
-  seen: Boolean_comparison_exp
-  service: services_bool_exp
-  service_id: uuid_comparison_exp
-  severity: severity_enum_comparison_exp
-  ticket_id: uuid_comparison_exp
-  trigger: trigger_enum_comparison_exp
-  updated_at: timestamptz_comparison_exp
-}
-
-"""
-unique or primary key constraints on table "async_chat_notifications"
-"""
-enum async_chat_notifications_constraint {
-  """unique or primary key constraint"""
-  async_chat_notifications_pkey
-}
-
-"""
-input type for inserting data into table "async_chat_notifications"
-"""
-input async_chat_notifications_insert_input {
-  async_chat_ticket: async_chat_tickets_obj_rel_insert_input
-  created_at: timestamptz
-  deleted_at: timestamptz
-  id: uuid
-  message: String
-  seen: Boolean
-  service: services_obj_rel_insert_input
-  service_id: uuid
-  severity: severity_enum
-  ticket_id: uuid
-  trigger: trigger_enum
-  updated_at: timestamptz
-}
-
-"""aggregate max on columns"""
-type async_chat_notifications_max_fields {
-  created_at: timestamptz
-  deleted_at: timestamptz
-  id: uuid
-  message: String
-  service_id: uuid
-  ticket_id: uuid
-  updated_at: timestamptz
-}
-
-"""
-order by max() on columns of table "async_chat_notifications"
-"""
-input async_chat_notifications_max_order_by {
-  created_at: order_by
-  deleted_at: order_by
-  id: order_by
-  message: order_by
-  service_id: order_by
-  ticket_id: order_by
-  updated_at: order_by
-}
-
-"""aggregate min on columns"""
-type async_chat_notifications_min_fields {
-  created_at: timestamptz
-  deleted_at: timestamptz
-  id: uuid
-  message: String
-  service_id: uuid
-  ticket_id: uuid
-  updated_at: timestamptz
-}
-
-"""
-order by min() on columns of table "async_chat_notifications"
-"""
-input async_chat_notifications_min_order_by {
-  created_at: order_by
-  deleted_at: order_by
-  id: order_by
-  message: order_by
-  service_id: order_by
-  ticket_id: order_by
-  updated_at: order_by
-}
-
-"""
-response of any mutation on the table "async_chat_notifications"
-"""
-type async_chat_notifications_mutation_response {
-  """number of rows affected by the mutation"""
-  affected_rows: Int!
-
-  """data from the rows affected by the mutation"""
-  returning: [async_chat_notifications!]!
-}
-
-"""
-on conflict condition type for table "async_chat_notifications"
-"""
-input async_chat_notifications_on_conflict {
-  constraint: async_chat_notifications_constraint!
-  update_columns: [async_chat_notifications_update_column!]! = []
-  where: async_chat_notifications_bool_exp
-}
-
-"""Ordering options when selecting data from "async_chat_notifications"."""
-input async_chat_notifications_order_by {
-  async_chat_ticket: async_chat_tickets_order_by
-  created_at: order_by
-  deleted_at: order_by
-  id: order_by
-  message: order_by
-  seen: order_by
-  service: services_order_by
-  service_id: order_by
-  severity: order_by
-  ticket_id: order_by
-  trigger: order_by
-  updated_at: order_by
-}
-
-"""primary key columns input for table: async_chat_notifications"""
-input async_chat_notifications_pk_columns_input {
-  id: uuid!
-}
-
-"""
-select columns of table "async_chat_notifications"
-"""
-enum async_chat_notifications_select_column {
-  """column name"""
-  created_at
-
-  """column name"""
-  deleted_at
-
-  """column name"""
-  id
-
-  """column name"""
-  message
-
-  """column name"""
-  seen
-
-  """column name"""
-  service_id
-
-  """column name"""
-  severity
-
-  """column name"""
-  ticket_id
-
-  """column name"""
-  trigger
-
-  """column name"""
-  updated_at
-}
-
-"""
-input type for updating data in table "async_chat_notifications"
-"""
-input async_chat_notifications_set_input {
-  created_at: timestamptz
-  deleted_at: timestamptz
-  id: uuid
-  message: String
-  seen: Boolean
-  service_id: uuid
-  severity: severity_enum
-  ticket_id: uuid
-  trigger: trigger_enum
-  updated_at: timestamptz
-}
-
-"""
-update columns of table "async_chat_notifications"
-"""
-enum async_chat_notifications_update_column {
-  """column name"""
-  created_at
-
-  """column name"""
-  deleted_at
-
-  """column name"""
-  id
-
-  """column name"""
-  message
-
-  """column name"""
-  seen
-
-  """column name"""
-  service_id
-
-  """column name"""
-  severity
-
-  """column name"""
-  ticket_id
-
-  """column name"""
-  trigger
-
-  """column name"""
-  updated_at
-}
-
-"""
-columns and relationships of "async_chat_tickets"
-"""
-type async_chat_tickets {
-  """
-  fetch data from the table: "async_chat_notifications"
-  """
-  async_chat_notifications(
-    """distinct select on columns"""
-    distinct_on: [async_chat_notifications_select_column!]
-
-    """limit the number of rows returned"""
-    limit: Int
-
-    """skip the first n rows. Use only with order_by"""
-    offset: Int
-
-    """sort the rows by one or more columns"""
-    order_by: [async_chat_notifications_order_by!]
-
-    """filter the rows returned"""
-    where: async_chat_notifications_bool_exp
-  ): [async_chat_notifications!]!
-
-  """An aggregate relationship"""
-  async_chat_notifications_aggregate(
-    """distinct select on columns"""
-    distinct_on: [async_chat_notifications_select_column!]
-
-    """limit the number of rows returned"""
-    limit: Int
-
-    """skip the first n rows. Use only with order_by"""
-    offset: Int
-
-    """sort the rows by one or more columns"""
-    order_by: [async_chat_notifications_order_by!]
-
-    """filter the rows returned"""
-    where: async_chat_notifications_bool_exp
-  ): async_chat_notifications_aggregate!
-  created_at: timestamptz!
-  id: uuid!
-  title: String!
-}
-
-"""
-aggregated selection of "async_chat_tickets"
-"""
-type async_chat_tickets_aggregate {
-  aggregate: async_chat_tickets_aggregate_fields
-  nodes: [async_chat_tickets!]!
-}
-
-"""
-aggregate fields of "async_chat_tickets"
-"""
-type async_chat_tickets_aggregate_fields {
-  count(columns: [async_chat_tickets_select_column!], distinct: Boolean): Int!
-  max: async_chat_tickets_max_fields
-  min: async_chat_tickets_min_fields
-}
-
-"""
-Boolean expression to filter rows from the table "async_chat_tickets". All fields are combined with a logical 'AND'.
-"""
-input async_chat_tickets_bool_exp {
-  _and: [async_chat_tickets_bool_exp!]
-  _not: async_chat_tickets_bool_exp
-  _or: [async_chat_tickets_bool_exp!]
-  async_chat_notifications: async_chat_notifications_bool_exp
-  created_at: timestamptz_comparison_exp
-  id: uuid_comparison_exp
-  title: String_comparison_exp
-}
-
-"""
-unique or primary key constraints on table "async_chat_tickets"
-"""
-enum async_chat_tickets_constraint {
-  """unique or primary key constraint"""
-  async_chat_tickets_pkey
-}
-
-"""
-input type for inserting data into table "async_chat_tickets"
-"""
-input async_chat_tickets_insert_input {
-  async_chat_notifications: async_chat_notifications_arr_rel_insert_input
-  created_at: timestamptz
-  id: uuid
-  title: String
-}
-
-"""aggregate max on columns"""
-type async_chat_tickets_max_fields {
-  created_at: timestamptz
-  id: uuid
-  title: String
-}
-
-"""aggregate min on columns"""
-type async_chat_tickets_min_fields {
-  created_at: timestamptz
-  id: uuid
-  title: String
-}
-
-"""
-response of any mutation on the table "async_chat_tickets"
-"""
-type async_chat_tickets_mutation_response {
-  """number of rows affected by the mutation"""
-  affected_rows: Int!
-
-  """data from the rows affected by the mutation"""
-  returning: [async_chat_tickets!]!
-}
-
-"""
-input type for inserting object relation for remote table "async_chat_tickets"
-"""
-input async_chat_tickets_obj_rel_insert_input {
-  data: async_chat_tickets_insert_input!
-
-  """on conflict condition"""
-  on_conflict: async_chat_tickets_on_conflict
-}
-
-"""
-on conflict condition type for table "async_chat_tickets"
-"""
-input async_chat_tickets_on_conflict {
-  constraint: async_chat_tickets_constraint!
-  update_columns: [async_chat_tickets_update_column!]! = []
-  where: async_chat_tickets_bool_exp
-}
-
-"""Ordering options when selecting data from "async_chat_tickets"."""
-input async_chat_tickets_order_by {
-  async_chat_notifications_aggregate: async_chat_notifications_aggregate_order_by
-  created_at: order_by
-  id: order_by
-  title: order_by
-}
-
-"""primary key columns input for table: async_chat_tickets"""
-input async_chat_tickets_pk_columns_input {
-  id: uuid!
-}
-
-"""
-select columns of table "async_chat_tickets"
-"""
-enum async_chat_tickets_select_column {
-  """column name"""
-  created_at
-
-  """column name"""
-  id
-
-  """column name"""
-  title
-}
-
-"""
-input type for updating data in table "async_chat_tickets"
-"""
-input async_chat_tickets_set_input {
-  created_at: timestamptz
-  id: uuid
-  title: String
-}
-
-"""
-update columns of table "async_chat_tickets"
-"""
-enum async_chat_tickets_update_column {
-  """column name"""
-  created_at
-
-  """column name"""
-  id
-
-  """column name"""
-  title
-}
-
 """mutation root"""
 type mutation_root {
   """
-  delete data from the table: "async_chat_notifications"
+  delete data from the table: "notifications"
   """
-  delete_async_chat_notifications(
+  delete_notifications(
     """filter the rows which have to be deleted"""
-    where: async_chat_notifications_bool_exp!
-  ): async_chat_notifications_mutation_response
+    where: notifications_bool_exp!
+  ): notifications_mutation_response
 
   """
-  delete single row from the table: "async_chat_notifications"
+  delete single row from the table: "notifications"
   """
-  delete_async_chat_notifications_by_pk(id: uuid!): async_chat_notifications
-
-  """
-  delete data from the table: "async_chat_tickets"
-  """
-  delete_async_chat_tickets(
-    """filter the rows which have to be deleted"""
-    where: async_chat_tickets_bool_exp!
-  ): async_chat_tickets_mutation_response
-
-  """
-  delete single row from the table: "async_chat_tickets"
-  """
-  delete_async_chat_tickets_by_pk(id: uuid!): async_chat_tickets
+  delete_notifications_by_pk(id: uuid!): notifications
 
   """
   delete data from the table: "service"
@@ -629,48 +149,26 @@ type mutation_root {
   delete_trigger_by_pk(name: String!): trigger
 
   """
-  insert data into the table: "async_chat_notifications"
+  insert data into the table: "notifications"
   """
-  insert_async_chat_notifications(
+  insert_notifications(
     """the rows to be inserted"""
-    objects: [async_chat_notifications_insert_input!]!
+    objects: [notifications_insert_input!]!
 
     """on conflict condition"""
-    on_conflict: async_chat_notifications_on_conflict
-  ): async_chat_notifications_mutation_response
+    on_conflict: notifications_on_conflict
+  ): notifications_mutation_response
 
   """
-  insert a single row into the table: "async_chat_notifications"
+  insert a single row into the table: "notifications"
   """
-  insert_async_chat_notifications_one(
+  insert_notifications_one(
     """the row to be inserted"""
-    object: async_chat_notifications_insert_input!
+    object: notifications_insert_input!
 
     """on conflict condition"""
-    on_conflict: async_chat_notifications_on_conflict
-  ): async_chat_notifications
-
-  """
-  insert data into the table: "async_chat_tickets"
-  """
-  insert_async_chat_tickets(
-    """the rows to be inserted"""
-    objects: [async_chat_tickets_insert_input!]!
-
-    """on conflict condition"""
-    on_conflict: async_chat_tickets_on_conflict
-  ): async_chat_tickets_mutation_response
-
-  """
-  insert a single row into the table: "async_chat_tickets"
-  """
-  insert_async_chat_tickets_one(
-    """the row to be inserted"""
-    object: async_chat_tickets_insert_input!
-
-    """on conflict condition"""
-    on_conflict: async_chat_tickets_on_conflict
-  ): async_chat_tickets
+    on_conflict: notifications_on_conflict
+  ): notifications
 
   """
   insert data into the table: "service"
@@ -761,44 +259,24 @@ type mutation_root {
   ): trigger
 
   """
-  update data of the table: "async_chat_notifications"
+  update data of the table: "notifications"
   """
-  update_async_chat_notifications(
+  update_notifications(
     """sets the columns of the filtered rows to the given values"""
-    _set: async_chat_notifications_set_input
+    _set: notifications_set_input
 
     """filter the rows which have to be updated"""
-    where: async_chat_notifications_bool_exp!
-  ): async_chat_notifications_mutation_response
+    where: notifications_bool_exp!
+  ): notifications_mutation_response
 
   """
-  update single row of the table: "async_chat_notifications"
+  update single row of the table: "notifications"
   """
-  update_async_chat_notifications_by_pk(
+  update_notifications_by_pk(
     """sets the columns of the filtered rows to the given values"""
-    _set: async_chat_notifications_set_input
-    pk_columns: async_chat_notifications_pk_columns_input!
-  ): async_chat_notifications
-
-  """
-  update data of the table: "async_chat_tickets"
-  """
-  update_async_chat_tickets(
-    """sets the columns of the filtered rows to the given values"""
-    _set: async_chat_tickets_set_input
-
-    """filter the rows which have to be updated"""
-    where: async_chat_tickets_bool_exp!
-  ): async_chat_tickets_mutation_response
-
-  """
-  update single row of the table: "async_chat_tickets"
-  """
-  update_async_chat_tickets_by_pk(
-    """sets the columns of the filtered rows to the given values"""
-    _set: async_chat_tickets_set_input
-    pk_columns: async_chat_tickets_pk_columns_input!
-  ): async_chat_tickets
+    _set: notifications_set_input
+    pk_columns: notifications_pk_columns_input!
+  ): notifications
 
   """
   update data of the table: "service"
@@ -881,6 +359,284 @@ type mutation_root {
   ): trigger
 }
 
+"""
+columns and relationships of "notifications"
+"""
+type notifications {
+  created_at: timestamptz!
+  deleted_at: timestamptz
+  id: uuid!
+  message: String!
+  seen: Boolean!
+
+  """An object relationship"""
+  service: services!
+  service_id: uuid!
+  subject_id: uuid!
+  title: String!
+  trigger: trigger_enum!
+  updated_at: timestamptz!
+}
+
+"""
+aggregated selection of "notifications"
+"""
+type notifications_aggregate {
+  aggregate: notifications_aggregate_fields
+  nodes: [notifications!]!
+}
+
+"""
+aggregate fields of "notifications"
+"""
+type notifications_aggregate_fields {
+  count(columns: [notifications_select_column!], distinct: Boolean): Int!
+  max: notifications_max_fields
+  min: notifications_min_fields
+}
+
+"""
+order by aggregate values of table "notifications"
+"""
+input notifications_aggregate_order_by {
+  count: order_by
+  max: notifications_max_order_by
+  min: notifications_min_order_by
+}
+
+"""
+input type for inserting array relation for remote table "notifications"
+"""
+input notifications_arr_rel_insert_input {
+  data: [notifications_insert_input!]!
+
+  """on conflict condition"""
+  on_conflict: notifications_on_conflict
+}
+
+"""
+Boolean expression to filter rows from the table "notifications". All fields are combined with a logical 'AND'.
+"""
+input notifications_bool_exp {
+  _and: [notifications_bool_exp!]
+  _not: notifications_bool_exp
+  _or: [notifications_bool_exp!]
+  created_at: timestamptz_comparison_exp
+  deleted_at: timestamptz_comparison_exp
+  id: uuid_comparison_exp
+  message: String_comparison_exp
+  seen: Boolean_comparison_exp
+  service: services_bool_exp
+  service_id: uuid_comparison_exp
+  subject_id: uuid_comparison_exp
+  title: String_comparison_exp
+  trigger: trigger_enum_comparison_exp
+  updated_at: timestamptz_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "notifications"
+"""
+enum notifications_constraint {
+  """unique or primary key constraint"""
+  notifications_pkey
+}
+
+"""
+input type for inserting data into table "notifications"
+"""
+input notifications_insert_input {
+  created_at: timestamptz
+  deleted_at: timestamptz
+  id: uuid
+  message: String
+  seen: Boolean
+  service: services_obj_rel_insert_input
+  service_id: uuid
+  subject_id: uuid
+  title: String
+  trigger: trigger_enum
+  updated_at: timestamptz
+}
+
+"""aggregate max on columns"""
+type notifications_max_fields {
+  created_at: timestamptz
+  deleted_at: timestamptz
+  id: uuid
+  message: String
+  service_id: uuid
+  subject_id: uuid
+  title: String
+  updated_at: timestamptz
+}
+
+"""
+order by max() on columns of table "notifications"
+"""
+input notifications_max_order_by {
+  created_at: order_by
+  deleted_at: order_by
+  id: order_by
+  message: order_by
+  service_id: order_by
+  subject_id: order_by
+  title: order_by
+  updated_at: order_by
+}
+
+"""aggregate min on columns"""
+type notifications_min_fields {
+  created_at: timestamptz
+  deleted_at: timestamptz
+  id: uuid
+  message: String
+  service_id: uuid
+  subject_id: uuid
+  title: String
+  updated_at: timestamptz
+}
+
+"""
+order by min() on columns of table "notifications"
+"""
+input notifications_min_order_by {
+  created_at: order_by
+  deleted_at: order_by
+  id: order_by
+  message: order_by
+  service_id: order_by
+  subject_id: order_by
+  title: order_by
+  updated_at: order_by
+}
+
+"""
+response of any mutation on the table "notifications"
+"""
+type notifications_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+
+  """data from the rows affected by the mutation"""
+  returning: [notifications!]!
+}
+
+"""
+on conflict condition type for table "notifications"
+"""
+input notifications_on_conflict {
+  constraint: notifications_constraint!
+  update_columns: [notifications_update_column!]! = []
+  where: notifications_bool_exp
+}
+
+"""Ordering options when selecting data from "notifications"."""
+input notifications_order_by {
+  created_at: order_by
+  deleted_at: order_by
+  id: order_by
+  message: order_by
+  seen: order_by
+  service: services_order_by
+  service_id: order_by
+  subject_id: order_by
+  title: order_by
+  trigger: order_by
+  updated_at: order_by
+}
+
+"""primary key columns input for table: notifications"""
+input notifications_pk_columns_input {
+  id: uuid!
+}
+
+"""
+select columns of table "notifications"
+"""
+enum notifications_select_column {
+  """column name"""
+  created_at
+
+  """column name"""
+  deleted_at
+
+  """column name"""
+  id
+
+  """column name"""
+  message
+
+  """column name"""
+  seen
+
+  """column name"""
+  service_id
+
+  """column name"""
+  subject_id
+
+  """column name"""
+  title
+
+  """column name"""
+  trigger
+
+  """column name"""
+  updated_at
+}
+
+"""
+input type for updating data in table "notifications"
+"""
+input notifications_set_input {
+  created_at: timestamptz
+  deleted_at: timestamptz
+  id: uuid
+  message: String
+  seen: Boolean
+  service_id: uuid
+  subject_id: uuid
+  title: String
+  trigger: trigger_enum
+  updated_at: timestamptz
+}
+
+"""
+update columns of table "notifications"
+"""
+enum notifications_update_column {
+  """column name"""
+  created_at
+
+  """column name"""
+  deleted_at
+
+  """column name"""
+  id
+
+  """column name"""
+  message
+
+  """column name"""
+  seen
+
+  """column name"""
+  service_id
+
+  """column name"""
+  subject_id
+
+  """column name"""
+  title
+
+  """column name"""
+  trigger
+
+  """column name"""
+  updated_at
+}
+
 """column ordering options"""
 enum order_by {
   """in ascending order, nulls last"""
@@ -904,11 +660,11 @@ enum order_by {
 
 type query_root {
   """
-  fetch data from the table: "async_chat_notifications"
+  fetch data from the table: "notifications"
   """
-  async_chat_notifications(
+  notifications(
     """distinct select on columns"""
-    distinct_on: [async_chat_notifications_select_column!]
+    distinct_on: [notifications_select_column!]
 
     """limit the number of rows returned"""
     limit: Int
@@ -917,16 +673,16 @@ type query_root {
     offset: Int
 
     """sort the rows by one or more columns"""
-    order_by: [async_chat_notifications_order_by!]
+    order_by: [notifications_order_by!]
 
     """filter the rows returned"""
-    where: async_chat_notifications_bool_exp
-  ): [async_chat_notifications!]!
+    where: notifications_bool_exp
+  ): [notifications!]!
 
   """An aggregate relationship"""
-  async_chat_notifications_aggregate(
+  notifications_aggregate(
     """distinct select on columns"""
-    distinct_on: [async_chat_notifications_select_column!]
+    distinct_on: [notifications_select_column!]
 
     """limit the number of rows returned"""
     limit: Int
@@ -935,61 +691,14 @@ type query_root {
     offset: Int
 
     """sort the rows by one or more columns"""
-    order_by: [async_chat_notifications_order_by!]
+    order_by: [notifications_order_by!]
 
     """filter the rows returned"""
-    where: async_chat_notifications_bool_exp
-  ): async_chat_notifications_aggregate!
+    where: notifications_bool_exp
+  ): notifications_aggregate!
 
-  """
-  fetch data from the table: "async_chat_notifications" using primary key columns
-  """
-  async_chat_notifications_by_pk(id: uuid!): async_chat_notifications
-
-  """
-  fetch data from the table: "async_chat_tickets"
-  """
-  async_chat_tickets(
-    """distinct select on columns"""
-    distinct_on: [async_chat_tickets_select_column!]
-
-    """limit the number of rows returned"""
-    limit: Int
-
-    """skip the first n rows. Use only with order_by"""
-    offset: Int
-
-    """sort the rows by one or more columns"""
-    order_by: [async_chat_tickets_order_by!]
-
-    """filter the rows returned"""
-    where: async_chat_tickets_bool_exp
-  ): [async_chat_tickets!]!
-
-  """
-  fetch aggregated fields from the table: "async_chat_tickets"
-  """
-  async_chat_tickets_aggregate(
-    """distinct select on columns"""
-    distinct_on: [async_chat_tickets_select_column!]
-
-    """limit the number of rows returned"""
-    limit: Int
-
-    """skip the first n rows. Use only with order_by"""
-    offset: Int
-
-    """sort the rows by one or more columns"""
-    order_by: [async_chat_tickets_order_by!]
-
-    """filter the rows returned"""
-    where: async_chat_tickets_bool_exp
-  ): async_chat_tickets_aggregate!
-
-  """
-  fetch data from the table: "async_chat_tickets" using primary key columns
-  """
-  async_chat_tickets_by_pk(id: uuid!): async_chat_tickets
+  """fetch data from the table: "notifications" using primary key columns"""
+  notifications_by_pk(id: uuid!): notifications
 
   """
   fetch data from the table: "service"
@@ -1165,11 +874,7 @@ type query_root {
 }
 
 """
-service_enum
-
-
 columns and relationships of "service"
-
 """
 type service {
   description: String!
@@ -1319,49 +1024,50 @@ enum service_update_column {
 columns and relationships of "services"
 """
 type services {
-  """
-  fetch data from the table: "async_chat_notifications"
-  """
-  async_chat_notifications(
-    """distinct select on columns"""
-    distinct_on: [async_chat_notifications_select_column!]
-
-    """limit the number of rows returned"""
-    limit: Int
-
-    """skip the first n rows. Use only with order_by"""
-    offset: Int
-
-    """sort the rows by one or more columns"""
-    order_by: [async_chat_notifications_order_by!]
-
-    """filter the rows returned"""
-    where: async_chat_notifications_bool_exp
-  ): [async_chat_notifications!]!
-
-  """An aggregate relationship"""
-  async_chat_notifications_aggregate(
-    """distinct select on columns"""
-    distinct_on: [async_chat_notifications_select_column!]
-
-    """limit the number of rows returned"""
-    limit: Int
-
-    """skip the first n rows. Use only with order_by"""
-    offset: Int
-
-    """sort the rows by one or more columns"""
-    order_by: [async_chat_notifications_order_by!]
-
-    """filter the rows returned"""
-    where: async_chat_notifications_bool_exp
-  ): async_chat_notifications_aggregate!
   created_at: timestamptz!
-  customer_id: uuid!
+  customer_id: uuid
   email_channel: Boolean!
   enabled: Boolean!
   id: uuid!
   message: String!
+
+  """
+  fetch data from the table: "notifications"
+  """
+  notifications(
+    """distinct select on columns"""
+    distinct_on: [notifications_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [notifications_order_by!]
+
+    """filter the rows returned"""
+    where: notifications_bool_exp
+  ): [notifications!]!
+
+  """An aggregate relationship"""
+  notifications_aggregate(
+    """distinct select on columns"""
+    distinct_on: [notifications_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [notifications_order_by!]
+
+    """filter the rows returned"""
+    where: notifications_bool_exp
+  ): notifications_aggregate!
   push_channel: Boolean!
   service: service_enum!
   sms_channel: Boolean!
@@ -1394,13 +1100,13 @@ input services_bool_exp {
   _and: [services_bool_exp!]
   _not: services_bool_exp
   _or: [services_bool_exp!]
-  async_chat_notifications: async_chat_notifications_bool_exp
   created_at: timestamptz_comparison_exp
   customer_id: uuid_comparison_exp
   email_channel: Boolean_comparison_exp
   enabled: Boolean_comparison_exp
   id: uuid_comparison_exp
   message: String_comparison_exp
+  notifications: notifications_bool_exp
   push_channel: Boolean_comparison_exp
   service: service_enum_comparison_exp
   sms_channel: Boolean_comparison_exp
@@ -1421,13 +1127,13 @@ enum services_constraint {
 input type for inserting data into table "services"
 """
 input services_insert_input {
-  async_chat_notifications: async_chat_notifications_arr_rel_insert_input
   created_at: timestamptz
   customer_id: uuid
   email_channel: Boolean
   enabled: Boolean
   id: uuid
   message: String
+  notifications: notifications_arr_rel_insert_input
   push_channel: Boolean
   service: service_enum
   sms_channel: Boolean
@@ -1490,13 +1196,13 @@ input services_on_conflict {
 
 """Ordering options when selecting data from "services"."""
 input services_order_by {
-  async_chat_notifications_aggregate: async_chat_notifications_aggregate_order_by
   created_at: order_by
   customer_id: order_by
   email_channel: order_by
   enabled: order_by
   id: order_by
   message: order_by
+  notifications_aggregate: notifications_aggregate_order_by
   push_channel: order_by
   service: order_by
   sms_channel: order_by
@@ -1611,11 +1317,7 @@ enum services_update_column {
 }
 
 """
-severity_enum
-
-
 columns and relationships of "severity"
-
 """
 type severity {
   description: String!
@@ -1656,28 +1358,6 @@ unique or primary key constraints on table "severity"
 enum severity_constraint {
   """unique or primary key constraint"""
   severity_pkey
-}
-
-enum severity_enum {
-  """"""
-  important
-
-  """"""
-  regular
-
-  """"""
-  urgent
-}
-
-"""
-Boolean expression to compare columns of type "severity_enum". All fields are combined with logical 'AND'.
-"""
-input severity_enum_comparison_exp {
-  _eq: severity_enum
-  _in: [severity_enum!]
-  _is_null: Boolean
-  _neq: severity_enum
-  _nin: [severity_enum!]
 }
 
 """
@@ -1763,11 +1443,11 @@ enum severity_update_column {
 
 type subscription_root {
   """
-  fetch data from the table: "async_chat_notifications"
+  fetch data from the table: "notifications"
   """
-  async_chat_notifications(
+  notifications(
     """distinct select on columns"""
-    distinct_on: [async_chat_notifications_select_column!]
+    distinct_on: [notifications_select_column!]
 
     """limit the number of rows returned"""
     limit: Int
@@ -1776,16 +1456,16 @@ type subscription_root {
     offset: Int
 
     """sort the rows by one or more columns"""
-    order_by: [async_chat_notifications_order_by!]
+    order_by: [notifications_order_by!]
 
     """filter the rows returned"""
-    where: async_chat_notifications_bool_exp
-  ): [async_chat_notifications!]!
+    where: notifications_bool_exp
+  ): [notifications!]!
 
   """An aggregate relationship"""
-  async_chat_notifications_aggregate(
+  notifications_aggregate(
     """distinct select on columns"""
-    distinct_on: [async_chat_notifications_select_column!]
+    distinct_on: [notifications_select_column!]
 
     """limit the number of rows returned"""
     limit: Int
@@ -1794,61 +1474,14 @@ type subscription_root {
     offset: Int
 
     """sort the rows by one or more columns"""
-    order_by: [async_chat_notifications_order_by!]
+    order_by: [notifications_order_by!]
 
     """filter the rows returned"""
-    where: async_chat_notifications_bool_exp
-  ): async_chat_notifications_aggregate!
+    where: notifications_bool_exp
+  ): notifications_aggregate!
 
-  """
-  fetch data from the table: "async_chat_notifications" using primary key columns
-  """
-  async_chat_notifications_by_pk(id: uuid!): async_chat_notifications
-
-  """
-  fetch data from the table: "async_chat_tickets"
-  """
-  async_chat_tickets(
-    """distinct select on columns"""
-    distinct_on: [async_chat_tickets_select_column!]
-
-    """limit the number of rows returned"""
-    limit: Int
-
-    """skip the first n rows. Use only with order_by"""
-    offset: Int
-
-    """sort the rows by one or more columns"""
-    order_by: [async_chat_tickets_order_by!]
-
-    """filter the rows returned"""
-    where: async_chat_tickets_bool_exp
-  ): [async_chat_tickets!]!
-
-  """
-  fetch aggregated fields from the table: "async_chat_tickets"
-  """
-  async_chat_tickets_aggregate(
-    """distinct select on columns"""
-    distinct_on: [async_chat_tickets_select_column!]
-
-    """limit the number of rows returned"""
-    limit: Int
-
-    """skip the first n rows. Use only with order_by"""
-    offset: Int
-
-    """sort the rows by one or more columns"""
-    order_by: [async_chat_tickets_order_by!]
-
-    """filter the rows returned"""
-    where: async_chat_tickets_bool_exp
-  ): async_chat_tickets_aggregate!
-
-  """
-  fetch data from the table: "async_chat_tickets" using primary key columns
-  """
-  async_chat_tickets_by_pk(id: uuid!): async_chat_tickets
+  """fetch data from the table: "notifications" using primary key columns"""
+  notifications_by_pk(id: uuid!): notifications
 
   """
   fetch data from the table: "service"
@@ -2041,14 +1674,9 @@ input timestamptz_comparison_exp {
 }
 
 """
-trigger_enum
-
-
 columns and relationships of "trigger"
-
 """
 type trigger {
-  description: String!
   name: String!
 }
 
@@ -2076,7 +1704,6 @@ input trigger_bool_exp {
   _and: [trigger_bool_exp!]
   _not: trigger_bool_exp
   _or: [trigger_bool_exp!]
-  description: String_comparison_exp
   name: String_comparison_exp
 }
 
@@ -2089,14 +1716,8 @@ enum trigger_constraint {
 }
 
 enum trigger_enum {
-  """"""
   insert_ticket
-
-  """"""
   insert_ticket_message
-
-  """"""
-  insert_ticket_user
 }
 
 """
@@ -2114,19 +1735,16 @@ input trigger_enum_comparison_exp {
 input type for inserting data into table "trigger"
 """
 input trigger_insert_input {
-  description: String
   name: String
 }
 
 """aggregate max on columns"""
 type trigger_max_fields {
-  description: String
   name: String
 }
 
 """aggregate min on columns"""
 type trigger_min_fields {
-  description: String
   name: String
 }
 
@@ -2152,7 +1770,6 @@ input trigger_on_conflict {
 
 """Ordering options when selecting data from "trigger"."""
 input trigger_order_by {
-  description: order_by
   name: order_by
 }
 
@@ -2166,9 +1783,6 @@ select columns of table "trigger"
 """
 enum trigger_select_column {
   """column name"""
-  description
-
-  """column name"""
   name
 }
 
@@ -2176,7 +1790,6 @@ enum trigger_select_column {
 input type for updating data in table "trigger"
 """
 input trigger_set_input {
-  description: String
   name: String
 }
 
@@ -2184,9 +1797,6 @@ input trigger_set_input {
 update columns of table "trigger"
 """
 enum trigger_update_column {
-  """column name"""
-  description
-
   """column name"""
   name
 }

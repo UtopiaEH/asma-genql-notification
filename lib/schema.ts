@@ -9,171 +9,12 @@ export type Scalars = {
 }
 
 
-/** columns and relationships of "async_chat_notifications" */
-export interface async_chat_notifications {
-    /** An object relationship */
-    async_chat_ticket: async_chat_tickets
-    created_at: Scalars['timestamptz']
-    deleted_at?: Scalars['timestamptz']
-    id: Scalars['uuid']
-    message: Scalars['String']
-    seen: Scalars['Boolean']
-    /** An object relationship */
-    service: services
-    service_id: Scalars['uuid']
-    severity: severity_enum
-    ticket_id: Scalars['uuid']
-    trigger: trigger_enum
-    updated_at: Scalars['timestamptz']
-    __typename: 'async_chat_notifications'
-}
-
-
-/** aggregated selection of "async_chat_notifications" */
-export interface async_chat_notifications_aggregate {
-    aggregate?: async_chat_notifications_aggregate_fields
-    nodes: async_chat_notifications[]
-    __typename: 'async_chat_notifications_aggregate'
-}
-
-
-/** aggregate fields of "async_chat_notifications" */
-export interface async_chat_notifications_aggregate_fields {
-    count: Scalars['Int']
-    max?: async_chat_notifications_max_fields
-    min?: async_chat_notifications_min_fields
-    __typename: 'async_chat_notifications_aggregate_fields'
-}
-
-
-/** unique or primary key constraints on table "async_chat_notifications" */
-export type async_chat_notifications_constraint = 'async_chat_notifications_pkey'
-
-
-/** aggregate max on columns */
-export interface async_chat_notifications_max_fields {
-    created_at?: Scalars['timestamptz']
-    deleted_at?: Scalars['timestamptz']
-    id?: Scalars['uuid']
-    message?: Scalars['String']
-    service_id?: Scalars['uuid']
-    ticket_id?: Scalars['uuid']
-    updated_at?: Scalars['timestamptz']
-    __typename: 'async_chat_notifications_max_fields'
-}
-
-
-/** aggregate min on columns */
-export interface async_chat_notifications_min_fields {
-    created_at?: Scalars['timestamptz']
-    deleted_at?: Scalars['timestamptz']
-    id?: Scalars['uuid']
-    message?: Scalars['String']
-    service_id?: Scalars['uuid']
-    ticket_id?: Scalars['uuid']
-    updated_at?: Scalars['timestamptz']
-    __typename: 'async_chat_notifications_min_fields'
-}
-
-
-/** response of any mutation on the table "async_chat_notifications" */
-export interface async_chat_notifications_mutation_response {
-    /** number of rows affected by the mutation */
-    affected_rows: Scalars['Int']
-    /** data from the rows affected by the mutation */
-    returning: async_chat_notifications[]
-    __typename: 'async_chat_notifications_mutation_response'
-}
-
-
-/** select columns of table "async_chat_notifications" */
-export type async_chat_notifications_select_column = 'created_at' | 'deleted_at' | 'id' | 'message' | 'seen' | 'service_id' | 'severity' | 'ticket_id' | 'trigger' | 'updated_at'
-
-
-/** update columns of table "async_chat_notifications" */
-export type async_chat_notifications_update_column = 'created_at' | 'deleted_at' | 'id' | 'message' | 'seen' | 'service_id' | 'severity' | 'ticket_id' | 'trigger' | 'updated_at'
-
-
-/** columns and relationships of "async_chat_tickets" */
-export interface async_chat_tickets {
-    /** fetch data from the table: "async_chat_notifications" */
-    async_chat_notifications: async_chat_notifications[]
-    /** An aggregate relationship */
-    async_chat_notifications_aggregate: async_chat_notifications_aggregate
-    created_at: Scalars['timestamptz']
-    id: Scalars['uuid']
-    title: Scalars['String']
-    __typename: 'async_chat_tickets'
-}
-
-
-/** aggregated selection of "async_chat_tickets" */
-export interface async_chat_tickets_aggregate {
-    aggregate?: async_chat_tickets_aggregate_fields
-    nodes: async_chat_tickets[]
-    __typename: 'async_chat_tickets_aggregate'
-}
-
-
-/** aggregate fields of "async_chat_tickets" */
-export interface async_chat_tickets_aggregate_fields {
-    count: Scalars['Int']
-    max?: async_chat_tickets_max_fields
-    min?: async_chat_tickets_min_fields
-    __typename: 'async_chat_tickets_aggregate_fields'
-}
-
-
-/** unique or primary key constraints on table "async_chat_tickets" */
-export type async_chat_tickets_constraint = 'async_chat_tickets_pkey'
-
-
-/** aggregate max on columns */
-export interface async_chat_tickets_max_fields {
-    created_at?: Scalars['timestamptz']
-    id?: Scalars['uuid']
-    title?: Scalars['String']
-    __typename: 'async_chat_tickets_max_fields'
-}
-
-
-/** aggregate min on columns */
-export interface async_chat_tickets_min_fields {
-    created_at?: Scalars['timestamptz']
-    id?: Scalars['uuid']
-    title?: Scalars['String']
-    __typename: 'async_chat_tickets_min_fields'
-}
-
-
-/** response of any mutation on the table "async_chat_tickets" */
-export interface async_chat_tickets_mutation_response {
-    /** number of rows affected by the mutation */
-    affected_rows: Scalars['Int']
-    /** data from the rows affected by the mutation */
-    returning: async_chat_tickets[]
-    __typename: 'async_chat_tickets_mutation_response'
-}
-
-
-/** select columns of table "async_chat_tickets" */
-export type async_chat_tickets_select_column = 'created_at' | 'id' | 'title'
-
-
-/** update columns of table "async_chat_tickets" */
-export type async_chat_tickets_update_column = 'created_at' | 'id' | 'title'
-
-
 /** mutation root */
 export interface mutation_root {
-    /** delete data from the table: "async_chat_notifications" */
-    delete_async_chat_notifications?: async_chat_notifications_mutation_response
-    /** delete single row from the table: "async_chat_notifications" */
-    delete_async_chat_notifications_by_pk?: async_chat_notifications
-    /** delete data from the table: "async_chat_tickets" */
-    delete_async_chat_tickets?: async_chat_tickets_mutation_response
-    /** delete single row from the table: "async_chat_tickets" */
-    delete_async_chat_tickets_by_pk?: async_chat_tickets
+    /** delete data from the table: "notifications" */
+    delete_notifications?: notifications_mutation_response
+    /** delete single row from the table: "notifications" */
+    delete_notifications_by_pk?: notifications
     /** delete data from the table: "service" */
     delete_service?: service_mutation_response
     /** delete single row from the table: "service" */
@@ -190,14 +31,10 @@ export interface mutation_root {
     delete_trigger?: trigger_mutation_response
     /** delete single row from the table: "trigger" */
     delete_trigger_by_pk?: trigger
-    /** insert data into the table: "async_chat_notifications" */
-    insert_async_chat_notifications?: async_chat_notifications_mutation_response
-    /** insert a single row into the table: "async_chat_notifications" */
-    insert_async_chat_notifications_one?: async_chat_notifications
-    /** insert data into the table: "async_chat_tickets" */
-    insert_async_chat_tickets?: async_chat_tickets_mutation_response
-    /** insert a single row into the table: "async_chat_tickets" */
-    insert_async_chat_tickets_one?: async_chat_tickets
+    /** insert data into the table: "notifications" */
+    insert_notifications?: notifications_mutation_response
+    /** insert a single row into the table: "notifications" */
+    insert_notifications_one?: notifications
     /** insert data into the table: "service" */
     insert_service?: service_mutation_response
     /** insert a single row into the table: "service" */
@@ -214,14 +51,10 @@ export interface mutation_root {
     insert_trigger?: trigger_mutation_response
     /** insert a single row into the table: "trigger" */
     insert_trigger_one?: trigger
-    /** update data of the table: "async_chat_notifications" */
-    update_async_chat_notifications?: async_chat_notifications_mutation_response
-    /** update single row of the table: "async_chat_notifications" */
-    update_async_chat_notifications_by_pk?: async_chat_notifications
-    /** update data of the table: "async_chat_tickets" */
-    update_async_chat_tickets?: async_chat_tickets_mutation_response
-    /** update single row of the table: "async_chat_tickets" */
-    update_async_chat_tickets_by_pk?: async_chat_tickets
+    /** update data of the table: "notifications" */
+    update_notifications?: notifications_mutation_response
+    /** update single row of the table: "notifications" */
+    update_notifications_by_pk?: notifications
     /** update data of the table: "service" */
     update_service?: service_mutation_response
     /** update single row of the table: "service" */
@@ -242,22 +75,101 @@ export interface mutation_root {
 }
 
 
+/** columns and relationships of "notifications" */
+export interface notifications {
+    created_at: Scalars['timestamptz']
+    deleted_at?: Scalars['timestamptz']
+    id: Scalars['uuid']
+    message: Scalars['String']
+    seen: Scalars['Boolean']
+    /** An object relationship */
+    service: services
+    service_id: Scalars['uuid']
+    subject_id: Scalars['uuid']
+    title: Scalars['String']
+    trigger: trigger_enum
+    updated_at: Scalars['timestamptz']
+    __typename: 'notifications'
+}
+
+
+/** aggregated selection of "notifications" */
+export interface notifications_aggregate {
+    aggregate?: notifications_aggregate_fields
+    nodes: notifications[]
+    __typename: 'notifications_aggregate'
+}
+
+
+/** aggregate fields of "notifications" */
+export interface notifications_aggregate_fields {
+    count: Scalars['Int']
+    max?: notifications_max_fields
+    min?: notifications_min_fields
+    __typename: 'notifications_aggregate_fields'
+}
+
+
+/** unique or primary key constraints on table "notifications" */
+export type notifications_constraint = 'notifications_pkey'
+
+
+/** aggregate max on columns */
+export interface notifications_max_fields {
+    created_at?: Scalars['timestamptz']
+    deleted_at?: Scalars['timestamptz']
+    id?: Scalars['uuid']
+    message?: Scalars['String']
+    service_id?: Scalars['uuid']
+    subject_id?: Scalars['uuid']
+    title?: Scalars['String']
+    updated_at?: Scalars['timestamptz']
+    __typename: 'notifications_max_fields'
+}
+
+
+/** aggregate min on columns */
+export interface notifications_min_fields {
+    created_at?: Scalars['timestamptz']
+    deleted_at?: Scalars['timestamptz']
+    id?: Scalars['uuid']
+    message?: Scalars['String']
+    service_id?: Scalars['uuid']
+    subject_id?: Scalars['uuid']
+    title?: Scalars['String']
+    updated_at?: Scalars['timestamptz']
+    __typename: 'notifications_min_fields'
+}
+
+
+/** response of any mutation on the table "notifications" */
+export interface notifications_mutation_response {
+    /** number of rows affected by the mutation */
+    affected_rows: Scalars['Int']
+    /** data from the rows affected by the mutation */
+    returning: notifications[]
+    __typename: 'notifications_mutation_response'
+}
+
+
+/** select columns of table "notifications" */
+export type notifications_select_column = 'created_at' | 'deleted_at' | 'id' | 'message' | 'seen' | 'service_id' | 'subject_id' | 'title' | 'trigger' | 'updated_at'
+
+
+/** update columns of table "notifications" */
+export type notifications_update_column = 'created_at' | 'deleted_at' | 'id' | 'message' | 'seen' | 'service_id' | 'subject_id' | 'title' | 'trigger' | 'updated_at'
+
+
 /** column ordering options */
 export type order_by = 'asc' | 'asc_nulls_first' | 'asc_nulls_last' | 'desc' | 'desc_nulls_first' | 'desc_nulls_last'
 
 export interface query_root {
-    /** fetch data from the table: "async_chat_notifications" */
-    async_chat_notifications: async_chat_notifications[]
+    /** fetch data from the table: "notifications" */
+    notifications: notifications[]
     /** An aggregate relationship */
-    async_chat_notifications_aggregate: async_chat_notifications_aggregate
-    /** fetch data from the table: "async_chat_notifications" using primary key columns */
-    async_chat_notifications_by_pk?: async_chat_notifications
-    /** fetch data from the table: "async_chat_tickets" */
-    async_chat_tickets: async_chat_tickets[]
-    /** fetch aggregated fields from the table: "async_chat_tickets" */
-    async_chat_tickets_aggregate: async_chat_tickets_aggregate
-    /** fetch data from the table: "async_chat_tickets" using primary key columns */
-    async_chat_tickets_by_pk?: async_chat_tickets
+    notifications_aggregate: notifications_aggregate
+    /** fetch data from the table: "notifications" using primary key columns */
+    notifications_by_pk?: notifications
     /** fetch data from the table: "service" */
     service: service[]
     /** fetch aggregated fields from the table: "service" */
@@ -286,13 +198,7 @@ export interface query_root {
 }
 
 
-/**
- * service_enum
- * 
- * 
- * columns and relationships of "service"
- * 
- */
+/** columns and relationships of "service" */
 export interface service {
     description: Scalars['String']
     name: Scalars['String']
@@ -359,16 +265,16 @@ export type service_update_column = 'description' | 'name'
 
 /** columns and relationships of "services" */
 export interface services {
-    /** fetch data from the table: "async_chat_notifications" */
-    async_chat_notifications: async_chat_notifications[]
-    /** An aggregate relationship */
-    async_chat_notifications_aggregate: async_chat_notifications_aggregate
     created_at: Scalars['timestamptz']
-    customer_id: Scalars['uuid']
+    customer_id?: Scalars['uuid']
     email_channel: Scalars['Boolean']
     enabled: Scalars['Boolean']
     id: Scalars['uuid']
     message: Scalars['String']
+    /** fetch data from the table: "notifications" */
+    notifications: notifications[]
+    /** An aggregate relationship */
+    notifications_aggregate: notifications_aggregate
     push_channel: Scalars['Boolean']
     service: service_enum
     sms_channel: Scalars['Boolean']
@@ -444,13 +350,7 @@ export type services_select_column = 'created_at' | 'customer_id' | 'email_chann
 export type services_update_column = 'created_at' | 'customer_id' | 'email_channel' | 'enabled' | 'id' | 'message' | 'push_channel' | 'service' | 'sms_channel' | 'title' | 'updated_at' | 'user_id'
 
 
-/**
- * severity_enum
- * 
- * 
- * columns and relationships of "severity"
- * 
- */
+/** columns and relationships of "severity" */
 export interface severity {
     description: Scalars['String']
     name: Scalars['String']
@@ -477,8 +377,6 @@ export interface severity_aggregate_fields {
 
 /** unique or primary key constraints on table "severity" */
 export type severity_constraint = 'severity_pkey'
-
-export type severity_enum = 'important' | 'regular' | 'urgent'
 
 
 /** aggregate max on columns */
@@ -515,18 +413,12 @@ export type severity_select_column = 'description' | 'name'
 export type severity_update_column = 'description' | 'name'
 
 export interface subscription_root {
-    /** fetch data from the table: "async_chat_notifications" */
-    async_chat_notifications: async_chat_notifications[]
+    /** fetch data from the table: "notifications" */
+    notifications: notifications[]
     /** An aggregate relationship */
-    async_chat_notifications_aggregate: async_chat_notifications_aggregate
-    /** fetch data from the table: "async_chat_notifications" using primary key columns */
-    async_chat_notifications_by_pk?: async_chat_notifications
-    /** fetch data from the table: "async_chat_tickets" */
-    async_chat_tickets: async_chat_tickets[]
-    /** fetch aggregated fields from the table: "async_chat_tickets" */
-    async_chat_tickets_aggregate: async_chat_tickets_aggregate
-    /** fetch data from the table: "async_chat_tickets" using primary key columns */
-    async_chat_tickets_by_pk?: async_chat_tickets
+    notifications_aggregate: notifications_aggregate
+    /** fetch data from the table: "notifications" using primary key columns */
+    notifications_by_pk?: notifications
     /** fetch data from the table: "service" */
     service: service[]
     /** fetch aggregated fields from the table: "service" */
@@ -555,15 +447,8 @@ export interface subscription_root {
 }
 
 
-/**
- * trigger_enum
- * 
- * 
- * columns and relationships of "trigger"
- * 
- */
+/** columns and relationships of "trigger" */
 export interface trigger {
-    description: Scalars['String']
     name: Scalars['String']
     __typename: 'trigger'
 }
@@ -589,12 +474,11 @@ export interface trigger_aggregate_fields {
 /** unique or primary key constraints on table "trigger" */
 export type trigger_constraint = 'trigger_pkey'
 
-export type trigger_enum = 'insert_ticket' | 'insert_ticket_message' | 'insert_ticket_user'
+export type trigger_enum = 'insert_ticket' | 'insert_ticket_message'
 
 
 /** aggregate max on columns */
 export interface trigger_max_fields {
-    description?: Scalars['String']
     name?: Scalars['String']
     __typename: 'trigger_max_fields'
 }
@@ -602,7 +486,6 @@ export interface trigger_max_fields {
 
 /** aggregate min on columns */
 export interface trigger_min_fields {
-    description?: Scalars['String']
     name?: Scalars['String']
     __typename: 'trigger_min_fields'
 }
@@ -619,11 +502,11 @@ export interface trigger_mutation_response {
 
 
 /** select columns of table "trigger" */
-export type trigger_select_column = 'description' | 'name'
+export type trigger_select_column = 'name'
 
 
 /** update columns of table "trigger" */
-export type trigger_update_column = 'description' | 'name'
+export type trigger_update_column = 'name'
 
 export type Query = query_root
 export type Mutation = mutation_root
@@ -658,255 +541,14 @@ _regex?: (Scalars['String'] | null),
 _similar?: (Scalars['String'] | null)}
 
 
-/** columns and relationships of "async_chat_notifications" */
-export interface async_chat_notificationsRequest{
-    /** An object relationship */
-    async_chat_ticket?: async_chat_ticketsRequest
-    created_at?: boolean | number
-    deleted_at?: boolean | number
-    id?: boolean | number
-    message?: boolean | number
-    seen?: boolean | number
-    /** An object relationship */
-    service?: servicesRequest
-    service_id?: boolean | number
-    severity?: boolean | number
-    ticket_id?: boolean | number
-    trigger?: boolean | number
-    updated_at?: boolean | number
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
-
-
-/** aggregated selection of "async_chat_notifications" */
-export interface async_chat_notifications_aggregateRequest{
-    aggregate?: async_chat_notifications_aggregate_fieldsRequest
-    nodes?: async_chat_notificationsRequest
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
-
-
-/** aggregate fields of "async_chat_notifications" */
-export interface async_chat_notifications_aggregate_fieldsRequest{
-    count?: [{columns?: (async_chat_notifications_select_column[] | null),distinct?: (Scalars['Boolean'] | null)}] | boolean | number
-    max?: async_chat_notifications_max_fieldsRequest
-    min?: async_chat_notifications_min_fieldsRequest
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
-
-
-/** order by aggregate values of table "async_chat_notifications" */
-export interface async_chat_notifications_aggregate_order_by {count?: (order_by | null),max?: (async_chat_notifications_max_order_by | null),min?: (async_chat_notifications_min_order_by | null)}
-
-
-/** input type for inserting array relation for remote table "async_chat_notifications" */
-export interface async_chat_notifications_arr_rel_insert_input {data: async_chat_notifications_insert_input[],
-/** on conflict condition */
-on_conflict?: (async_chat_notifications_on_conflict | null)}
-
-
-/** Boolean expression to filter rows from the table "async_chat_notifications". All fields are combined with a logical 'AND'. */
-export interface async_chat_notifications_bool_exp {_and?: (async_chat_notifications_bool_exp[] | null),_not?: (async_chat_notifications_bool_exp | null),_or?: (async_chat_notifications_bool_exp[] | null),async_chat_ticket?: (async_chat_tickets_bool_exp | null),created_at?: (timestamptz_comparison_exp | null),deleted_at?: (timestamptz_comparison_exp | null),id?: (uuid_comparison_exp | null),message?: (String_comparison_exp | null),seen?: (Boolean_comparison_exp | null),service?: (services_bool_exp | null),service_id?: (uuid_comparison_exp | null),severity?: (severity_enum_comparison_exp | null),ticket_id?: (uuid_comparison_exp | null),trigger?: (trigger_enum_comparison_exp | null),updated_at?: (timestamptz_comparison_exp | null)}
-
-
-/** input type for inserting data into table "async_chat_notifications" */
-export interface async_chat_notifications_insert_input {async_chat_ticket?: (async_chat_tickets_obj_rel_insert_input | null),created_at?: (Scalars['timestamptz'] | null),deleted_at?: (Scalars['timestamptz'] | null),id?: (Scalars['uuid'] | null),message?: (Scalars['String'] | null),seen?: (Scalars['Boolean'] | null),service?: (services_obj_rel_insert_input | null),service_id?: (Scalars['uuid'] | null),severity?: (severity_enum | null),ticket_id?: (Scalars['uuid'] | null),trigger?: (trigger_enum | null),updated_at?: (Scalars['timestamptz'] | null)}
-
-
-/** aggregate max on columns */
-export interface async_chat_notifications_max_fieldsRequest{
-    created_at?: boolean | number
-    deleted_at?: boolean | number
-    id?: boolean | number
-    message?: boolean | number
-    service_id?: boolean | number
-    ticket_id?: boolean | number
-    updated_at?: boolean | number
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
-
-
-/** order by max() on columns of table "async_chat_notifications" */
-export interface async_chat_notifications_max_order_by {created_at?: (order_by | null),deleted_at?: (order_by | null),id?: (order_by | null),message?: (order_by | null),service_id?: (order_by | null),ticket_id?: (order_by | null),updated_at?: (order_by | null)}
-
-
-/** aggregate min on columns */
-export interface async_chat_notifications_min_fieldsRequest{
-    created_at?: boolean | number
-    deleted_at?: boolean | number
-    id?: boolean | number
-    message?: boolean | number
-    service_id?: boolean | number
-    ticket_id?: boolean | number
-    updated_at?: boolean | number
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
-
-
-/** order by min() on columns of table "async_chat_notifications" */
-export interface async_chat_notifications_min_order_by {created_at?: (order_by | null),deleted_at?: (order_by | null),id?: (order_by | null),message?: (order_by | null),service_id?: (order_by | null),ticket_id?: (order_by | null),updated_at?: (order_by | null)}
-
-
-/** response of any mutation on the table "async_chat_notifications" */
-export interface async_chat_notifications_mutation_responseRequest{
-    /** number of rows affected by the mutation */
-    affected_rows?: boolean | number
-    /** data from the rows affected by the mutation */
-    returning?: async_chat_notificationsRequest
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
-
-
-/** on conflict condition type for table "async_chat_notifications" */
-export interface async_chat_notifications_on_conflict {constraint: async_chat_notifications_constraint,update_columns: async_chat_notifications_update_column[],where?: (async_chat_notifications_bool_exp | null)}
-
-
-/** Ordering options when selecting data from "async_chat_notifications". */
-export interface async_chat_notifications_order_by {async_chat_ticket?: (async_chat_tickets_order_by | null),created_at?: (order_by | null),deleted_at?: (order_by | null),id?: (order_by | null),message?: (order_by | null),seen?: (order_by | null),service?: (services_order_by | null),service_id?: (order_by | null),severity?: (order_by | null),ticket_id?: (order_by | null),trigger?: (order_by | null),updated_at?: (order_by | null)}
-
-
-/** primary key columns input for table: async_chat_notifications */
-export interface async_chat_notifications_pk_columns_input {id: Scalars['uuid']}
-
-
-/** input type for updating data in table "async_chat_notifications" */
-export interface async_chat_notifications_set_input {created_at?: (Scalars['timestamptz'] | null),deleted_at?: (Scalars['timestamptz'] | null),id?: (Scalars['uuid'] | null),message?: (Scalars['String'] | null),seen?: (Scalars['Boolean'] | null),service_id?: (Scalars['uuid'] | null),severity?: (severity_enum | null),ticket_id?: (Scalars['uuid'] | null),trigger?: (trigger_enum | null),updated_at?: (Scalars['timestamptz'] | null)}
-
-
-/** columns and relationships of "async_chat_tickets" */
-export interface async_chat_ticketsRequest{
-    /** fetch data from the table: "async_chat_notifications" */
-    async_chat_notifications?: [{
-    /** distinct select on columns */
-    distinct_on?: (async_chat_notifications_select_column[] | null),
-    /** limit the number of rows returned */
-    limit?: (Scalars['Int'] | null),
-    /** skip the first n rows. Use only with order_by */
-    offset?: (Scalars['Int'] | null),
-    /** sort the rows by one or more columns */
-    order_by?: (async_chat_notifications_order_by[] | null),
-    /** filter the rows returned */
-    where?: (async_chat_notifications_bool_exp | null)},async_chat_notificationsRequest] | async_chat_notificationsRequest
-    /** An aggregate relationship */
-    async_chat_notifications_aggregate?: [{
-    /** distinct select on columns */
-    distinct_on?: (async_chat_notifications_select_column[] | null),
-    /** limit the number of rows returned */
-    limit?: (Scalars['Int'] | null),
-    /** skip the first n rows. Use only with order_by */
-    offset?: (Scalars['Int'] | null),
-    /** sort the rows by one or more columns */
-    order_by?: (async_chat_notifications_order_by[] | null),
-    /** filter the rows returned */
-    where?: (async_chat_notifications_bool_exp | null)},async_chat_notifications_aggregateRequest] | async_chat_notifications_aggregateRequest
-    created_at?: boolean | number
-    id?: boolean | number
-    title?: boolean | number
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
-
-
-/** aggregated selection of "async_chat_tickets" */
-export interface async_chat_tickets_aggregateRequest{
-    aggregate?: async_chat_tickets_aggregate_fieldsRequest
-    nodes?: async_chat_ticketsRequest
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
-
-
-/** aggregate fields of "async_chat_tickets" */
-export interface async_chat_tickets_aggregate_fieldsRequest{
-    count?: [{columns?: (async_chat_tickets_select_column[] | null),distinct?: (Scalars['Boolean'] | null)}] | boolean | number
-    max?: async_chat_tickets_max_fieldsRequest
-    min?: async_chat_tickets_min_fieldsRequest
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
-
-
-/** Boolean expression to filter rows from the table "async_chat_tickets". All fields are combined with a logical 'AND'. */
-export interface async_chat_tickets_bool_exp {_and?: (async_chat_tickets_bool_exp[] | null),_not?: (async_chat_tickets_bool_exp | null),_or?: (async_chat_tickets_bool_exp[] | null),async_chat_notifications?: (async_chat_notifications_bool_exp | null),created_at?: (timestamptz_comparison_exp | null),id?: (uuid_comparison_exp | null),title?: (String_comparison_exp | null)}
-
-
-/** input type for inserting data into table "async_chat_tickets" */
-export interface async_chat_tickets_insert_input {async_chat_notifications?: (async_chat_notifications_arr_rel_insert_input | null),created_at?: (Scalars['timestamptz'] | null),id?: (Scalars['uuid'] | null),title?: (Scalars['String'] | null)}
-
-
-/** aggregate max on columns */
-export interface async_chat_tickets_max_fieldsRequest{
-    created_at?: boolean | number
-    id?: boolean | number
-    title?: boolean | number
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
-
-
-/** aggregate min on columns */
-export interface async_chat_tickets_min_fieldsRequest{
-    created_at?: boolean | number
-    id?: boolean | number
-    title?: boolean | number
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
-
-
-/** response of any mutation on the table "async_chat_tickets" */
-export interface async_chat_tickets_mutation_responseRequest{
-    /** number of rows affected by the mutation */
-    affected_rows?: boolean | number
-    /** data from the rows affected by the mutation */
-    returning?: async_chat_ticketsRequest
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
-
-
-/** input type for inserting object relation for remote table "async_chat_tickets" */
-export interface async_chat_tickets_obj_rel_insert_input {data: async_chat_tickets_insert_input,
-/** on conflict condition */
-on_conflict?: (async_chat_tickets_on_conflict | null)}
-
-
-/** on conflict condition type for table "async_chat_tickets" */
-export interface async_chat_tickets_on_conflict {constraint: async_chat_tickets_constraint,update_columns: async_chat_tickets_update_column[],where?: (async_chat_tickets_bool_exp | null)}
-
-
-/** Ordering options when selecting data from "async_chat_tickets". */
-export interface async_chat_tickets_order_by {async_chat_notifications_aggregate?: (async_chat_notifications_aggregate_order_by | null),created_at?: (order_by | null),id?: (order_by | null),title?: (order_by | null)}
-
-
-/** primary key columns input for table: async_chat_tickets */
-export interface async_chat_tickets_pk_columns_input {id: Scalars['uuid']}
-
-
-/** input type for updating data in table "async_chat_tickets" */
-export interface async_chat_tickets_set_input {created_at?: (Scalars['timestamptz'] | null),id?: (Scalars['uuid'] | null),title?: (Scalars['String'] | null)}
-
-
 /** mutation root */
 export interface mutation_rootRequest{
-    /** delete data from the table: "async_chat_notifications" */
-    delete_async_chat_notifications?: [{
+    /** delete data from the table: "notifications" */
+    delete_notifications?: [{
     /** filter the rows which have to be deleted */
-    where: async_chat_notifications_bool_exp},async_chat_notifications_mutation_responseRequest]
-    /** delete single row from the table: "async_chat_notifications" */
-    delete_async_chat_notifications_by_pk?: [{id: Scalars['uuid']},async_chat_notificationsRequest]
-    /** delete data from the table: "async_chat_tickets" */
-    delete_async_chat_tickets?: [{
-    /** filter the rows which have to be deleted */
-    where: async_chat_tickets_bool_exp},async_chat_tickets_mutation_responseRequest]
-    /** delete single row from the table: "async_chat_tickets" */
-    delete_async_chat_tickets_by_pk?: [{id: Scalars['uuid']},async_chat_ticketsRequest]
+    where: notifications_bool_exp},notifications_mutation_responseRequest]
+    /** delete single row from the table: "notifications" */
+    delete_notifications_by_pk?: [{id: Scalars['uuid']},notificationsRequest]
     /** delete data from the table: "service" */
     delete_service?: [{
     /** filter the rows which have to be deleted */
@@ -931,30 +573,18 @@ export interface mutation_rootRequest{
     where: trigger_bool_exp},trigger_mutation_responseRequest]
     /** delete single row from the table: "trigger" */
     delete_trigger_by_pk?: [{name: Scalars['String']},triggerRequest]
-    /** insert data into the table: "async_chat_notifications" */
-    insert_async_chat_notifications?: [{
+    /** insert data into the table: "notifications" */
+    insert_notifications?: [{
     /** the rows to be inserted */
-    objects: async_chat_notifications_insert_input[],
+    objects: notifications_insert_input[],
     /** on conflict condition */
-    on_conflict?: (async_chat_notifications_on_conflict | null)},async_chat_notifications_mutation_responseRequest]
-    /** insert a single row into the table: "async_chat_notifications" */
-    insert_async_chat_notifications_one?: [{
+    on_conflict?: (notifications_on_conflict | null)},notifications_mutation_responseRequest]
+    /** insert a single row into the table: "notifications" */
+    insert_notifications_one?: [{
     /** the row to be inserted */
-    object: async_chat_notifications_insert_input,
+    object: notifications_insert_input,
     /** on conflict condition */
-    on_conflict?: (async_chat_notifications_on_conflict | null)},async_chat_notificationsRequest]
-    /** insert data into the table: "async_chat_tickets" */
-    insert_async_chat_tickets?: [{
-    /** the rows to be inserted */
-    objects: async_chat_tickets_insert_input[],
-    /** on conflict condition */
-    on_conflict?: (async_chat_tickets_on_conflict | null)},async_chat_tickets_mutation_responseRequest]
-    /** insert a single row into the table: "async_chat_tickets" */
-    insert_async_chat_tickets_one?: [{
-    /** the row to be inserted */
-    object: async_chat_tickets_insert_input,
-    /** on conflict condition */
-    on_conflict?: (async_chat_tickets_on_conflict | null)},async_chat_ticketsRequest]
+    on_conflict?: (notifications_on_conflict | null)},notificationsRequest]
     /** insert data into the table: "service" */
     insert_service?: [{
     /** the rows to be inserted */
@@ -1003,26 +633,16 @@ export interface mutation_rootRequest{
     object: trigger_insert_input,
     /** on conflict condition */
     on_conflict?: (trigger_on_conflict | null)},triggerRequest]
-    /** update data of the table: "async_chat_notifications" */
-    update_async_chat_notifications?: [{
+    /** update data of the table: "notifications" */
+    update_notifications?: [{
     /** sets the columns of the filtered rows to the given values */
-    _set?: (async_chat_notifications_set_input | null),
+    _set?: (notifications_set_input | null),
     /** filter the rows which have to be updated */
-    where: async_chat_notifications_bool_exp},async_chat_notifications_mutation_responseRequest]
-    /** update single row of the table: "async_chat_notifications" */
-    update_async_chat_notifications_by_pk?: [{
+    where: notifications_bool_exp},notifications_mutation_responseRequest]
+    /** update single row of the table: "notifications" */
+    update_notifications_by_pk?: [{
     /** sets the columns of the filtered rows to the given values */
-    _set?: (async_chat_notifications_set_input | null),pk_columns: async_chat_notifications_pk_columns_input},async_chat_notificationsRequest]
-    /** update data of the table: "async_chat_tickets" */
-    update_async_chat_tickets?: [{
-    /** sets the columns of the filtered rows to the given values */
-    _set?: (async_chat_tickets_set_input | null),
-    /** filter the rows which have to be updated */
-    where: async_chat_tickets_bool_exp},async_chat_tickets_mutation_responseRequest]
-    /** update single row of the table: "async_chat_tickets" */
-    update_async_chat_tickets_by_pk?: [{
-    /** sets the columns of the filtered rows to the given values */
-    _set?: (async_chat_tickets_set_input | null),pk_columns: async_chat_tickets_pk_columns_input},async_chat_ticketsRequest]
+    _set?: (notifications_set_input | null),pk_columns: notifications_pk_columns_input},notificationsRequest]
     /** update data of the table: "service" */
     update_service?: [{
     /** sets the columns of the filtered rows to the given values */
@@ -1067,59 +687,154 @@ export interface mutation_rootRequest{
     __scalar?: boolean | number
 }
 
+
+/** columns and relationships of "notifications" */
+export interface notificationsRequest{
+    created_at?: boolean | number
+    deleted_at?: boolean | number
+    id?: boolean | number
+    message?: boolean | number
+    seen?: boolean | number
+    /** An object relationship */
+    service?: servicesRequest
+    service_id?: boolean | number
+    subject_id?: boolean | number
+    title?: boolean | number
+    trigger?: boolean | number
+    updated_at?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** aggregated selection of "notifications" */
+export interface notifications_aggregateRequest{
+    aggregate?: notifications_aggregate_fieldsRequest
+    nodes?: notificationsRequest
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** aggregate fields of "notifications" */
+export interface notifications_aggregate_fieldsRequest{
+    count?: [{columns?: (notifications_select_column[] | null),distinct?: (Scalars['Boolean'] | null)}] | boolean | number
+    max?: notifications_max_fieldsRequest
+    min?: notifications_min_fieldsRequest
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** order by aggregate values of table "notifications" */
+export interface notifications_aggregate_order_by {count?: (order_by | null),max?: (notifications_max_order_by | null),min?: (notifications_min_order_by | null)}
+
+
+/** input type for inserting array relation for remote table "notifications" */
+export interface notifications_arr_rel_insert_input {data: notifications_insert_input[],
+/** on conflict condition */
+on_conflict?: (notifications_on_conflict | null)}
+
+
+/** Boolean expression to filter rows from the table "notifications". All fields are combined with a logical 'AND'. */
+export interface notifications_bool_exp {_and?: (notifications_bool_exp[] | null),_not?: (notifications_bool_exp | null),_or?: (notifications_bool_exp[] | null),created_at?: (timestamptz_comparison_exp | null),deleted_at?: (timestamptz_comparison_exp | null),id?: (uuid_comparison_exp | null),message?: (String_comparison_exp | null),seen?: (Boolean_comparison_exp | null),service?: (services_bool_exp | null),service_id?: (uuid_comparison_exp | null),subject_id?: (uuid_comparison_exp | null),title?: (String_comparison_exp | null),trigger?: (trigger_enum_comparison_exp | null),updated_at?: (timestamptz_comparison_exp | null)}
+
+
+/** input type for inserting data into table "notifications" */
+export interface notifications_insert_input {created_at?: (Scalars['timestamptz'] | null),deleted_at?: (Scalars['timestamptz'] | null),id?: (Scalars['uuid'] | null),message?: (Scalars['String'] | null),seen?: (Scalars['Boolean'] | null),service?: (services_obj_rel_insert_input | null),service_id?: (Scalars['uuid'] | null),subject_id?: (Scalars['uuid'] | null),title?: (Scalars['String'] | null),trigger?: (trigger_enum | null),updated_at?: (Scalars['timestamptz'] | null)}
+
+
+/** aggregate max on columns */
+export interface notifications_max_fieldsRequest{
+    created_at?: boolean | number
+    deleted_at?: boolean | number
+    id?: boolean | number
+    message?: boolean | number
+    service_id?: boolean | number
+    subject_id?: boolean | number
+    title?: boolean | number
+    updated_at?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** order by max() on columns of table "notifications" */
+export interface notifications_max_order_by {created_at?: (order_by | null),deleted_at?: (order_by | null),id?: (order_by | null),message?: (order_by | null),service_id?: (order_by | null),subject_id?: (order_by | null),title?: (order_by | null),updated_at?: (order_by | null)}
+
+
+/** aggregate min on columns */
+export interface notifications_min_fieldsRequest{
+    created_at?: boolean | number
+    deleted_at?: boolean | number
+    id?: boolean | number
+    message?: boolean | number
+    service_id?: boolean | number
+    subject_id?: boolean | number
+    title?: boolean | number
+    updated_at?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** order by min() on columns of table "notifications" */
+export interface notifications_min_order_by {created_at?: (order_by | null),deleted_at?: (order_by | null),id?: (order_by | null),message?: (order_by | null),service_id?: (order_by | null),subject_id?: (order_by | null),title?: (order_by | null),updated_at?: (order_by | null)}
+
+
+/** response of any mutation on the table "notifications" */
+export interface notifications_mutation_responseRequest{
+    /** number of rows affected by the mutation */
+    affected_rows?: boolean | number
+    /** data from the rows affected by the mutation */
+    returning?: notificationsRequest
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** on conflict condition type for table "notifications" */
+export interface notifications_on_conflict {constraint: notifications_constraint,update_columns: notifications_update_column[],where?: (notifications_bool_exp | null)}
+
+
+/** Ordering options when selecting data from "notifications". */
+export interface notifications_order_by {created_at?: (order_by | null),deleted_at?: (order_by | null),id?: (order_by | null),message?: (order_by | null),seen?: (order_by | null),service?: (services_order_by | null),service_id?: (order_by | null),subject_id?: (order_by | null),title?: (order_by | null),trigger?: (order_by | null),updated_at?: (order_by | null)}
+
+
+/** primary key columns input for table: notifications */
+export interface notifications_pk_columns_input {id: Scalars['uuid']}
+
+
+/** input type for updating data in table "notifications" */
+export interface notifications_set_input {created_at?: (Scalars['timestamptz'] | null),deleted_at?: (Scalars['timestamptz'] | null),id?: (Scalars['uuid'] | null),message?: (Scalars['String'] | null),seen?: (Scalars['Boolean'] | null),service_id?: (Scalars['uuid'] | null),subject_id?: (Scalars['uuid'] | null),title?: (Scalars['String'] | null),trigger?: (trigger_enum | null),updated_at?: (Scalars['timestamptz'] | null)}
+
 export interface query_rootRequest{
-    /** fetch data from the table: "async_chat_notifications" */
-    async_chat_notifications?: [{
+    /** fetch data from the table: "notifications" */
+    notifications?: [{
     /** distinct select on columns */
-    distinct_on?: (async_chat_notifications_select_column[] | null),
+    distinct_on?: (notifications_select_column[] | null),
     /** limit the number of rows returned */
     limit?: (Scalars['Int'] | null),
     /** skip the first n rows. Use only with order_by */
     offset?: (Scalars['Int'] | null),
     /** sort the rows by one or more columns */
-    order_by?: (async_chat_notifications_order_by[] | null),
+    order_by?: (notifications_order_by[] | null),
     /** filter the rows returned */
-    where?: (async_chat_notifications_bool_exp | null)},async_chat_notificationsRequest] | async_chat_notificationsRequest
+    where?: (notifications_bool_exp | null)},notificationsRequest] | notificationsRequest
     /** An aggregate relationship */
-    async_chat_notifications_aggregate?: [{
+    notifications_aggregate?: [{
     /** distinct select on columns */
-    distinct_on?: (async_chat_notifications_select_column[] | null),
+    distinct_on?: (notifications_select_column[] | null),
     /** limit the number of rows returned */
     limit?: (Scalars['Int'] | null),
     /** skip the first n rows. Use only with order_by */
     offset?: (Scalars['Int'] | null),
     /** sort the rows by one or more columns */
-    order_by?: (async_chat_notifications_order_by[] | null),
+    order_by?: (notifications_order_by[] | null),
     /** filter the rows returned */
-    where?: (async_chat_notifications_bool_exp | null)},async_chat_notifications_aggregateRequest] | async_chat_notifications_aggregateRequest
-    /** fetch data from the table: "async_chat_notifications" using primary key columns */
-    async_chat_notifications_by_pk?: [{id: Scalars['uuid']},async_chat_notificationsRequest]
-    /** fetch data from the table: "async_chat_tickets" */
-    async_chat_tickets?: [{
-    /** distinct select on columns */
-    distinct_on?: (async_chat_tickets_select_column[] | null),
-    /** limit the number of rows returned */
-    limit?: (Scalars['Int'] | null),
-    /** skip the first n rows. Use only with order_by */
-    offset?: (Scalars['Int'] | null),
-    /** sort the rows by one or more columns */
-    order_by?: (async_chat_tickets_order_by[] | null),
-    /** filter the rows returned */
-    where?: (async_chat_tickets_bool_exp | null)},async_chat_ticketsRequest] | async_chat_ticketsRequest
-    /** fetch aggregated fields from the table: "async_chat_tickets" */
-    async_chat_tickets_aggregate?: [{
-    /** distinct select on columns */
-    distinct_on?: (async_chat_tickets_select_column[] | null),
-    /** limit the number of rows returned */
-    limit?: (Scalars['Int'] | null),
-    /** skip the first n rows. Use only with order_by */
-    offset?: (Scalars['Int'] | null),
-    /** sort the rows by one or more columns */
-    order_by?: (async_chat_tickets_order_by[] | null),
-    /** filter the rows returned */
-    where?: (async_chat_tickets_bool_exp | null)},async_chat_tickets_aggregateRequest] | async_chat_tickets_aggregateRequest
-    /** fetch data from the table: "async_chat_tickets" using primary key columns */
-    async_chat_tickets_by_pk?: [{id: Scalars['uuid']},async_chat_ticketsRequest]
+    where?: (notifications_bool_exp | null)},notifications_aggregateRequest] | notifications_aggregateRequest
+    /** fetch data from the table: "notifications" using primary key columns */
+    notifications_by_pk?: [{id: Scalars['uuid']},notificationsRequest]
     /** fetch data from the table: "service" */
     service?: [{
     /** distinct select on columns */
@@ -1229,13 +944,7 @@ export interface query_rootRequest{
 }
 
 
-/**
- * service_enum
- * 
- * 
- * columns and relationships of "service"
- * 
- */
+/** columns and relationships of "service" */
 export interface serviceRequest{
     description?: boolean | number
     name?: boolean | number
@@ -1322,36 +1031,36 @@ export interface service_set_input {description?: (Scalars['String'] | null),nam
 
 /** columns and relationships of "services" */
 export interface servicesRequest{
-    /** fetch data from the table: "async_chat_notifications" */
-    async_chat_notifications?: [{
-    /** distinct select on columns */
-    distinct_on?: (async_chat_notifications_select_column[] | null),
-    /** limit the number of rows returned */
-    limit?: (Scalars['Int'] | null),
-    /** skip the first n rows. Use only with order_by */
-    offset?: (Scalars['Int'] | null),
-    /** sort the rows by one or more columns */
-    order_by?: (async_chat_notifications_order_by[] | null),
-    /** filter the rows returned */
-    where?: (async_chat_notifications_bool_exp | null)},async_chat_notificationsRequest] | async_chat_notificationsRequest
-    /** An aggregate relationship */
-    async_chat_notifications_aggregate?: [{
-    /** distinct select on columns */
-    distinct_on?: (async_chat_notifications_select_column[] | null),
-    /** limit the number of rows returned */
-    limit?: (Scalars['Int'] | null),
-    /** skip the first n rows. Use only with order_by */
-    offset?: (Scalars['Int'] | null),
-    /** sort the rows by one or more columns */
-    order_by?: (async_chat_notifications_order_by[] | null),
-    /** filter the rows returned */
-    where?: (async_chat_notifications_bool_exp | null)},async_chat_notifications_aggregateRequest] | async_chat_notifications_aggregateRequest
     created_at?: boolean | number
     customer_id?: boolean | number
     email_channel?: boolean | number
     enabled?: boolean | number
     id?: boolean | number
     message?: boolean | number
+    /** fetch data from the table: "notifications" */
+    notifications?: [{
+    /** distinct select on columns */
+    distinct_on?: (notifications_select_column[] | null),
+    /** limit the number of rows returned */
+    limit?: (Scalars['Int'] | null),
+    /** skip the first n rows. Use only with order_by */
+    offset?: (Scalars['Int'] | null),
+    /** sort the rows by one or more columns */
+    order_by?: (notifications_order_by[] | null),
+    /** filter the rows returned */
+    where?: (notifications_bool_exp | null)},notificationsRequest] | notificationsRequest
+    /** An aggregate relationship */
+    notifications_aggregate?: [{
+    /** distinct select on columns */
+    distinct_on?: (notifications_select_column[] | null),
+    /** limit the number of rows returned */
+    limit?: (Scalars['Int'] | null),
+    /** skip the first n rows. Use only with order_by */
+    offset?: (Scalars['Int'] | null),
+    /** sort the rows by one or more columns */
+    order_by?: (notifications_order_by[] | null),
+    /** filter the rows returned */
+    where?: (notifications_bool_exp | null)},notifications_aggregateRequest] | notifications_aggregateRequest
     push_channel?: boolean | number
     service?: boolean | number
     sms_channel?: boolean | number
@@ -1383,11 +1092,11 @@ export interface services_aggregate_fieldsRequest{
 
 
 /** Boolean expression to filter rows from the table "services". All fields are combined with a logical 'AND'. */
-export interface services_bool_exp {_and?: (services_bool_exp[] | null),_not?: (services_bool_exp | null),_or?: (services_bool_exp[] | null),async_chat_notifications?: (async_chat_notifications_bool_exp | null),created_at?: (timestamptz_comparison_exp | null),customer_id?: (uuid_comparison_exp | null),email_channel?: (Boolean_comparison_exp | null),enabled?: (Boolean_comparison_exp | null),id?: (uuid_comparison_exp | null),message?: (String_comparison_exp | null),push_channel?: (Boolean_comparison_exp | null),service?: (service_enum_comparison_exp | null),sms_channel?: (Boolean_comparison_exp | null),title?: (String_comparison_exp | null),updated_at?: (timestamptz_comparison_exp | null),user_id?: (uuid_comparison_exp | null)}
+export interface services_bool_exp {_and?: (services_bool_exp[] | null),_not?: (services_bool_exp | null),_or?: (services_bool_exp[] | null),created_at?: (timestamptz_comparison_exp | null),customer_id?: (uuid_comparison_exp | null),email_channel?: (Boolean_comparison_exp | null),enabled?: (Boolean_comparison_exp | null),id?: (uuid_comparison_exp | null),message?: (String_comparison_exp | null),notifications?: (notifications_bool_exp | null),push_channel?: (Boolean_comparison_exp | null),service?: (service_enum_comparison_exp | null),sms_channel?: (Boolean_comparison_exp | null),title?: (String_comparison_exp | null),updated_at?: (timestamptz_comparison_exp | null),user_id?: (uuid_comparison_exp | null)}
 
 
 /** input type for inserting data into table "services" */
-export interface services_insert_input {async_chat_notifications?: (async_chat_notifications_arr_rel_insert_input | null),created_at?: (Scalars['timestamptz'] | null),customer_id?: (Scalars['uuid'] | null),email_channel?: (Scalars['Boolean'] | null),enabled?: (Scalars['Boolean'] | null),id?: (Scalars['uuid'] | null),message?: (Scalars['String'] | null),push_channel?: (Scalars['Boolean'] | null),service?: (service_enum | null),sms_channel?: (Scalars['Boolean'] | null),title?: (Scalars['String'] | null),updated_at?: (Scalars['timestamptz'] | null),user_id?: (Scalars['uuid'] | null)}
+export interface services_insert_input {created_at?: (Scalars['timestamptz'] | null),customer_id?: (Scalars['uuid'] | null),email_channel?: (Scalars['Boolean'] | null),enabled?: (Scalars['Boolean'] | null),id?: (Scalars['uuid'] | null),message?: (Scalars['String'] | null),notifications?: (notifications_arr_rel_insert_input | null),push_channel?: (Scalars['Boolean'] | null),service?: (service_enum | null),sms_channel?: (Scalars['Boolean'] | null),title?: (Scalars['String'] | null),updated_at?: (Scalars['timestamptz'] | null),user_id?: (Scalars['uuid'] | null)}
 
 
 /** aggregate max on columns */
@@ -1440,7 +1149,7 @@ export interface services_on_conflict {constraint: services_constraint,update_co
 
 
 /** Ordering options when selecting data from "services". */
-export interface services_order_by {async_chat_notifications_aggregate?: (async_chat_notifications_aggregate_order_by | null),created_at?: (order_by | null),customer_id?: (order_by | null),email_channel?: (order_by | null),enabled?: (order_by | null),id?: (order_by | null),message?: (order_by | null),push_channel?: (order_by | null),service?: (order_by | null),sms_channel?: (order_by | null),title?: (order_by | null),updated_at?: (order_by | null),user_id?: (order_by | null)}
+export interface services_order_by {created_at?: (order_by | null),customer_id?: (order_by | null),email_channel?: (order_by | null),enabled?: (order_by | null),id?: (order_by | null),message?: (order_by | null),notifications_aggregate?: (notifications_aggregate_order_by | null),push_channel?: (order_by | null),service?: (order_by | null),sms_channel?: (order_by | null),title?: (order_by | null),updated_at?: (order_by | null),user_id?: (order_by | null)}
 
 
 /** primary key columns input for table: services */
@@ -1451,13 +1160,7 @@ export interface services_pk_columns_input {id: Scalars['uuid']}
 export interface services_set_input {created_at?: (Scalars['timestamptz'] | null),customer_id?: (Scalars['uuid'] | null),email_channel?: (Scalars['Boolean'] | null),enabled?: (Scalars['Boolean'] | null),id?: (Scalars['uuid'] | null),message?: (Scalars['String'] | null),push_channel?: (Scalars['Boolean'] | null),service?: (service_enum | null),sms_channel?: (Scalars['Boolean'] | null),title?: (Scalars['String'] | null),updated_at?: (Scalars['timestamptz'] | null),user_id?: (Scalars['uuid'] | null)}
 
 
-/**
- * severity_enum
- * 
- * 
- * columns and relationships of "severity"
- * 
- */
+/** columns and relationships of "severity" */
 export interface severityRequest{
     description?: boolean | number
     name?: boolean | number
@@ -1487,10 +1190,6 @@ export interface severity_aggregate_fieldsRequest{
 
 /** Boolean expression to filter rows from the table "severity". All fields are combined with a logical 'AND'. */
 export interface severity_bool_exp {_and?: (severity_bool_exp[] | null),_not?: (severity_bool_exp | null),_or?: (severity_bool_exp[] | null),description?: (String_comparison_exp | null),name?: (String_comparison_exp | null)}
-
-
-/** Boolean expression to compare columns of type "severity_enum". All fields are combined with logical 'AND'. */
-export interface severity_enum_comparison_exp {_eq?: (severity_enum | null),_in?: (severity_enum[] | null),_is_null?: (Scalars['Boolean'] | null),_neq?: (severity_enum | null),_nin?: (severity_enum[] | null)}
 
 
 /** input type for inserting data into table "severity" */
@@ -1542,58 +1241,32 @@ export interface severity_pk_columns_input {name: Scalars['String']}
 export interface severity_set_input {description?: (Scalars['String'] | null),name?: (Scalars['String'] | null)}
 
 export interface subscription_rootRequest{
-    /** fetch data from the table: "async_chat_notifications" */
-    async_chat_notifications?: [{
+    /** fetch data from the table: "notifications" */
+    notifications?: [{
     /** distinct select on columns */
-    distinct_on?: (async_chat_notifications_select_column[] | null),
+    distinct_on?: (notifications_select_column[] | null),
     /** limit the number of rows returned */
     limit?: (Scalars['Int'] | null),
     /** skip the first n rows. Use only with order_by */
     offset?: (Scalars['Int'] | null),
     /** sort the rows by one or more columns */
-    order_by?: (async_chat_notifications_order_by[] | null),
+    order_by?: (notifications_order_by[] | null),
     /** filter the rows returned */
-    where?: (async_chat_notifications_bool_exp | null)},async_chat_notificationsRequest] | async_chat_notificationsRequest
+    where?: (notifications_bool_exp | null)},notificationsRequest] | notificationsRequest
     /** An aggregate relationship */
-    async_chat_notifications_aggregate?: [{
+    notifications_aggregate?: [{
     /** distinct select on columns */
-    distinct_on?: (async_chat_notifications_select_column[] | null),
+    distinct_on?: (notifications_select_column[] | null),
     /** limit the number of rows returned */
     limit?: (Scalars['Int'] | null),
     /** skip the first n rows. Use only with order_by */
     offset?: (Scalars['Int'] | null),
     /** sort the rows by one or more columns */
-    order_by?: (async_chat_notifications_order_by[] | null),
+    order_by?: (notifications_order_by[] | null),
     /** filter the rows returned */
-    where?: (async_chat_notifications_bool_exp | null)},async_chat_notifications_aggregateRequest] | async_chat_notifications_aggregateRequest
-    /** fetch data from the table: "async_chat_notifications" using primary key columns */
-    async_chat_notifications_by_pk?: [{id: Scalars['uuid']},async_chat_notificationsRequest]
-    /** fetch data from the table: "async_chat_tickets" */
-    async_chat_tickets?: [{
-    /** distinct select on columns */
-    distinct_on?: (async_chat_tickets_select_column[] | null),
-    /** limit the number of rows returned */
-    limit?: (Scalars['Int'] | null),
-    /** skip the first n rows. Use only with order_by */
-    offset?: (Scalars['Int'] | null),
-    /** sort the rows by one or more columns */
-    order_by?: (async_chat_tickets_order_by[] | null),
-    /** filter the rows returned */
-    where?: (async_chat_tickets_bool_exp | null)},async_chat_ticketsRequest] | async_chat_ticketsRequest
-    /** fetch aggregated fields from the table: "async_chat_tickets" */
-    async_chat_tickets_aggregate?: [{
-    /** distinct select on columns */
-    distinct_on?: (async_chat_tickets_select_column[] | null),
-    /** limit the number of rows returned */
-    limit?: (Scalars['Int'] | null),
-    /** skip the first n rows. Use only with order_by */
-    offset?: (Scalars['Int'] | null),
-    /** sort the rows by one or more columns */
-    order_by?: (async_chat_tickets_order_by[] | null),
-    /** filter the rows returned */
-    where?: (async_chat_tickets_bool_exp | null)},async_chat_tickets_aggregateRequest] | async_chat_tickets_aggregateRequest
-    /** fetch data from the table: "async_chat_tickets" using primary key columns */
-    async_chat_tickets_by_pk?: [{id: Scalars['uuid']},async_chat_ticketsRequest]
+    where?: (notifications_bool_exp | null)},notifications_aggregateRequest] | notifications_aggregateRequest
+    /** fetch data from the table: "notifications" using primary key columns */
+    notifications_by_pk?: [{id: Scalars['uuid']},notificationsRequest]
     /** fetch data from the table: "service" */
     service?: [{
     /** distinct select on columns */
@@ -1707,15 +1380,8 @@ export interface subscription_rootRequest{
 export interface timestamptz_comparison_exp {_eq?: (Scalars['timestamptz'] | null),_gt?: (Scalars['timestamptz'] | null),_gte?: (Scalars['timestamptz'] | null),_in?: (Scalars['timestamptz'][] | null),_is_null?: (Scalars['Boolean'] | null),_lt?: (Scalars['timestamptz'] | null),_lte?: (Scalars['timestamptz'] | null),_neq?: (Scalars['timestamptz'] | null),_nin?: (Scalars['timestamptz'][] | null)}
 
 
-/**
- * trigger_enum
- * 
- * 
- * columns and relationships of "trigger"
- * 
- */
+/** columns and relationships of "trigger" */
 export interface triggerRequest{
-    description?: boolean | number
     name?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
@@ -1742,7 +1408,7 @@ export interface trigger_aggregate_fieldsRequest{
 
 
 /** Boolean expression to filter rows from the table "trigger". All fields are combined with a logical 'AND'. */
-export interface trigger_bool_exp {_and?: (trigger_bool_exp[] | null),_not?: (trigger_bool_exp | null),_or?: (trigger_bool_exp[] | null),description?: (String_comparison_exp | null),name?: (String_comparison_exp | null)}
+export interface trigger_bool_exp {_and?: (trigger_bool_exp[] | null),_not?: (trigger_bool_exp | null),_or?: (trigger_bool_exp[] | null),name?: (String_comparison_exp | null)}
 
 
 /** Boolean expression to compare columns of type "trigger_enum". All fields are combined with logical 'AND'. */
@@ -1750,12 +1416,11 @@ export interface trigger_enum_comparison_exp {_eq?: (trigger_enum | null),_in?: 
 
 
 /** input type for inserting data into table "trigger" */
-export interface trigger_insert_input {description?: (Scalars['String'] | null),name?: (Scalars['String'] | null)}
+export interface trigger_insert_input {name?: (Scalars['String'] | null)}
 
 
 /** aggregate max on columns */
 export interface trigger_max_fieldsRequest{
-    description?: boolean | number
     name?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
@@ -1764,7 +1429,6 @@ export interface trigger_max_fieldsRequest{
 
 /** aggregate min on columns */
 export interface trigger_min_fieldsRequest{
-    description?: boolean | number
     name?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
@@ -1787,7 +1451,7 @@ export interface trigger_on_conflict {constraint: trigger_constraint,update_colu
 
 
 /** Ordering options when selecting data from "trigger". */
-export interface trigger_order_by {description?: (order_by | null),name?: (order_by | null)}
+export interface trigger_order_by {name?: (order_by | null)}
 
 
 /** primary key columns input for table: trigger */
@@ -1795,7 +1459,7 @@ export interface trigger_pk_columns_input {name: Scalars['String']}
 
 
 /** input type for updating data in table "trigger" */
-export interface trigger_set_input {description?: (Scalars['String'] | null),name?: (Scalars['String'] | null)}
+export interface trigger_set_input {name?: (Scalars['String'] | null)}
 
 
 /** Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'. */
@@ -1806,106 +1470,58 @@ export type MutationRequest = mutation_rootRequest
 export type SubscriptionRequest = subscription_rootRequest
 
 
-const async_chat_notifications_possibleTypes = ['async_chat_notifications']
-export const isasync_chat_notifications = (obj?: { __typename?: any } | null): obj is async_chat_notifications => {
-  if (!obj?.__typename) throw new Error('__typename is missing in "isasync_chat_notifications"')
-  return async_chat_notifications_possibleTypes.includes(obj.__typename)
-}
-
-
-
-const async_chat_notifications_aggregate_possibleTypes = ['async_chat_notifications_aggregate']
-export const isasync_chat_notifications_aggregate = (obj?: { __typename?: any } | null): obj is async_chat_notifications_aggregate => {
-  if (!obj?.__typename) throw new Error('__typename is missing in "isasync_chat_notifications_aggregate"')
-  return async_chat_notifications_aggregate_possibleTypes.includes(obj.__typename)
-}
-
-
-
-const async_chat_notifications_aggregate_fields_possibleTypes = ['async_chat_notifications_aggregate_fields']
-export const isasync_chat_notifications_aggregate_fields = (obj?: { __typename?: any } | null): obj is async_chat_notifications_aggregate_fields => {
-  if (!obj?.__typename) throw new Error('__typename is missing in "isasync_chat_notifications_aggregate_fields"')
-  return async_chat_notifications_aggregate_fields_possibleTypes.includes(obj.__typename)
-}
-
-
-
-const async_chat_notifications_max_fields_possibleTypes = ['async_chat_notifications_max_fields']
-export const isasync_chat_notifications_max_fields = (obj?: { __typename?: any } | null): obj is async_chat_notifications_max_fields => {
-  if (!obj?.__typename) throw new Error('__typename is missing in "isasync_chat_notifications_max_fields"')
-  return async_chat_notifications_max_fields_possibleTypes.includes(obj.__typename)
-}
-
-
-
-const async_chat_notifications_min_fields_possibleTypes = ['async_chat_notifications_min_fields']
-export const isasync_chat_notifications_min_fields = (obj?: { __typename?: any } | null): obj is async_chat_notifications_min_fields => {
-  if (!obj?.__typename) throw new Error('__typename is missing in "isasync_chat_notifications_min_fields"')
-  return async_chat_notifications_min_fields_possibleTypes.includes(obj.__typename)
-}
-
-
-
-const async_chat_notifications_mutation_response_possibleTypes = ['async_chat_notifications_mutation_response']
-export const isasync_chat_notifications_mutation_response = (obj?: { __typename?: any } | null): obj is async_chat_notifications_mutation_response => {
-  if (!obj?.__typename) throw new Error('__typename is missing in "isasync_chat_notifications_mutation_response"')
-  return async_chat_notifications_mutation_response_possibleTypes.includes(obj.__typename)
-}
-
-
-
-const async_chat_tickets_possibleTypes = ['async_chat_tickets']
-export const isasync_chat_tickets = (obj?: { __typename?: any } | null): obj is async_chat_tickets => {
-  if (!obj?.__typename) throw new Error('__typename is missing in "isasync_chat_tickets"')
-  return async_chat_tickets_possibleTypes.includes(obj.__typename)
-}
-
-
-
-const async_chat_tickets_aggregate_possibleTypes = ['async_chat_tickets_aggregate']
-export const isasync_chat_tickets_aggregate = (obj?: { __typename?: any } | null): obj is async_chat_tickets_aggregate => {
-  if (!obj?.__typename) throw new Error('__typename is missing in "isasync_chat_tickets_aggregate"')
-  return async_chat_tickets_aggregate_possibleTypes.includes(obj.__typename)
-}
-
-
-
-const async_chat_tickets_aggregate_fields_possibleTypes = ['async_chat_tickets_aggregate_fields']
-export const isasync_chat_tickets_aggregate_fields = (obj?: { __typename?: any } | null): obj is async_chat_tickets_aggregate_fields => {
-  if (!obj?.__typename) throw new Error('__typename is missing in "isasync_chat_tickets_aggregate_fields"')
-  return async_chat_tickets_aggregate_fields_possibleTypes.includes(obj.__typename)
-}
-
-
-
-const async_chat_tickets_max_fields_possibleTypes = ['async_chat_tickets_max_fields']
-export const isasync_chat_tickets_max_fields = (obj?: { __typename?: any } | null): obj is async_chat_tickets_max_fields => {
-  if (!obj?.__typename) throw new Error('__typename is missing in "isasync_chat_tickets_max_fields"')
-  return async_chat_tickets_max_fields_possibleTypes.includes(obj.__typename)
-}
-
-
-
-const async_chat_tickets_min_fields_possibleTypes = ['async_chat_tickets_min_fields']
-export const isasync_chat_tickets_min_fields = (obj?: { __typename?: any } | null): obj is async_chat_tickets_min_fields => {
-  if (!obj?.__typename) throw new Error('__typename is missing in "isasync_chat_tickets_min_fields"')
-  return async_chat_tickets_min_fields_possibleTypes.includes(obj.__typename)
-}
-
-
-
-const async_chat_tickets_mutation_response_possibleTypes = ['async_chat_tickets_mutation_response']
-export const isasync_chat_tickets_mutation_response = (obj?: { __typename?: any } | null): obj is async_chat_tickets_mutation_response => {
-  if (!obj?.__typename) throw new Error('__typename is missing in "isasync_chat_tickets_mutation_response"')
-  return async_chat_tickets_mutation_response_possibleTypes.includes(obj.__typename)
-}
-
-
-
 const mutation_root_possibleTypes = ['mutation_root']
 export const ismutation_root = (obj?: { __typename?: any } | null): obj is mutation_root => {
   if (!obj?.__typename) throw new Error('__typename is missing in "ismutation_root"')
   return mutation_root_possibleTypes.includes(obj.__typename)
+}
+
+
+
+const notifications_possibleTypes = ['notifications']
+export const isnotifications = (obj?: { __typename?: any } | null): obj is notifications => {
+  if (!obj?.__typename) throw new Error('__typename is missing in "isnotifications"')
+  return notifications_possibleTypes.includes(obj.__typename)
+}
+
+
+
+const notifications_aggregate_possibleTypes = ['notifications_aggregate']
+export const isnotifications_aggregate = (obj?: { __typename?: any } | null): obj is notifications_aggregate => {
+  if (!obj?.__typename) throw new Error('__typename is missing in "isnotifications_aggregate"')
+  return notifications_aggregate_possibleTypes.includes(obj.__typename)
+}
+
+
+
+const notifications_aggregate_fields_possibleTypes = ['notifications_aggregate_fields']
+export const isnotifications_aggregate_fields = (obj?: { __typename?: any } | null): obj is notifications_aggregate_fields => {
+  if (!obj?.__typename) throw new Error('__typename is missing in "isnotifications_aggregate_fields"')
+  return notifications_aggregate_fields_possibleTypes.includes(obj.__typename)
+}
+
+
+
+const notifications_max_fields_possibleTypes = ['notifications_max_fields']
+export const isnotifications_max_fields = (obj?: { __typename?: any } | null): obj is notifications_max_fields => {
+  if (!obj?.__typename) throw new Error('__typename is missing in "isnotifications_max_fields"')
+  return notifications_max_fields_possibleTypes.includes(obj.__typename)
+}
+
+
+
+const notifications_min_fields_possibleTypes = ['notifications_min_fields']
+export const isnotifications_min_fields = (obj?: { __typename?: any } | null): obj is notifications_min_fields => {
+  if (!obj?.__typename) throw new Error('__typename is missing in "isnotifications_min_fields"')
+  return notifications_min_fields_possibleTypes.includes(obj.__typename)
+}
+
+
+
+const notifications_mutation_response_possibleTypes = ['notifications_mutation_response']
+export const isnotifications_mutation_response = (obj?: { __typename?: any } | null): obj is notifications_mutation_response => {
+  if (!obj?.__typename) throw new Error('__typename is missing in "isnotifications_mutation_response"')
+  return notifications_mutation_response_possibleTypes.includes(obj.__typename)
 }
 
 
@@ -2118,318 +1734,16 @@ export const istrigger_mutation_response = (obj?: { __typename?: any } | null): 
 
 
 
-/** columns and relationships of "async_chat_notifications" */
-export interface async_chat_notificationsPromiseChain{
-    
-/** An object relationship */
-async_chat_ticket: (async_chat_ticketsPromiseChain & {get: <R extends async_chat_ticketsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_tickets, R>) => Promise<FieldsSelection<async_chat_tickets, R>>}),
-    created_at: ({get: (request?: boolean|number, defaultValue?: Scalars['timestamptz']) => Promise<Scalars['timestamptz']>}),
-    deleted_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Promise<(Scalars['timestamptz'] | undefined)>}),
-    id: ({get: (request?: boolean|number, defaultValue?: Scalars['uuid']) => Promise<Scalars['uuid']>}),
-    message: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Promise<Scalars['String']>}),
-    seen: ({get: (request?: boolean|number, defaultValue?: Scalars['Boolean']) => Promise<Scalars['Boolean']>}),
-    
-/** An object relationship */
-service: (servicesPromiseChain & {get: <R extends servicesRequest>(request: R, defaultValue?: FieldsSelection<services, R>) => Promise<FieldsSelection<services, R>>}),
-    service_id: ({get: (request?: boolean|number, defaultValue?: Scalars['uuid']) => Promise<Scalars['uuid']>}),
-    severity: ({get: (request?: boolean|number, defaultValue?: severity_enum) => Promise<severity_enum>}),
-    ticket_id: ({get: (request?: boolean|number, defaultValue?: Scalars['uuid']) => Promise<Scalars['uuid']>}),
-    trigger: ({get: (request?: boolean|number, defaultValue?: trigger_enum) => Promise<trigger_enum>}),
-    updated_at: ({get: (request?: boolean|number, defaultValue?: Scalars['timestamptz']) => Promise<Scalars['timestamptz']>})
-}
-
-
-/** columns and relationships of "async_chat_notifications" */
-export interface async_chat_notificationsObservableChain{
-    
-/** An object relationship */
-async_chat_ticket: (async_chat_ticketsObservableChain & {get: <R extends async_chat_ticketsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_tickets, R>) => Observable<FieldsSelection<async_chat_tickets, R>>}),
-    created_at: ({get: (request?: boolean|number, defaultValue?: Scalars['timestamptz']) => Observable<Scalars['timestamptz']>}),
-    deleted_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Observable<(Scalars['timestamptz'] | undefined)>}),
-    id: ({get: (request?: boolean|number, defaultValue?: Scalars['uuid']) => Observable<Scalars['uuid']>}),
-    message: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Observable<Scalars['String']>}),
-    seen: ({get: (request?: boolean|number, defaultValue?: Scalars['Boolean']) => Observable<Scalars['Boolean']>}),
-    
-/** An object relationship */
-service: (servicesObservableChain & {get: <R extends servicesRequest>(request: R, defaultValue?: FieldsSelection<services, R>) => Observable<FieldsSelection<services, R>>}),
-    service_id: ({get: (request?: boolean|number, defaultValue?: Scalars['uuid']) => Observable<Scalars['uuid']>}),
-    severity: ({get: (request?: boolean|number, defaultValue?: severity_enum) => Observable<severity_enum>}),
-    ticket_id: ({get: (request?: boolean|number, defaultValue?: Scalars['uuid']) => Observable<Scalars['uuid']>}),
-    trigger: ({get: (request?: boolean|number, defaultValue?: trigger_enum) => Observable<trigger_enum>}),
-    updated_at: ({get: (request?: boolean|number, defaultValue?: Scalars['timestamptz']) => Observable<Scalars['timestamptz']>})
-}
-
-
-/** aggregated selection of "async_chat_notifications" */
-export interface async_chat_notifications_aggregatePromiseChain{
-    aggregate: (async_chat_notifications_aggregate_fieldsPromiseChain & {get: <R extends async_chat_notifications_aggregate_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_notifications_aggregate_fields, R> | undefined)) => Promise<(FieldsSelection<async_chat_notifications_aggregate_fields, R> | undefined)>}),
-    nodes: ({get: <R extends async_chat_notificationsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications, R>[]) => Promise<FieldsSelection<async_chat_notifications, R>[]>})
-}
-
-
-/** aggregated selection of "async_chat_notifications" */
-export interface async_chat_notifications_aggregateObservableChain{
-    aggregate: (async_chat_notifications_aggregate_fieldsObservableChain & {get: <R extends async_chat_notifications_aggregate_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_notifications_aggregate_fields, R> | undefined)) => Observable<(FieldsSelection<async_chat_notifications_aggregate_fields, R> | undefined)>}),
-    nodes: ({get: <R extends async_chat_notificationsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications, R>[]) => Observable<FieldsSelection<async_chat_notifications, R>[]>})
-}
-
-
-/** aggregate fields of "async_chat_notifications" */
-export interface async_chat_notifications_aggregate_fieldsPromiseChain{
-    count: ((args?: {columns?: (async_chat_notifications_select_column[] | null),distinct?: (Scalars['Boolean'] | null)}) => {get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Promise<Scalars['Int']>})&({get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Promise<Scalars['Int']>}),
-    max: (async_chat_notifications_max_fieldsPromiseChain & {get: <R extends async_chat_notifications_max_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_notifications_max_fields, R> | undefined)) => Promise<(FieldsSelection<async_chat_notifications_max_fields, R> | undefined)>}),
-    min: (async_chat_notifications_min_fieldsPromiseChain & {get: <R extends async_chat_notifications_min_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_notifications_min_fields, R> | undefined)) => Promise<(FieldsSelection<async_chat_notifications_min_fields, R> | undefined)>})
-}
-
-
-/** aggregate fields of "async_chat_notifications" */
-export interface async_chat_notifications_aggregate_fieldsObservableChain{
-    count: ((args?: {columns?: (async_chat_notifications_select_column[] | null),distinct?: (Scalars['Boolean'] | null)}) => {get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Observable<Scalars['Int']>})&({get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Observable<Scalars['Int']>}),
-    max: (async_chat_notifications_max_fieldsObservableChain & {get: <R extends async_chat_notifications_max_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_notifications_max_fields, R> | undefined)) => Observable<(FieldsSelection<async_chat_notifications_max_fields, R> | undefined)>}),
-    min: (async_chat_notifications_min_fieldsObservableChain & {get: <R extends async_chat_notifications_min_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_notifications_min_fields, R> | undefined)) => Observable<(FieldsSelection<async_chat_notifications_min_fields, R> | undefined)>})
-}
-
-
-/** aggregate max on columns */
-export interface async_chat_notifications_max_fieldsPromiseChain{
-    created_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Promise<(Scalars['timestamptz'] | undefined)>}),
-    deleted_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Promise<(Scalars['timestamptz'] | undefined)>}),
-    id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>}),
-    message: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Promise<(Scalars['String'] | undefined)>}),
-    service_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>}),
-    ticket_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>}),
-    updated_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Promise<(Scalars['timestamptz'] | undefined)>})
-}
-
-
-/** aggregate max on columns */
-export interface async_chat_notifications_max_fieldsObservableChain{
-    created_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Observable<(Scalars['timestamptz'] | undefined)>}),
-    deleted_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Observable<(Scalars['timestamptz'] | undefined)>}),
-    id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>}),
-    message: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Observable<(Scalars['String'] | undefined)>}),
-    service_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>}),
-    ticket_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>}),
-    updated_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Observable<(Scalars['timestamptz'] | undefined)>})
-}
-
-
-/** aggregate min on columns */
-export interface async_chat_notifications_min_fieldsPromiseChain{
-    created_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Promise<(Scalars['timestamptz'] | undefined)>}),
-    deleted_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Promise<(Scalars['timestamptz'] | undefined)>}),
-    id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>}),
-    message: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Promise<(Scalars['String'] | undefined)>}),
-    service_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>}),
-    ticket_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>}),
-    updated_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Promise<(Scalars['timestamptz'] | undefined)>})
-}
-
-
-/** aggregate min on columns */
-export interface async_chat_notifications_min_fieldsObservableChain{
-    created_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Observable<(Scalars['timestamptz'] | undefined)>}),
-    deleted_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Observable<(Scalars['timestamptz'] | undefined)>}),
-    id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>}),
-    message: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Observable<(Scalars['String'] | undefined)>}),
-    service_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>}),
-    ticket_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>}),
-    updated_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Observable<(Scalars['timestamptz'] | undefined)>})
-}
-
-
-/** response of any mutation on the table "async_chat_notifications" */
-export interface async_chat_notifications_mutation_responsePromiseChain{
-    
-/** number of rows affected by the mutation */
-affected_rows: ({get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Promise<Scalars['Int']>}),
-    
-/** data from the rows affected by the mutation */
-returning: ({get: <R extends async_chat_notificationsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications, R>[]) => Promise<FieldsSelection<async_chat_notifications, R>[]>})
-}
-
-
-/** response of any mutation on the table "async_chat_notifications" */
-export interface async_chat_notifications_mutation_responseObservableChain{
-    
-/** number of rows affected by the mutation */
-affected_rows: ({get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Observable<Scalars['Int']>}),
-    
-/** data from the rows affected by the mutation */
-returning: ({get: <R extends async_chat_notificationsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications, R>[]) => Observable<FieldsSelection<async_chat_notifications, R>[]>})
-}
-
-
-/** columns and relationships of "async_chat_tickets" */
-export interface async_chat_ticketsPromiseChain{
-    
-/** fetch data from the table: "async_chat_notifications" */
-async_chat_notifications: ((args?: {
-/** distinct select on columns */
-distinct_on?: (async_chat_notifications_select_column[] | null),
-/** limit the number of rows returned */
-limit?: (Scalars['Int'] | null),
-/** skip the first n rows. Use only with order_by */
-offset?: (Scalars['Int'] | null),
-/** sort the rows by one or more columns */
-order_by?: (async_chat_notifications_order_by[] | null),
-/** filter the rows returned */
-where?: (async_chat_notifications_bool_exp | null)}) => {get: <R extends async_chat_notificationsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications, R>[]) => Promise<FieldsSelection<async_chat_notifications, R>[]>})&({get: <R extends async_chat_notificationsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications, R>[]) => Promise<FieldsSelection<async_chat_notifications, R>[]>}),
-    
-/** An aggregate relationship */
-async_chat_notifications_aggregate: ((args?: {
-/** distinct select on columns */
-distinct_on?: (async_chat_notifications_select_column[] | null),
-/** limit the number of rows returned */
-limit?: (Scalars['Int'] | null),
-/** skip the first n rows. Use only with order_by */
-offset?: (Scalars['Int'] | null),
-/** sort the rows by one or more columns */
-order_by?: (async_chat_notifications_order_by[] | null),
-/** filter the rows returned */
-where?: (async_chat_notifications_bool_exp | null)}) => async_chat_notifications_aggregatePromiseChain & {get: <R extends async_chat_notifications_aggregateRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications_aggregate, R>) => Promise<FieldsSelection<async_chat_notifications_aggregate, R>>})&(async_chat_notifications_aggregatePromiseChain & {get: <R extends async_chat_notifications_aggregateRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications_aggregate, R>) => Promise<FieldsSelection<async_chat_notifications_aggregate, R>>}),
-    created_at: ({get: (request?: boolean|number, defaultValue?: Scalars['timestamptz']) => Promise<Scalars['timestamptz']>}),
-    id: ({get: (request?: boolean|number, defaultValue?: Scalars['uuid']) => Promise<Scalars['uuid']>}),
-    title: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Promise<Scalars['String']>})
-}
-
-
-/** columns and relationships of "async_chat_tickets" */
-export interface async_chat_ticketsObservableChain{
-    
-/** fetch data from the table: "async_chat_notifications" */
-async_chat_notifications: ((args?: {
-/** distinct select on columns */
-distinct_on?: (async_chat_notifications_select_column[] | null),
-/** limit the number of rows returned */
-limit?: (Scalars['Int'] | null),
-/** skip the first n rows. Use only with order_by */
-offset?: (Scalars['Int'] | null),
-/** sort the rows by one or more columns */
-order_by?: (async_chat_notifications_order_by[] | null),
-/** filter the rows returned */
-where?: (async_chat_notifications_bool_exp | null)}) => {get: <R extends async_chat_notificationsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications, R>[]) => Observable<FieldsSelection<async_chat_notifications, R>[]>})&({get: <R extends async_chat_notificationsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications, R>[]) => Observable<FieldsSelection<async_chat_notifications, R>[]>}),
-    
-/** An aggregate relationship */
-async_chat_notifications_aggregate: ((args?: {
-/** distinct select on columns */
-distinct_on?: (async_chat_notifications_select_column[] | null),
-/** limit the number of rows returned */
-limit?: (Scalars['Int'] | null),
-/** skip the first n rows. Use only with order_by */
-offset?: (Scalars['Int'] | null),
-/** sort the rows by one or more columns */
-order_by?: (async_chat_notifications_order_by[] | null),
-/** filter the rows returned */
-where?: (async_chat_notifications_bool_exp | null)}) => async_chat_notifications_aggregateObservableChain & {get: <R extends async_chat_notifications_aggregateRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications_aggregate, R>) => Observable<FieldsSelection<async_chat_notifications_aggregate, R>>})&(async_chat_notifications_aggregateObservableChain & {get: <R extends async_chat_notifications_aggregateRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications_aggregate, R>) => Observable<FieldsSelection<async_chat_notifications_aggregate, R>>}),
-    created_at: ({get: (request?: boolean|number, defaultValue?: Scalars['timestamptz']) => Observable<Scalars['timestamptz']>}),
-    id: ({get: (request?: boolean|number, defaultValue?: Scalars['uuid']) => Observable<Scalars['uuid']>}),
-    title: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Observable<Scalars['String']>})
-}
-
-
-/** aggregated selection of "async_chat_tickets" */
-export interface async_chat_tickets_aggregatePromiseChain{
-    aggregate: (async_chat_tickets_aggregate_fieldsPromiseChain & {get: <R extends async_chat_tickets_aggregate_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_tickets_aggregate_fields, R> | undefined)) => Promise<(FieldsSelection<async_chat_tickets_aggregate_fields, R> | undefined)>}),
-    nodes: ({get: <R extends async_chat_ticketsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_tickets, R>[]) => Promise<FieldsSelection<async_chat_tickets, R>[]>})
-}
-
-
-/** aggregated selection of "async_chat_tickets" */
-export interface async_chat_tickets_aggregateObservableChain{
-    aggregate: (async_chat_tickets_aggregate_fieldsObservableChain & {get: <R extends async_chat_tickets_aggregate_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_tickets_aggregate_fields, R> | undefined)) => Observable<(FieldsSelection<async_chat_tickets_aggregate_fields, R> | undefined)>}),
-    nodes: ({get: <R extends async_chat_ticketsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_tickets, R>[]) => Observable<FieldsSelection<async_chat_tickets, R>[]>})
-}
-
-
-/** aggregate fields of "async_chat_tickets" */
-export interface async_chat_tickets_aggregate_fieldsPromiseChain{
-    count: ((args?: {columns?: (async_chat_tickets_select_column[] | null),distinct?: (Scalars['Boolean'] | null)}) => {get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Promise<Scalars['Int']>})&({get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Promise<Scalars['Int']>}),
-    max: (async_chat_tickets_max_fieldsPromiseChain & {get: <R extends async_chat_tickets_max_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_tickets_max_fields, R> | undefined)) => Promise<(FieldsSelection<async_chat_tickets_max_fields, R> | undefined)>}),
-    min: (async_chat_tickets_min_fieldsPromiseChain & {get: <R extends async_chat_tickets_min_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_tickets_min_fields, R> | undefined)) => Promise<(FieldsSelection<async_chat_tickets_min_fields, R> | undefined)>})
-}
-
-
-/** aggregate fields of "async_chat_tickets" */
-export interface async_chat_tickets_aggregate_fieldsObservableChain{
-    count: ((args?: {columns?: (async_chat_tickets_select_column[] | null),distinct?: (Scalars['Boolean'] | null)}) => {get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Observable<Scalars['Int']>})&({get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Observable<Scalars['Int']>}),
-    max: (async_chat_tickets_max_fieldsObservableChain & {get: <R extends async_chat_tickets_max_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_tickets_max_fields, R> | undefined)) => Observable<(FieldsSelection<async_chat_tickets_max_fields, R> | undefined)>}),
-    min: (async_chat_tickets_min_fieldsObservableChain & {get: <R extends async_chat_tickets_min_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_tickets_min_fields, R> | undefined)) => Observable<(FieldsSelection<async_chat_tickets_min_fields, R> | undefined)>})
-}
-
-
-/** aggregate max on columns */
-export interface async_chat_tickets_max_fieldsPromiseChain{
-    created_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Promise<(Scalars['timestamptz'] | undefined)>}),
-    id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>}),
-    title: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Promise<(Scalars['String'] | undefined)>})
-}
-
-
-/** aggregate max on columns */
-export interface async_chat_tickets_max_fieldsObservableChain{
-    created_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Observable<(Scalars['timestamptz'] | undefined)>}),
-    id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>}),
-    title: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Observable<(Scalars['String'] | undefined)>})
-}
-
-
-/** aggregate min on columns */
-export interface async_chat_tickets_min_fieldsPromiseChain{
-    created_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Promise<(Scalars['timestamptz'] | undefined)>}),
-    id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>}),
-    title: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Promise<(Scalars['String'] | undefined)>})
-}
-
-
-/** aggregate min on columns */
-export interface async_chat_tickets_min_fieldsObservableChain{
-    created_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Observable<(Scalars['timestamptz'] | undefined)>}),
-    id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>}),
-    title: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Observable<(Scalars['String'] | undefined)>})
-}
-
-
-/** response of any mutation on the table "async_chat_tickets" */
-export interface async_chat_tickets_mutation_responsePromiseChain{
-    
-/** number of rows affected by the mutation */
-affected_rows: ({get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Promise<Scalars['Int']>}),
-    
-/** data from the rows affected by the mutation */
-returning: ({get: <R extends async_chat_ticketsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_tickets, R>[]) => Promise<FieldsSelection<async_chat_tickets, R>[]>})
-}
-
-
-/** response of any mutation on the table "async_chat_tickets" */
-export interface async_chat_tickets_mutation_responseObservableChain{
-    
-/** number of rows affected by the mutation */
-affected_rows: ({get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Observable<Scalars['Int']>}),
-    
-/** data from the rows affected by the mutation */
-returning: ({get: <R extends async_chat_ticketsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_tickets, R>[]) => Observable<FieldsSelection<async_chat_tickets, R>[]>})
-}
-
-
 /** mutation root */
 export interface mutation_rootPromiseChain{
     
-/** delete data from the table: "async_chat_notifications" */
-delete_async_chat_notifications: ((args: {
+/** delete data from the table: "notifications" */
+delete_notifications: ((args: {
 /** filter the rows which have to be deleted */
-where: async_chat_notifications_bool_exp}) => async_chat_notifications_mutation_responsePromiseChain & {get: <R extends async_chat_notifications_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_notifications_mutation_response, R> | undefined)) => Promise<(FieldsSelection<async_chat_notifications_mutation_response, R> | undefined)>}),
+where: notifications_bool_exp}) => notifications_mutation_responsePromiseChain & {get: <R extends notifications_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<notifications_mutation_response, R> | undefined)) => Promise<(FieldsSelection<notifications_mutation_response, R> | undefined)>}),
     
-/** delete single row from the table: "async_chat_notifications" */
-delete_async_chat_notifications_by_pk: ((args: {id: Scalars['uuid']}) => async_chat_notificationsPromiseChain & {get: <R extends async_chat_notificationsRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_notifications, R> | undefined)) => Promise<(FieldsSelection<async_chat_notifications, R> | undefined)>}),
-    
-/** delete data from the table: "async_chat_tickets" */
-delete_async_chat_tickets: ((args: {
-/** filter the rows which have to be deleted */
-where: async_chat_tickets_bool_exp}) => async_chat_tickets_mutation_responsePromiseChain & {get: <R extends async_chat_tickets_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_tickets_mutation_response, R> | undefined)) => Promise<(FieldsSelection<async_chat_tickets_mutation_response, R> | undefined)>}),
-    
-/** delete single row from the table: "async_chat_tickets" */
-delete_async_chat_tickets_by_pk: ((args: {id: Scalars['uuid']}) => async_chat_ticketsPromiseChain & {get: <R extends async_chat_ticketsRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_tickets, R> | undefined)) => Promise<(FieldsSelection<async_chat_tickets, R> | undefined)>}),
+/** delete single row from the table: "notifications" */
+delete_notifications_by_pk: ((args: {id: Scalars['uuid']}) => notificationsPromiseChain & {get: <R extends notificationsRequest>(request: R, defaultValue?: (FieldsSelection<notifications, R> | undefined)) => Promise<(FieldsSelection<notifications, R> | undefined)>}),
     
 /** delete data from the table: "service" */
 delete_service: ((args: {
@@ -2463,33 +1777,19 @@ where: trigger_bool_exp}) => trigger_mutation_responsePromiseChain & {get: <R ex
 /** delete single row from the table: "trigger" */
 delete_trigger_by_pk: ((args: {name: Scalars['String']}) => triggerPromiseChain & {get: <R extends triggerRequest>(request: R, defaultValue?: (FieldsSelection<trigger, R> | undefined)) => Promise<(FieldsSelection<trigger, R> | undefined)>}),
     
-/** insert data into the table: "async_chat_notifications" */
-insert_async_chat_notifications: ((args: {
+/** insert data into the table: "notifications" */
+insert_notifications: ((args: {
 /** the rows to be inserted */
-objects: async_chat_notifications_insert_input[],
+objects: notifications_insert_input[],
 /** on conflict condition */
-on_conflict?: (async_chat_notifications_on_conflict | null)}) => async_chat_notifications_mutation_responsePromiseChain & {get: <R extends async_chat_notifications_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_notifications_mutation_response, R> | undefined)) => Promise<(FieldsSelection<async_chat_notifications_mutation_response, R> | undefined)>}),
+on_conflict?: (notifications_on_conflict | null)}) => notifications_mutation_responsePromiseChain & {get: <R extends notifications_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<notifications_mutation_response, R> | undefined)) => Promise<(FieldsSelection<notifications_mutation_response, R> | undefined)>}),
     
-/** insert a single row into the table: "async_chat_notifications" */
-insert_async_chat_notifications_one: ((args: {
+/** insert a single row into the table: "notifications" */
+insert_notifications_one: ((args: {
 /** the row to be inserted */
-object: async_chat_notifications_insert_input,
+object: notifications_insert_input,
 /** on conflict condition */
-on_conflict?: (async_chat_notifications_on_conflict | null)}) => async_chat_notificationsPromiseChain & {get: <R extends async_chat_notificationsRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_notifications, R> | undefined)) => Promise<(FieldsSelection<async_chat_notifications, R> | undefined)>}),
-    
-/** insert data into the table: "async_chat_tickets" */
-insert_async_chat_tickets: ((args: {
-/** the rows to be inserted */
-objects: async_chat_tickets_insert_input[],
-/** on conflict condition */
-on_conflict?: (async_chat_tickets_on_conflict | null)}) => async_chat_tickets_mutation_responsePromiseChain & {get: <R extends async_chat_tickets_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_tickets_mutation_response, R> | undefined)) => Promise<(FieldsSelection<async_chat_tickets_mutation_response, R> | undefined)>}),
-    
-/** insert a single row into the table: "async_chat_tickets" */
-insert_async_chat_tickets_one: ((args: {
-/** the row to be inserted */
-object: async_chat_tickets_insert_input,
-/** on conflict condition */
-on_conflict?: (async_chat_tickets_on_conflict | null)}) => async_chat_ticketsPromiseChain & {get: <R extends async_chat_ticketsRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_tickets, R> | undefined)) => Promise<(FieldsSelection<async_chat_tickets, R> | undefined)>}),
+on_conflict?: (notifications_on_conflict | null)}) => notificationsPromiseChain & {get: <R extends notificationsRequest>(request: R, defaultValue?: (FieldsSelection<notifications, R> | undefined)) => Promise<(FieldsSelection<notifications, R> | undefined)>}),
     
 /** insert data into the table: "service" */
 insert_service: ((args: {
@@ -2547,29 +1847,17 @@ object: trigger_insert_input,
 /** on conflict condition */
 on_conflict?: (trigger_on_conflict | null)}) => triggerPromiseChain & {get: <R extends triggerRequest>(request: R, defaultValue?: (FieldsSelection<trigger, R> | undefined)) => Promise<(FieldsSelection<trigger, R> | undefined)>}),
     
-/** update data of the table: "async_chat_notifications" */
-update_async_chat_notifications: ((args: {
+/** update data of the table: "notifications" */
+update_notifications: ((args: {
 /** sets the columns of the filtered rows to the given values */
-_set?: (async_chat_notifications_set_input | null),
+_set?: (notifications_set_input | null),
 /** filter the rows which have to be updated */
-where: async_chat_notifications_bool_exp}) => async_chat_notifications_mutation_responsePromiseChain & {get: <R extends async_chat_notifications_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_notifications_mutation_response, R> | undefined)) => Promise<(FieldsSelection<async_chat_notifications_mutation_response, R> | undefined)>}),
+where: notifications_bool_exp}) => notifications_mutation_responsePromiseChain & {get: <R extends notifications_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<notifications_mutation_response, R> | undefined)) => Promise<(FieldsSelection<notifications_mutation_response, R> | undefined)>}),
     
-/** update single row of the table: "async_chat_notifications" */
-update_async_chat_notifications_by_pk: ((args: {
+/** update single row of the table: "notifications" */
+update_notifications_by_pk: ((args: {
 /** sets the columns of the filtered rows to the given values */
-_set?: (async_chat_notifications_set_input | null),pk_columns: async_chat_notifications_pk_columns_input}) => async_chat_notificationsPromiseChain & {get: <R extends async_chat_notificationsRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_notifications, R> | undefined)) => Promise<(FieldsSelection<async_chat_notifications, R> | undefined)>}),
-    
-/** update data of the table: "async_chat_tickets" */
-update_async_chat_tickets: ((args: {
-/** sets the columns of the filtered rows to the given values */
-_set?: (async_chat_tickets_set_input | null),
-/** filter the rows which have to be updated */
-where: async_chat_tickets_bool_exp}) => async_chat_tickets_mutation_responsePromiseChain & {get: <R extends async_chat_tickets_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_tickets_mutation_response, R> | undefined)) => Promise<(FieldsSelection<async_chat_tickets_mutation_response, R> | undefined)>}),
-    
-/** update single row of the table: "async_chat_tickets" */
-update_async_chat_tickets_by_pk: ((args: {
-/** sets the columns of the filtered rows to the given values */
-_set?: (async_chat_tickets_set_input | null),pk_columns: async_chat_tickets_pk_columns_input}) => async_chat_ticketsPromiseChain & {get: <R extends async_chat_ticketsRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_tickets, R> | undefined)) => Promise<(FieldsSelection<async_chat_tickets, R> | undefined)>}),
+_set?: (notifications_set_input | null),pk_columns: notifications_pk_columns_input}) => notificationsPromiseChain & {get: <R extends notificationsRequest>(request: R, defaultValue?: (FieldsSelection<notifications, R> | undefined)) => Promise<(FieldsSelection<notifications, R> | undefined)>}),
     
 /** update data of the table: "service" */
 update_service: ((args: {
@@ -2624,21 +1912,13 @@ _set?: (trigger_set_input | null),pk_columns: trigger_pk_columns_input}) => trig
 /** mutation root */
 export interface mutation_rootObservableChain{
     
-/** delete data from the table: "async_chat_notifications" */
-delete_async_chat_notifications: ((args: {
+/** delete data from the table: "notifications" */
+delete_notifications: ((args: {
 /** filter the rows which have to be deleted */
-where: async_chat_notifications_bool_exp}) => async_chat_notifications_mutation_responseObservableChain & {get: <R extends async_chat_notifications_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_notifications_mutation_response, R> | undefined)) => Observable<(FieldsSelection<async_chat_notifications_mutation_response, R> | undefined)>}),
+where: notifications_bool_exp}) => notifications_mutation_responseObservableChain & {get: <R extends notifications_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<notifications_mutation_response, R> | undefined)) => Observable<(FieldsSelection<notifications_mutation_response, R> | undefined)>}),
     
-/** delete single row from the table: "async_chat_notifications" */
-delete_async_chat_notifications_by_pk: ((args: {id: Scalars['uuid']}) => async_chat_notificationsObservableChain & {get: <R extends async_chat_notificationsRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_notifications, R> | undefined)) => Observable<(FieldsSelection<async_chat_notifications, R> | undefined)>}),
-    
-/** delete data from the table: "async_chat_tickets" */
-delete_async_chat_tickets: ((args: {
-/** filter the rows which have to be deleted */
-where: async_chat_tickets_bool_exp}) => async_chat_tickets_mutation_responseObservableChain & {get: <R extends async_chat_tickets_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_tickets_mutation_response, R> | undefined)) => Observable<(FieldsSelection<async_chat_tickets_mutation_response, R> | undefined)>}),
-    
-/** delete single row from the table: "async_chat_tickets" */
-delete_async_chat_tickets_by_pk: ((args: {id: Scalars['uuid']}) => async_chat_ticketsObservableChain & {get: <R extends async_chat_ticketsRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_tickets, R> | undefined)) => Observable<(FieldsSelection<async_chat_tickets, R> | undefined)>}),
+/** delete single row from the table: "notifications" */
+delete_notifications_by_pk: ((args: {id: Scalars['uuid']}) => notificationsObservableChain & {get: <R extends notificationsRequest>(request: R, defaultValue?: (FieldsSelection<notifications, R> | undefined)) => Observable<(FieldsSelection<notifications, R> | undefined)>}),
     
 /** delete data from the table: "service" */
 delete_service: ((args: {
@@ -2672,33 +1952,19 @@ where: trigger_bool_exp}) => trigger_mutation_responseObservableChain & {get: <R
 /** delete single row from the table: "trigger" */
 delete_trigger_by_pk: ((args: {name: Scalars['String']}) => triggerObservableChain & {get: <R extends triggerRequest>(request: R, defaultValue?: (FieldsSelection<trigger, R> | undefined)) => Observable<(FieldsSelection<trigger, R> | undefined)>}),
     
-/** insert data into the table: "async_chat_notifications" */
-insert_async_chat_notifications: ((args: {
+/** insert data into the table: "notifications" */
+insert_notifications: ((args: {
 /** the rows to be inserted */
-objects: async_chat_notifications_insert_input[],
+objects: notifications_insert_input[],
 /** on conflict condition */
-on_conflict?: (async_chat_notifications_on_conflict | null)}) => async_chat_notifications_mutation_responseObservableChain & {get: <R extends async_chat_notifications_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_notifications_mutation_response, R> | undefined)) => Observable<(FieldsSelection<async_chat_notifications_mutation_response, R> | undefined)>}),
+on_conflict?: (notifications_on_conflict | null)}) => notifications_mutation_responseObservableChain & {get: <R extends notifications_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<notifications_mutation_response, R> | undefined)) => Observable<(FieldsSelection<notifications_mutation_response, R> | undefined)>}),
     
-/** insert a single row into the table: "async_chat_notifications" */
-insert_async_chat_notifications_one: ((args: {
+/** insert a single row into the table: "notifications" */
+insert_notifications_one: ((args: {
 /** the row to be inserted */
-object: async_chat_notifications_insert_input,
+object: notifications_insert_input,
 /** on conflict condition */
-on_conflict?: (async_chat_notifications_on_conflict | null)}) => async_chat_notificationsObservableChain & {get: <R extends async_chat_notificationsRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_notifications, R> | undefined)) => Observable<(FieldsSelection<async_chat_notifications, R> | undefined)>}),
-    
-/** insert data into the table: "async_chat_tickets" */
-insert_async_chat_tickets: ((args: {
-/** the rows to be inserted */
-objects: async_chat_tickets_insert_input[],
-/** on conflict condition */
-on_conflict?: (async_chat_tickets_on_conflict | null)}) => async_chat_tickets_mutation_responseObservableChain & {get: <R extends async_chat_tickets_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_tickets_mutation_response, R> | undefined)) => Observable<(FieldsSelection<async_chat_tickets_mutation_response, R> | undefined)>}),
-    
-/** insert a single row into the table: "async_chat_tickets" */
-insert_async_chat_tickets_one: ((args: {
-/** the row to be inserted */
-object: async_chat_tickets_insert_input,
-/** on conflict condition */
-on_conflict?: (async_chat_tickets_on_conflict | null)}) => async_chat_ticketsObservableChain & {get: <R extends async_chat_ticketsRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_tickets, R> | undefined)) => Observable<(FieldsSelection<async_chat_tickets, R> | undefined)>}),
+on_conflict?: (notifications_on_conflict | null)}) => notificationsObservableChain & {get: <R extends notificationsRequest>(request: R, defaultValue?: (FieldsSelection<notifications, R> | undefined)) => Observable<(FieldsSelection<notifications, R> | undefined)>}),
     
 /** insert data into the table: "service" */
 insert_service: ((args: {
@@ -2756,29 +2022,17 @@ object: trigger_insert_input,
 /** on conflict condition */
 on_conflict?: (trigger_on_conflict | null)}) => triggerObservableChain & {get: <R extends triggerRequest>(request: R, defaultValue?: (FieldsSelection<trigger, R> | undefined)) => Observable<(FieldsSelection<trigger, R> | undefined)>}),
     
-/** update data of the table: "async_chat_notifications" */
-update_async_chat_notifications: ((args: {
+/** update data of the table: "notifications" */
+update_notifications: ((args: {
 /** sets the columns of the filtered rows to the given values */
-_set?: (async_chat_notifications_set_input | null),
+_set?: (notifications_set_input | null),
 /** filter the rows which have to be updated */
-where: async_chat_notifications_bool_exp}) => async_chat_notifications_mutation_responseObservableChain & {get: <R extends async_chat_notifications_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_notifications_mutation_response, R> | undefined)) => Observable<(FieldsSelection<async_chat_notifications_mutation_response, R> | undefined)>}),
+where: notifications_bool_exp}) => notifications_mutation_responseObservableChain & {get: <R extends notifications_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<notifications_mutation_response, R> | undefined)) => Observable<(FieldsSelection<notifications_mutation_response, R> | undefined)>}),
     
-/** update single row of the table: "async_chat_notifications" */
-update_async_chat_notifications_by_pk: ((args: {
+/** update single row of the table: "notifications" */
+update_notifications_by_pk: ((args: {
 /** sets the columns of the filtered rows to the given values */
-_set?: (async_chat_notifications_set_input | null),pk_columns: async_chat_notifications_pk_columns_input}) => async_chat_notificationsObservableChain & {get: <R extends async_chat_notificationsRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_notifications, R> | undefined)) => Observable<(FieldsSelection<async_chat_notifications, R> | undefined)>}),
-    
-/** update data of the table: "async_chat_tickets" */
-update_async_chat_tickets: ((args: {
-/** sets the columns of the filtered rows to the given values */
-_set?: (async_chat_tickets_set_input | null),
-/** filter the rows which have to be updated */
-where: async_chat_tickets_bool_exp}) => async_chat_tickets_mutation_responseObservableChain & {get: <R extends async_chat_tickets_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_tickets_mutation_response, R> | undefined)) => Observable<(FieldsSelection<async_chat_tickets_mutation_response, R> | undefined)>}),
-    
-/** update single row of the table: "async_chat_tickets" */
-update_async_chat_tickets_by_pk: ((args: {
-/** sets the columns of the filtered rows to the given values */
-_set?: (async_chat_tickets_set_input | null),pk_columns: async_chat_tickets_pk_columns_input}) => async_chat_ticketsObservableChain & {get: <R extends async_chat_ticketsRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_tickets, R> | undefined)) => Observable<(FieldsSelection<async_chat_tickets, R> | undefined)>}),
+_set?: (notifications_set_input | null),pk_columns: notifications_pk_columns_input}) => notificationsObservableChain & {get: <R extends notificationsRequest>(request: R, defaultValue?: (FieldsSelection<notifications, R> | undefined)) => Observable<(FieldsSelection<notifications, R> | undefined)>}),
     
 /** update data of the table: "service" */
 update_service: ((args: {
@@ -2829,65 +2083,176 @@ update_trigger_by_pk: ((args: {
 _set?: (trigger_set_input | null),pk_columns: trigger_pk_columns_input}) => triggerObservableChain & {get: <R extends triggerRequest>(request: R, defaultValue?: (FieldsSelection<trigger, R> | undefined)) => Observable<(FieldsSelection<trigger, R> | undefined)>})
 }
 
+
+/** columns and relationships of "notifications" */
+export interface notificationsPromiseChain{
+    created_at: ({get: (request?: boolean|number, defaultValue?: Scalars['timestamptz']) => Promise<Scalars['timestamptz']>}),
+    deleted_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Promise<(Scalars['timestamptz'] | undefined)>}),
+    id: ({get: (request?: boolean|number, defaultValue?: Scalars['uuid']) => Promise<Scalars['uuid']>}),
+    message: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Promise<Scalars['String']>}),
+    seen: ({get: (request?: boolean|number, defaultValue?: Scalars['Boolean']) => Promise<Scalars['Boolean']>}),
+    
+/** An object relationship */
+service: (servicesPromiseChain & {get: <R extends servicesRequest>(request: R, defaultValue?: FieldsSelection<services, R>) => Promise<FieldsSelection<services, R>>}),
+    service_id: ({get: (request?: boolean|number, defaultValue?: Scalars['uuid']) => Promise<Scalars['uuid']>}),
+    subject_id: ({get: (request?: boolean|number, defaultValue?: Scalars['uuid']) => Promise<Scalars['uuid']>}),
+    title: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Promise<Scalars['String']>}),
+    trigger: ({get: (request?: boolean|number, defaultValue?: trigger_enum) => Promise<trigger_enum>}),
+    updated_at: ({get: (request?: boolean|number, defaultValue?: Scalars['timestamptz']) => Promise<Scalars['timestamptz']>})
+}
+
+
+/** columns and relationships of "notifications" */
+export interface notificationsObservableChain{
+    created_at: ({get: (request?: boolean|number, defaultValue?: Scalars['timestamptz']) => Observable<Scalars['timestamptz']>}),
+    deleted_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Observable<(Scalars['timestamptz'] | undefined)>}),
+    id: ({get: (request?: boolean|number, defaultValue?: Scalars['uuid']) => Observable<Scalars['uuid']>}),
+    message: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Observable<Scalars['String']>}),
+    seen: ({get: (request?: boolean|number, defaultValue?: Scalars['Boolean']) => Observable<Scalars['Boolean']>}),
+    
+/** An object relationship */
+service: (servicesObservableChain & {get: <R extends servicesRequest>(request: R, defaultValue?: FieldsSelection<services, R>) => Observable<FieldsSelection<services, R>>}),
+    service_id: ({get: (request?: boolean|number, defaultValue?: Scalars['uuid']) => Observable<Scalars['uuid']>}),
+    subject_id: ({get: (request?: boolean|number, defaultValue?: Scalars['uuid']) => Observable<Scalars['uuid']>}),
+    title: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Observable<Scalars['String']>}),
+    trigger: ({get: (request?: boolean|number, defaultValue?: trigger_enum) => Observable<trigger_enum>}),
+    updated_at: ({get: (request?: boolean|number, defaultValue?: Scalars['timestamptz']) => Observable<Scalars['timestamptz']>})
+}
+
+
+/** aggregated selection of "notifications" */
+export interface notifications_aggregatePromiseChain{
+    aggregate: (notifications_aggregate_fieldsPromiseChain & {get: <R extends notifications_aggregate_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<notifications_aggregate_fields, R> | undefined)) => Promise<(FieldsSelection<notifications_aggregate_fields, R> | undefined)>}),
+    nodes: ({get: <R extends notificationsRequest>(request: R, defaultValue?: FieldsSelection<notifications, R>[]) => Promise<FieldsSelection<notifications, R>[]>})
+}
+
+
+/** aggregated selection of "notifications" */
+export interface notifications_aggregateObservableChain{
+    aggregate: (notifications_aggregate_fieldsObservableChain & {get: <R extends notifications_aggregate_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<notifications_aggregate_fields, R> | undefined)) => Observable<(FieldsSelection<notifications_aggregate_fields, R> | undefined)>}),
+    nodes: ({get: <R extends notificationsRequest>(request: R, defaultValue?: FieldsSelection<notifications, R>[]) => Observable<FieldsSelection<notifications, R>[]>})
+}
+
+
+/** aggregate fields of "notifications" */
+export interface notifications_aggregate_fieldsPromiseChain{
+    count: ((args?: {columns?: (notifications_select_column[] | null),distinct?: (Scalars['Boolean'] | null)}) => {get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Promise<Scalars['Int']>})&({get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Promise<Scalars['Int']>}),
+    max: (notifications_max_fieldsPromiseChain & {get: <R extends notifications_max_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<notifications_max_fields, R> | undefined)) => Promise<(FieldsSelection<notifications_max_fields, R> | undefined)>}),
+    min: (notifications_min_fieldsPromiseChain & {get: <R extends notifications_min_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<notifications_min_fields, R> | undefined)) => Promise<(FieldsSelection<notifications_min_fields, R> | undefined)>})
+}
+
+
+/** aggregate fields of "notifications" */
+export interface notifications_aggregate_fieldsObservableChain{
+    count: ((args?: {columns?: (notifications_select_column[] | null),distinct?: (Scalars['Boolean'] | null)}) => {get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Observable<Scalars['Int']>})&({get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Observable<Scalars['Int']>}),
+    max: (notifications_max_fieldsObservableChain & {get: <R extends notifications_max_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<notifications_max_fields, R> | undefined)) => Observable<(FieldsSelection<notifications_max_fields, R> | undefined)>}),
+    min: (notifications_min_fieldsObservableChain & {get: <R extends notifications_min_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<notifications_min_fields, R> | undefined)) => Observable<(FieldsSelection<notifications_min_fields, R> | undefined)>})
+}
+
+
+/** aggregate max on columns */
+export interface notifications_max_fieldsPromiseChain{
+    created_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Promise<(Scalars['timestamptz'] | undefined)>}),
+    deleted_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Promise<(Scalars['timestamptz'] | undefined)>}),
+    id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>}),
+    message: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Promise<(Scalars['String'] | undefined)>}),
+    service_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>}),
+    subject_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>}),
+    title: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Promise<(Scalars['String'] | undefined)>}),
+    updated_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Promise<(Scalars['timestamptz'] | undefined)>})
+}
+
+
+/** aggregate max on columns */
+export interface notifications_max_fieldsObservableChain{
+    created_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Observable<(Scalars['timestamptz'] | undefined)>}),
+    deleted_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Observable<(Scalars['timestamptz'] | undefined)>}),
+    id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>}),
+    message: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Observable<(Scalars['String'] | undefined)>}),
+    service_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>}),
+    subject_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>}),
+    title: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Observable<(Scalars['String'] | undefined)>}),
+    updated_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Observable<(Scalars['timestamptz'] | undefined)>})
+}
+
+
+/** aggregate min on columns */
+export interface notifications_min_fieldsPromiseChain{
+    created_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Promise<(Scalars['timestamptz'] | undefined)>}),
+    deleted_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Promise<(Scalars['timestamptz'] | undefined)>}),
+    id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>}),
+    message: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Promise<(Scalars['String'] | undefined)>}),
+    service_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>}),
+    subject_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>}),
+    title: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Promise<(Scalars['String'] | undefined)>}),
+    updated_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Promise<(Scalars['timestamptz'] | undefined)>})
+}
+
+
+/** aggregate min on columns */
+export interface notifications_min_fieldsObservableChain{
+    created_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Observable<(Scalars['timestamptz'] | undefined)>}),
+    deleted_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Observable<(Scalars['timestamptz'] | undefined)>}),
+    id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>}),
+    message: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Observable<(Scalars['String'] | undefined)>}),
+    service_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>}),
+    subject_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>}),
+    title: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Observable<(Scalars['String'] | undefined)>}),
+    updated_at: ({get: (request?: boolean|number, defaultValue?: (Scalars['timestamptz'] | undefined)) => Observable<(Scalars['timestamptz'] | undefined)>})
+}
+
+
+/** response of any mutation on the table "notifications" */
+export interface notifications_mutation_responsePromiseChain{
+    
+/** number of rows affected by the mutation */
+affected_rows: ({get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Promise<Scalars['Int']>}),
+    
+/** data from the rows affected by the mutation */
+returning: ({get: <R extends notificationsRequest>(request: R, defaultValue?: FieldsSelection<notifications, R>[]) => Promise<FieldsSelection<notifications, R>[]>})
+}
+
+
+/** response of any mutation on the table "notifications" */
+export interface notifications_mutation_responseObservableChain{
+    
+/** number of rows affected by the mutation */
+affected_rows: ({get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Observable<Scalars['Int']>}),
+    
+/** data from the rows affected by the mutation */
+returning: ({get: <R extends notificationsRequest>(request: R, defaultValue?: FieldsSelection<notifications, R>[]) => Observable<FieldsSelection<notifications, R>[]>})
+}
+
 export interface query_rootPromiseChain{
     
-/** fetch data from the table: "async_chat_notifications" */
-async_chat_notifications: ((args?: {
+/** fetch data from the table: "notifications" */
+notifications: ((args?: {
 /** distinct select on columns */
-distinct_on?: (async_chat_notifications_select_column[] | null),
+distinct_on?: (notifications_select_column[] | null),
 /** limit the number of rows returned */
 limit?: (Scalars['Int'] | null),
 /** skip the first n rows. Use only with order_by */
 offset?: (Scalars['Int'] | null),
 /** sort the rows by one or more columns */
-order_by?: (async_chat_notifications_order_by[] | null),
+order_by?: (notifications_order_by[] | null),
 /** filter the rows returned */
-where?: (async_chat_notifications_bool_exp | null)}) => {get: <R extends async_chat_notificationsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications, R>[]) => Promise<FieldsSelection<async_chat_notifications, R>[]>})&({get: <R extends async_chat_notificationsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications, R>[]) => Promise<FieldsSelection<async_chat_notifications, R>[]>}),
+where?: (notifications_bool_exp | null)}) => {get: <R extends notificationsRequest>(request: R, defaultValue?: FieldsSelection<notifications, R>[]) => Promise<FieldsSelection<notifications, R>[]>})&({get: <R extends notificationsRequest>(request: R, defaultValue?: FieldsSelection<notifications, R>[]) => Promise<FieldsSelection<notifications, R>[]>}),
     
 /** An aggregate relationship */
-async_chat_notifications_aggregate: ((args?: {
+notifications_aggregate: ((args?: {
 /** distinct select on columns */
-distinct_on?: (async_chat_notifications_select_column[] | null),
+distinct_on?: (notifications_select_column[] | null),
 /** limit the number of rows returned */
 limit?: (Scalars['Int'] | null),
 /** skip the first n rows. Use only with order_by */
 offset?: (Scalars['Int'] | null),
 /** sort the rows by one or more columns */
-order_by?: (async_chat_notifications_order_by[] | null),
+order_by?: (notifications_order_by[] | null),
 /** filter the rows returned */
-where?: (async_chat_notifications_bool_exp | null)}) => async_chat_notifications_aggregatePromiseChain & {get: <R extends async_chat_notifications_aggregateRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications_aggregate, R>) => Promise<FieldsSelection<async_chat_notifications_aggregate, R>>})&(async_chat_notifications_aggregatePromiseChain & {get: <R extends async_chat_notifications_aggregateRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications_aggregate, R>) => Promise<FieldsSelection<async_chat_notifications_aggregate, R>>}),
+where?: (notifications_bool_exp | null)}) => notifications_aggregatePromiseChain & {get: <R extends notifications_aggregateRequest>(request: R, defaultValue?: FieldsSelection<notifications_aggregate, R>) => Promise<FieldsSelection<notifications_aggregate, R>>})&(notifications_aggregatePromiseChain & {get: <R extends notifications_aggregateRequest>(request: R, defaultValue?: FieldsSelection<notifications_aggregate, R>) => Promise<FieldsSelection<notifications_aggregate, R>>}),
     
-/** fetch data from the table: "async_chat_notifications" using primary key columns */
-async_chat_notifications_by_pk: ((args: {id: Scalars['uuid']}) => async_chat_notificationsPromiseChain & {get: <R extends async_chat_notificationsRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_notifications, R> | undefined)) => Promise<(FieldsSelection<async_chat_notifications, R> | undefined)>}),
-    
-/** fetch data from the table: "async_chat_tickets" */
-async_chat_tickets: ((args?: {
-/** distinct select on columns */
-distinct_on?: (async_chat_tickets_select_column[] | null),
-/** limit the number of rows returned */
-limit?: (Scalars['Int'] | null),
-/** skip the first n rows. Use only with order_by */
-offset?: (Scalars['Int'] | null),
-/** sort the rows by one or more columns */
-order_by?: (async_chat_tickets_order_by[] | null),
-/** filter the rows returned */
-where?: (async_chat_tickets_bool_exp | null)}) => {get: <R extends async_chat_ticketsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_tickets, R>[]) => Promise<FieldsSelection<async_chat_tickets, R>[]>})&({get: <R extends async_chat_ticketsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_tickets, R>[]) => Promise<FieldsSelection<async_chat_tickets, R>[]>}),
-    
-/** fetch aggregated fields from the table: "async_chat_tickets" */
-async_chat_tickets_aggregate: ((args?: {
-/** distinct select on columns */
-distinct_on?: (async_chat_tickets_select_column[] | null),
-/** limit the number of rows returned */
-limit?: (Scalars['Int'] | null),
-/** skip the first n rows. Use only with order_by */
-offset?: (Scalars['Int'] | null),
-/** sort the rows by one or more columns */
-order_by?: (async_chat_tickets_order_by[] | null),
-/** filter the rows returned */
-where?: (async_chat_tickets_bool_exp | null)}) => async_chat_tickets_aggregatePromiseChain & {get: <R extends async_chat_tickets_aggregateRequest>(request: R, defaultValue?: FieldsSelection<async_chat_tickets_aggregate, R>) => Promise<FieldsSelection<async_chat_tickets_aggregate, R>>})&(async_chat_tickets_aggregatePromiseChain & {get: <R extends async_chat_tickets_aggregateRequest>(request: R, defaultValue?: FieldsSelection<async_chat_tickets_aggregate, R>) => Promise<FieldsSelection<async_chat_tickets_aggregate, R>>}),
-    
-/** fetch data from the table: "async_chat_tickets" using primary key columns */
-async_chat_tickets_by_pk: ((args: {id: Scalars['uuid']}) => async_chat_ticketsPromiseChain & {get: <R extends async_chat_ticketsRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_tickets, R> | undefined)) => Promise<(FieldsSelection<async_chat_tickets, R> | undefined)>}),
+/** fetch data from the table: "notifications" using primary key columns */
+notifications_by_pk: ((args: {id: Scalars['uuid']}) => notificationsPromiseChain & {get: <R extends notificationsRequest>(request: R, defaultValue?: (FieldsSelection<notifications, R> | undefined)) => Promise<(FieldsSelection<notifications, R> | undefined)>}),
     
 /** fetch data from the table: "service" */
 service: ((args?: {
@@ -3008,63 +2373,34 @@ trigger_by_pk: ((args: {name: Scalars['String']}) => triggerPromiseChain & {get:
 
 export interface query_rootObservableChain{
     
-/** fetch data from the table: "async_chat_notifications" */
-async_chat_notifications: ((args?: {
+/** fetch data from the table: "notifications" */
+notifications: ((args?: {
 /** distinct select on columns */
-distinct_on?: (async_chat_notifications_select_column[] | null),
+distinct_on?: (notifications_select_column[] | null),
 /** limit the number of rows returned */
 limit?: (Scalars['Int'] | null),
 /** skip the first n rows. Use only with order_by */
 offset?: (Scalars['Int'] | null),
 /** sort the rows by one or more columns */
-order_by?: (async_chat_notifications_order_by[] | null),
+order_by?: (notifications_order_by[] | null),
 /** filter the rows returned */
-where?: (async_chat_notifications_bool_exp | null)}) => {get: <R extends async_chat_notificationsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications, R>[]) => Observable<FieldsSelection<async_chat_notifications, R>[]>})&({get: <R extends async_chat_notificationsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications, R>[]) => Observable<FieldsSelection<async_chat_notifications, R>[]>}),
+where?: (notifications_bool_exp | null)}) => {get: <R extends notificationsRequest>(request: R, defaultValue?: FieldsSelection<notifications, R>[]) => Observable<FieldsSelection<notifications, R>[]>})&({get: <R extends notificationsRequest>(request: R, defaultValue?: FieldsSelection<notifications, R>[]) => Observable<FieldsSelection<notifications, R>[]>}),
     
 /** An aggregate relationship */
-async_chat_notifications_aggregate: ((args?: {
+notifications_aggregate: ((args?: {
 /** distinct select on columns */
-distinct_on?: (async_chat_notifications_select_column[] | null),
+distinct_on?: (notifications_select_column[] | null),
 /** limit the number of rows returned */
 limit?: (Scalars['Int'] | null),
 /** skip the first n rows. Use only with order_by */
 offset?: (Scalars['Int'] | null),
 /** sort the rows by one or more columns */
-order_by?: (async_chat_notifications_order_by[] | null),
+order_by?: (notifications_order_by[] | null),
 /** filter the rows returned */
-where?: (async_chat_notifications_bool_exp | null)}) => async_chat_notifications_aggregateObservableChain & {get: <R extends async_chat_notifications_aggregateRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications_aggregate, R>) => Observable<FieldsSelection<async_chat_notifications_aggregate, R>>})&(async_chat_notifications_aggregateObservableChain & {get: <R extends async_chat_notifications_aggregateRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications_aggregate, R>) => Observable<FieldsSelection<async_chat_notifications_aggregate, R>>}),
+where?: (notifications_bool_exp | null)}) => notifications_aggregateObservableChain & {get: <R extends notifications_aggregateRequest>(request: R, defaultValue?: FieldsSelection<notifications_aggregate, R>) => Observable<FieldsSelection<notifications_aggregate, R>>})&(notifications_aggregateObservableChain & {get: <R extends notifications_aggregateRequest>(request: R, defaultValue?: FieldsSelection<notifications_aggregate, R>) => Observable<FieldsSelection<notifications_aggregate, R>>}),
     
-/** fetch data from the table: "async_chat_notifications" using primary key columns */
-async_chat_notifications_by_pk: ((args: {id: Scalars['uuid']}) => async_chat_notificationsObservableChain & {get: <R extends async_chat_notificationsRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_notifications, R> | undefined)) => Observable<(FieldsSelection<async_chat_notifications, R> | undefined)>}),
-    
-/** fetch data from the table: "async_chat_tickets" */
-async_chat_tickets: ((args?: {
-/** distinct select on columns */
-distinct_on?: (async_chat_tickets_select_column[] | null),
-/** limit the number of rows returned */
-limit?: (Scalars['Int'] | null),
-/** skip the first n rows. Use only with order_by */
-offset?: (Scalars['Int'] | null),
-/** sort the rows by one or more columns */
-order_by?: (async_chat_tickets_order_by[] | null),
-/** filter the rows returned */
-where?: (async_chat_tickets_bool_exp | null)}) => {get: <R extends async_chat_ticketsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_tickets, R>[]) => Observable<FieldsSelection<async_chat_tickets, R>[]>})&({get: <R extends async_chat_ticketsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_tickets, R>[]) => Observable<FieldsSelection<async_chat_tickets, R>[]>}),
-    
-/** fetch aggregated fields from the table: "async_chat_tickets" */
-async_chat_tickets_aggregate: ((args?: {
-/** distinct select on columns */
-distinct_on?: (async_chat_tickets_select_column[] | null),
-/** limit the number of rows returned */
-limit?: (Scalars['Int'] | null),
-/** skip the first n rows. Use only with order_by */
-offset?: (Scalars['Int'] | null),
-/** sort the rows by one or more columns */
-order_by?: (async_chat_tickets_order_by[] | null),
-/** filter the rows returned */
-where?: (async_chat_tickets_bool_exp | null)}) => async_chat_tickets_aggregateObservableChain & {get: <R extends async_chat_tickets_aggregateRequest>(request: R, defaultValue?: FieldsSelection<async_chat_tickets_aggregate, R>) => Observable<FieldsSelection<async_chat_tickets_aggregate, R>>})&(async_chat_tickets_aggregateObservableChain & {get: <R extends async_chat_tickets_aggregateRequest>(request: R, defaultValue?: FieldsSelection<async_chat_tickets_aggregate, R>) => Observable<FieldsSelection<async_chat_tickets_aggregate, R>>}),
-    
-/** fetch data from the table: "async_chat_tickets" using primary key columns */
-async_chat_tickets_by_pk: ((args: {id: Scalars['uuid']}) => async_chat_ticketsObservableChain & {get: <R extends async_chat_ticketsRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_tickets, R> | undefined)) => Observable<(FieldsSelection<async_chat_tickets, R> | undefined)>}),
+/** fetch data from the table: "notifications" using primary key columns */
+notifications_by_pk: ((args: {id: Scalars['uuid']}) => notificationsObservableChain & {get: <R extends notificationsRequest>(request: R, defaultValue?: (FieldsSelection<notifications, R> | undefined)) => Observable<(FieldsSelection<notifications, R> | undefined)>}),
     
 /** fetch data from the table: "service" */
 service: ((args?: {
@@ -3184,26 +2520,14 @@ trigger_by_pk: ((args: {name: Scalars['String']}) => triggerObservableChain & {g
 }
 
 
-/**
- * service_enum
- * 
- * 
- * columns and relationships of "service"
- * 
- */
+/** columns and relationships of "service" */
 export interface servicePromiseChain{
     description: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Promise<Scalars['String']>}),
     name: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Promise<Scalars['String']>})
 }
 
 
-/**
- * service_enum
- * 
- * 
- * columns and relationships of "service"
- * 
- */
+/** columns and relationships of "service" */
 export interface serviceObservableChain{
     description: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Observable<Scalars['String']>}),
     name: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Observable<Scalars['String']>})
@@ -3292,38 +2616,38 @@ returning: ({get: <R extends serviceRequest>(request: R, defaultValue?: FieldsSe
 
 /** columns and relationships of "services" */
 export interface servicesPromiseChain{
-    
-/** fetch data from the table: "async_chat_notifications" */
-async_chat_notifications: ((args?: {
-/** distinct select on columns */
-distinct_on?: (async_chat_notifications_select_column[] | null),
-/** limit the number of rows returned */
-limit?: (Scalars['Int'] | null),
-/** skip the first n rows. Use only with order_by */
-offset?: (Scalars['Int'] | null),
-/** sort the rows by one or more columns */
-order_by?: (async_chat_notifications_order_by[] | null),
-/** filter the rows returned */
-where?: (async_chat_notifications_bool_exp | null)}) => {get: <R extends async_chat_notificationsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications, R>[]) => Promise<FieldsSelection<async_chat_notifications, R>[]>})&({get: <R extends async_chat_notificationsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications, R>[]) => Promise<FieldsSelection<async_chat_notifications, R>[]>}),
-    
-/** An aggregate relationship */
-async_chat_notifications_aggregate: ((args?: {
-/** distinct select on columns */
-distinct_on?: (async_chat_notifications_select_column[] | null),
-/** limit the number of rows returned */
-limit?: (Scalars['Int'] | null),
-/** skip the first n rows. Use only with order_by */
-offset?: (Scalars['Int'] | null),
-/** sort the rows by one or more columns */
-order_by?: (async_chat_notifications_order_by[] | null),
-/** filter the rows returned */
-where?: (async_chat_notifications_bool_exp | null)}) => async_chat_notifications_aggregatePromiseChain & {get: <R extends async_chat_notifications_aggregateRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications_aggregate, R>) => Promise<FieldsSelection<async_chat_notifications_aggregate, R>>})&(async_chat_notifications_aggregatePromiseChain & {get: <R extends async_chat_notifications_aggregateRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications_aggregate, R>) => Promise<FieldsSelection<async_chat_notifications_aggregate, R>>}),
     created_at: ({get: (request?: boolean|number, defaultValue?: Scalars['timestamptz']) => Promise<Scalars['timestamptz']>}),
-    customer_id: ({get: (request?: boolean|number, defaultValue?: Scalars['uuid']) => Promise<Scalars['uuid']>}),
+    customer_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>}),
     email_channel: ({get: (request?: boolean|number, defaultValue?: Scalars['Boolean']) => Promise<Scalars['Boolean']>}),
     enabled: ({get: (request?: boolean|number, defaultValue?: Scalars['Boolean']) => Promise<Scalars['Boolean']>}),
     id: ({get: (request?: boolean|number, defaultValue?: Scalars['uuid']) => Promise<Scalars['uuid']>}),
     message: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Promise<Scalars['String']>}),
+    
+/** fetch data from the table: "notifications" */
+notifications: ((args?: {
+/** distinct select on columns */
+distinct_on?: (notifications_select_column[] | null),
+/** limit the number of rows returned */
+limit?: (Scalars['Int'] | null),
+/** skip the first n rows. Use only with order_by */
+offset?: (Scalars['Int'] | null),
+/** sort the rows by one or more columns */
+order_by?: (notifications_order_by[] | null),
+/** filter the rows returned */
+where?: (notifications_bool_exp | null)}) => {get: <R extends notificationsRequest>(request: R, defaultValue?: FieldsSelection<notifications, R>[]) => Promise<FieldsSelection<notifications, R>[]>})&({get: <R extends notificationsRequest>(request: R, defaultValue?: FieldsSelection<notifications, R>[]) => Promise<FieldsSelection<notifications, R>[]>}),
+    
+/** An aggregate relationship */
+notifications_aggregate: ((args?: {
+/** distinct select on columns */
+distinct_on?: (notifications_select_column[] | null),
+/** limit the number of rows returned */
+limit?: (Scalars['Int'] | null),
+/** skip the first n rows. Use only with order_by */
+offset?: (Scalars['Int'] | null),
+/** sort the rows by one or more columns */
+order_by?: (notifications_order_by[] | null),
+/** filter the rows returned */
+where?: (notifications_bool_exp | null)}) => notifications_aggregatePromiseChain & {get: <R extends notifications_aggregateRequest>(request: R, defaultValue?: FieldsSelection<notifications_aggregate, R>) => Promise<FieldsSelection<notifications_aggregate, R>>})&(notifications_aggregatePromiseChain & {get: <R extends notifications_aggregateRequest>(request: R, defaultValue?: FieldsSelection<notifications_aggregate, R>) => Promise<FieldsSelection<notifications_aggregate, R>>}),
     push_channel: ({get: (request?: boolean|number, defaultValue?: Scalars['Boolean']) => Promise<Scalars['Boolean']>}),
     service: ({get: (request?: boolean|number, defaultValue?: service_enum) => Promise<service_enum>}),
     sms_channel: ({get: (request?: boolean|number, defaultValue?: Scalars['Boolean']) => Promise<Scalars['Boolean']>}),
@@ -3335,38 +2659,38 @@ where?: (async_chat_notifications_bool_exp | null)}) => async_chat_notifications
 
 /** columns and relationships of "services" */
 export interface servicesObservableChain{
-    
-/** fetch data from the table: "async_chat_notifications" */
-async_chat_notifications: ((args?: {
-/** distinct select on columns */
-distinct_on?: (async_chat_notifications_select_column[] | null),
-/** limit the number of rows returned */
-limit?: (Scalars['Int'] | null),
-/** skip the first n rows. Use only with order_by */
-offset?: (Scalars['Int'] | null),
-/** sort the rows by one or more columns */
-order_by?: (async_chat_notifications_order_by[] | null),
-/** filter the rows returned */
-where?: (async_chat_notifications_bool_exp | null)}) => {get: <R extends async_chat_notificationsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications, R>[]) => Observable<FieldsSelection<async_chat_notifications, R>[]>})&({get: <R extends async_chat_notificationsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications, R>[]) => Observable<FieldsSelection<async_chat_notifications, R>[]>}),
-    
-/** An aggregate relationship */
-async_chat_notifications_aggregate: ((args?: {
-/** distinct select on columns */
-distinct_on?: (async_chat_notifications_select_column[] | null),
-/** limit the number of rows returned */
-limit?: (Scalars['Int'] | null),
-/** skip the first n rows. Use only with order_by */
-offset?: (Scalars['Int'] | null),
-/** sort the rows by one or more columns */
-order_by?: (async_chat_notifications_order_by[] | null),
-/** filter the rows returned */
-where?: (async_chat_notifications_bool_exp | null)}) => async_chat_notifications_aggregateObservableChain & {get: <R extends async_chat_notifications_aggregateRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications_aggregate, R>) => Observable<FieldsSelection<async_chat_notifications_aggregate, R>>})&(async_chat_notifications_aggregateObservableChain & {get: <R extends async_chat_notifications_aggregateRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications_aggregate, R>) => Observable<FieldsSelection<async_chat_notifications_aggregate, R>>}),
     created_at: ({get: (request?: boolean|number, defaultValue?: Scalars['timestamptz']) => Observable<Scalars['timestamptz']>}),
-    customer_id: ({get: (request?: boolean|number, defaultValue?: Scalars['uuid']) => Observable<Scalars['uuid']>}),
+    customer_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>}),
     email_channel: ({get: (request?: boolean|number, defaultValue?: Scalars['Boolean']) => Observable<Scalars['Boolean']>}),
     enabled: ({get: (request?: boolean|number, defaultValue?: Scalars['Boolean']) => Observable<Scalars['Boolean']>}),
     id: ({get: (request?: boolean|number, defaultValue?: Scalars['uuid']) => Observable<Scalars['uuid']>}),
     message: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Observable<Scalars['String']>}),
+    
+/** fetch data from the table: "notifications" */
+notifications: ((args?: {
+/** distinct select on columns */
+distinct_on?: (notifications_select_column[] | null),
+/** limit the number of rows returned */
+limit?: (Scalars['Int'] | null),
+/** skip the first n rows. Use only with order_by */
+offset?: (Scalars['Int'] | null),
+/** sort the rows by one or more columns */
+order_by?: (notifications_order_by[] | null),
+/** filter the rows returned */
+where?: (notifications_bool_exp | null)}) => {get: <R extends notificationsRequest>(request: R, defaultValue?: FieldsSelection<notifications, R>[]) => Observable<FieldsSelection<notifications, R>[]>})&({get: <R extends notificationsRequest>(request: R, defaultValue?: FieldsSelection<notifications, R>[]) => Observable<FieldsSelection<notifications, R>[]>}),
+    
+/** An aggregate relationship */
+notifications_aggregate: ((args?: {
+/** distinct select on columns */
+distinct_on?: (notifications_select_column[] | null),
+/** limit the number of rows returned */
+limit?: (Scalars['Int'] | null),
+/** skip the first n rows. Use only with order_by */
+offset?: (Scalars['Int'] | null),
+/** sort the rows by one or more columns */
+order_by?: (notifications_order_by[] | null),
+/** filter the rows returned */
+where?: (notifications_bool_exp | null)}) => notifications_aggregateObservableChain & {get: <R extends notifications_aggregateRequest>(request: R, defaultValue?: FieldsSelection<notifications_aggregate, R>) => Observable<FieldsSelection<notifications_aggregate, R>>})&(notifications_aggregateObservableChain & {get: <R extends notifications_aggregateRequest>(request: R, defaultValue?: FieldsSelection<notifications_aggregate, R>) => Observable<FieldsSelection<notifications_aggregate, R>>}),
     push_channel: ({get: (request?: boolean|number, defaultValue?: Scalars['Boolean']) => Observable<Scalars['Boolean']>}),
     service: ({get: (request?: boolean|number, defaultValue?: service_enum) => Observable<service_enum>}),
     sms_channel: ({get: (request?: boolean|number, defaultValue?: Scalars['Boolean']) => Observable<Scalars['Boolean']>}),
@@ -3476,26 +2800,14 @@ returning: ({get: <R extends servicesRequest>(request: R, defaultValue?: FieldsS
 }
 
 
-/**
- * severity_enum
- * 
- * 
- * columns and relationships of "severity"
- * 
- */
+/** columns and relationships of "severity" */
 export interface severityPromiseChain{
     description: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Promise<Scalars['String']>}),
     name: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Promise<Scalars['String']>})
 }
 
 
-/**
- * severity_enum
- * 
- * 
- * columns and relationships of "severity"
- * 
- */
+/** columns and relationships of "severity" */
 export interface severityObservableChain{
     description: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Observable<Scalars['String']>}),
     name: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Observable<Scalars['String']>})
@@ -3583,63 +2895,34 @@ returning: ({get: <R extends severityRequest>(request: R, defaultValue?: FieldsS
 
 export interface subscription_rootPromiseChain{
     
-/** fetch data from the table: "async_chat_notifications" */
-async_chat_notifications: ((args?: {
+/** fetch data from the table: "notifications" */
+notifications: ((args?: {
 /** distinct select on columns */
-distinct_on?: (async_chat_notifications_select_column[] | null),
+distinct_on?: (notifications_select_column[] | null),
 /** limit the number of rows returned */
 limit?: (Scalars['Int'] | null),
 /** skip the first n rows. Use only with order_by */
 offset?: (Scalars['Int'] | null),
 /** sort the rows by one or more columns */
-order_by?: (async_chat_notifications_order_by[] | null),
+order_by?: (notifications_order_by[] | null),
 /** filter the rows returned */
-where?: (async_chat_notifications_bool_exp | null)}) => {get: <R extends async_chat_notificationsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications, R>[]) => Promise<FieldsSelection<async_chat_notifications, R>[]>})&({get: <R extends async_chat_notificationsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications, R>[]) => Promise<FieldsSelection<async_chat_notifications, R>[]>}),
+where?: (notifications_bool_exp | null)}) => {get: <R extends notificationsRequest>(request: R, defaultValue?: FieldsSelection<notifications, R>[]) => Promise<FieldsSelection<notifications, R>[]>})&({get: <R extends notificationsRequest>(request: R, defaultValue?: FieldsSelection<notifications, R>[]) => Promise<FieldsSelection<notifications, R>[]>}),
     
 /** An aggregate relationship */
-async_chat_notifications_aggregate: ((args?: {
+notifications_aggregate: ((args?: {
 /** distinct select on columns */
-distinct_on?: (async_chat_notifications_select_column[] | null),
+distinct_on?: (notifications_select_column[] | null),
 /** limit the number of rows returned */
 limit?: (Scalars['Int'] | null),
 /** skip the first n rows. Use only with order_by */
 offset?: (Scalars['Int'] | null),
 /** sort the rows by one or more columns */
-order_by?: (async_chat_notifications_order_by[] | null),
+order_by?: (notifications_order_by[] | null),
 /** filter the rows returned */
-where?: (async_chat_notifications_bool_exp | null)}) => async_chat_notifications_aggregatePromiseChain & {get: <R extends async_chat_notifications_aggregateRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications_aggregate, R>) => Promise<FieldsSelection<async_chat_notifications_aggregate, R>>})&(async_chat_notifications_aggregatePromiseChain & {get: <R extends async_chat_notifications_aggregateRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications_aggregate, R>) => Promise<FieldsSelection<async_chat_notifications_aggregate, R>>}),
+where?: (notifications_bool_exp | null)}) => notifications_aggregatePromiseChain & {get: <R extends notifications_aggregateRequest>(request: R, defaultValue?: FieldsSelection<notifications_aggregate, R>) => Promise<FieldsSelection<notifications_aggregate, R>>})&(notifications_aggregatePromiseChain & {get: <R extends notifications_aggregateRequest>(request: R, defaultValue?: FieldsSelection<notifications_aggregate, R>) => Promise<FieldsSelection<notifications_aggregate, R>>}),
     
-/** fetch data from the table: "async_chat_notifications" using primary key columns */
-async_chat_notifications_by_pk: ((args: {id: Scalars['uuid']}) => async_chat_notificationsPromiseChain & {get: <R extends async_chat_notificationsRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_notifications, R> | undefined)) => Promise<(FieldsSelection<async_chat_notifications, R> | undefined)>}),
-    
-/** fetch data from the table: "async_chat_tickets" */
-async_chat_tickets: ((args?: {
-/** distinct select on columns */
-distinct_on?: (async_chat_tickets_select_column[] | null),
-/** limit the number of rows returned */
-limit?: (Scalars['Int'] | null),
-/** skip the first n rows. Use only with order_by */
-offset?: (Scalars['Int'] | null),
-/** sort the rows by one or more columns */
-order_by?: (async_chat_tickets_order_by[] | null),
-/** filter the rows returned */
-where?: (async_chat_tickets_bool_exp | null)}) => {get: <R extends async_chat_ticketsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_tickets, R>[]) => Promise<FieldsSelection<async_chat_tickets, R>[]>})&({get: <R extends async_chat_ticketsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_tickets, R>[]) => Promise<FieldsSelection<async_chat_tickets, R>[]>}),
-    
-/** fetch aggregated fields from the table: "async_chat_tickets" */
-async_chat_tickets_aggregate: ((args?: {
-/** distinct select on columns */
-distinct_on?: (async_chat_tickets_select_column[] | null),
-/** limit the number of rows returned */
-limit?: (Scalars['Int'] | null),
-/** skip the first n rows. Use only with order_by */
-offset?: (Scalars['Int'] | null),
-/** sort the rows by one or more columns */
-order_by?: (async_chat_tickets_order_by[] | null),
-/** filter the rows returned */
-where?: (async_chat_tickets_bool_exp | null)}) => async_chat_tickets_aggregatePromiseChain & {get: <R extends async_chat_tickets_aggregateRequest>(request: R, defaultValue?: FieldsSelection<async_chat_tickets_aggregate, R>) => Promise<FieldsSelection<async_chat_tickets_aggregate, R>>})&(async_chat_tickets_aggregatePromiseChain & {get: <R extends async_chat_tickets_aggregateRequest>(request: R, defaultValue?: FieldsSelection<async_chat_tickets_aggregate, R>) => Promise<FieldsSelection<async_chat_tickets_aggregate, R>>}),
-    
-/** fetch data from the table: "async_chat_tickets" using primary key columns */
-async_chat_tickets_by_pk: ((args: {id: Scalars['uuid']}) => async_chat_ticketsPromiseChain & {get: <R extends async_chat_ticketsRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_tickets, R> | undefined)) => Promise<(FieldsSelection<async_chat_tickets, R> | undefined)>}),
+/** fetch data from the table: "notifications" using primary key columns */
+notifications_by_pk: ((args: {id: Scalars['uuid']}) => notificationsPromiseChain & {get: <R extends notificationsRequest>(request: R, defaultValue?: (FieldsSelection<notifications, R> | undefined)) => Promise<(FieldsSelection<notifications, R> | undefined)>}),
     
 /** fetch data from the table: "service" */
 service: ((args?: {
@@ -3760,63 +3043,34 @@ trigger_by_pk: ((args: {name: Scalars['String']}) => triggerPromiseChain & {get:
 
 export interface subscription_rootObservableChain{
     
-/** fetch data from the table: "async_chat_notifications" */
-async_chat_notifications: ((args?: {
+/** fetch data from the table: "notifications" */
+notifications: ((args?: {
 /** distinct select on columns */
-distinct_on?: (async_chat_notifications_select_column[] | null),
+distinct_on?: (notifications_select_column[] | null),
 /** limit the number of rows returned */
 limit?: (Scalars['Int'] | null),
 /** skip the first n rows. Use only with order_by */
 offset?: (Scalars['Int'] | null),
 /** sort the rows by one or more columns */
-order_by?: (async_chat_notifications_order_by[] | null),
+order_by?: (notifications_order_by[] | null),
 /** filter the rows returned */
-where?: (async_chat_notifications_bool_exp | null)}) => {get: <R extends async_chat_notificationsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications, R>[]) => Observable<FieldsSelection<async_chat_notifications, R>[]>})&({get: <R extends async_chat_notificationsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications, R>[]) => Observable<FieldsSelection<async_chat_notifications, R>[]>}),
+where?: (notifications_bool_exp | null)}) => {get: <R extends notificationsRequest>(request: R, defaultValue?: FieldsSelection<notifications, R>[]) => Observable<FieldsSelection<notifications, R>[]>})&({get: <R extends notificationsRequest>(request: R, defaultValue?: FieldsSelection<notifications, R>[]) => Observable<FieldsSelection<notifications, R>[]>}),
     
 /** An aggregate relationship */
-async_chat_notifications_aggregate: ((args?: {
+notifications_aggregate: ((args?: {
 /** distinct select on columns */
-distinct_on?: (async_chat_notifications_select_column[] | null),
+distinct_on?: (notifications_select_column[] | null),
 /** limit the number of rows returned */
 limit?: (Scalars['Int'] | null),
 /** skip the first n rows. Use only with order_by */
 offset?: (Scalars['Int'] | null),
 /** sort the rows by one or more columns */
-order_by?: (async_chat_notifications_order_by[] | null),
+order_by?: (notifications_order_by[] | null),
 /** filter the rows returned */
-where?: (async_chat_notifications_bool_exp | null)}) => async_chat_notifications_aggregateObservableChain & {get: <R extends async_chat_notifications_aggregateRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications_aggregate, R>) => Observable<FieldsSelection<async_chat_notifications_aggregate, R>>})&(async_chat_notifications_aggregateObservableChain & {get: <R extends async_chat_notifications_aggregateRequest>(request: R, defaultValue?: FieldsSelection<async_chat_notifications_aggregate, R>) => Observable<FieldsSelection<async_chat_notifications_aggregate, R>>}),
+where?: (notifications_bool_exp | null)}) => notifications_aggregateObservableChain & {get: <R extends notifications_aggregateRequest>(request: R, defaultValue?: FieldsSelection<notifications_aggregate, R>) => Observable<FieldsSelection<notifications_aggregate, R>>})&(notifications_aggregateObservableChain & {get: <R extends notifications_aggregateRequest>(request: R, defaultValue?: FieldsSelection<notifications_aggregate, R>) => Observable<FieldsSelection<notifications_aggregate, R>>}),
     
-/** fetch data from the table: "async_chat_notifications" using primary key columns */
-async_chat_notifications_by_pk: ((args: {id: Scalars['uuid']}) => async_chat_notificationsObservableChain & {get: <R extends async_chat_notificationsRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_notifications, R> | undefined)) => Observable<(FieldsSelection<async_chat_notifications, R> | undefined)>}),
-    
-/** fetch data from the table: "async_chat_tickets" */
-async_chat_tickets: ((args?: {
-/** distinct select on columns */
-distinct_on?: (async_chat_tickets_select_column[] | null),
-/** limit the number of rows returned */
-limit?: (Scalars['Int'] | null),
-/** skip the first n rows. Use only with order_by */
-offset?: (Scalars['Int'] | null),
-/** sort the rows by one or more columns */
-order_by?: (async_chat_tickets_order_by[] | null),
-/** filter the rows returned */
-where?: (async_chat_tickets_bool_exp | null)}) => {get: <R extends async_chat_ticketsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_tickets, R>[]) => Observable<FieldsSelection<async_chat_tickets, R>[]>})&({get: <R extends async_chat_ticketsRequest>(request: R, defaultValue?: FieldsSelection<async_chat_tickets, R>[]) => Observable<FieldsSelection<async_chat_tickets, R>[]>}),
-    
-/** fetch aggregated fields from the table: "async_chat_tickets" */
-async_chat_tickets_aggregate: ((args?: {
-/** distinct select on columns */
-distinct_on?: (async_chat_tickets_select_column[] | null),
-/** limit the number of rows returned */
-limit?: (Scalars['Int'] | null),
-/** skip the first n rows. Use only with order_by */
-offset?: (Scalars['Int'] | null),
-/** sort the rows by one or more columns */
-order_by?: (async_chat_tickets_order_by[] | null),
-/** filter the rows returned */
-where?: (async_chat_tickets_bool_exp | null)}) => async_chat_tickets_aggregateObservableChain & {get: <R extends async_chat_tickets_aggregateRequest>(request: R, defaultValue?: FieldsSelection<async_chat_tickets_aggregate, R>) => Observable<FieldsSelection<async_chat_tickets_aggregate, R>>})&(async_chat_tickets_aggregateObservableChain & {get: <R extends async_chat_tickets_aggregateRequest>(request: R, defaultValue?: FieldsSelection<async_chat_tickets_aggregate, R>) => Observable<FieldsSelection<async_chat_tickets_aggregate, R>>}),
-    
-/** fetch data from the table: "async_chat_tickets" using primary key columns */
-async_chat_tickets_by_pk: ((args: {id: Scalars['uuid']}) => async_chat_ticketsObservableChain & {get: <R extends async_chat_ticketsRequest>(request: R, defaultValue?: (FieldsSelection<async_chat_tickets, R> | undefined)) => Observable<(FieldsSelection<async_chat_tickets, R> | undefined)>}),
+/** fetch data from the table: "notifications" using primary key columns */
+notifications_by_pk: ((args: {id: Scalars['uuid']}) => notificationsObservableChain & {get: <R extends notificationsRequest>(request: R, defaultValue?: (FieldsSelection<notifications, R> | undefined)) => Observable<(FieldsSelection<notifications, R> | undefined)>}),
     
 /** fetch data from the table: "service" */
 service: ((args?: {
@@ -3936,28 +3190,14 @@ trigger_by_pk: ((args: {name: Scalars['String']}) => triggerObservableChain & {g
 }
 
 
-/**
- * trigger_enum
- * 
- * 
- * columns and relationships of "trigger"
- * 
- */
+/** columns and relationships of "trigger" */
 export interface triggerPromiseChain{
-    description: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Promise<Scalars['String']>}),
     name: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Promise<Scalars['String']>})
 }
 
 
-/**
- * trigger_enum
- * 
- * 
- * columns and relationships of "trigger"
- * 
- */
+/** columns and relationships of "trigger" */
 export interface triggerObservableChain{
-    description: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Observable<Scalars['String']>}),
     name: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Observable<Scalars['String']>})
 }
 
@@ -3994,28 +3234,24 @@ export interface trigger_aggregate_fieldsObservableChain{
 
 /** aggregate max on columns */
 export interface trigger_max_fieldsPromiseChain{
-    description: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Promise<(Scalars['String'] | undefined)>}),
     name: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Promise<(Scalars['String'] | undefined)>})
 }
 
 
 /** aggregate max on columns */
 export interface trigger_max_fieldsObservableChain{
-    description: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Observable<(Scalars['String'] | undefined)>}),
     name: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Observable<(Scalars['String'] | undefined)>})
 }
 
 
 /** aggregate min on columns */
 export interface trigger_min_fieldsPromiseChain{
-    description: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Promise<(Scalars['String'] | undefined)>}),
     name: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Promise<(Scalars['String'] | undefined)>})
 }
 
 
 /** aggregate min on columns */
 export interface trigger_min_fieldsObservableChain{
-    description: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Observable<(Scalars['String'] | undefined)>}),
     name: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Observable<(Scalars['String'] | undefined)>})
 }
 
