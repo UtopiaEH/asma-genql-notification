@@ -27,10 +27,10 @@ export interface mutation_root {
     delete_severity?: severity_mutation_response
     /** delete single row from the table: "severity" */
     delete_severity_by_pk?: severity
-    /** delete data from the table: "ticket_service" */
-    delete_ticket_service?: ticket_service_mutation_response
-    /** delete single row from the table: "ticket_service" */
-    delete_ticket_service_by_pk?: ticket_service
+    /** delete data from the table: "subject_service" */
+    delete_subject_service?: subject_service_mutation_response
+    /** delete single row from the table: "subject_service" */
+    delete_subject_service_by_pk?: subject_service
     /** delete data from the table: "trigger" */
     delete_trigger?: trigger_mutation_response
     /** delete single row from the table: "trigger" */
@@ -51,10 +51,10 @@ export interface mutation_root {
     insert_severity?: severity_mutation_response
     /** insert a single row into the table: "severity" */
     insert_severity_one?: severity
-    /** insert data into the table: "ticket_service" */
-    insert_ticket_service?: ticket_service_mutation_response
-    /** insert a single row into the table: "ticket_service" */
-    insert_ticket_service_one?: ticket_service
+    /** insert data into the table: "subject_service" */
+    insert_subject_service?: subject_service_mutation_response
+    /** insert a single row into the table: "subject_service" */
+    insert_subject_service_one?: subject_service
     /** insert data into the table: "trigger" */
     insert_trigger?: trigger_mutation_response
     /** insert a single row into the table: "trigger" */
@@ -75,10 +75,10 @@ export interface mutation_root {
     update_severity?: severity_mutation_response
     /** update single row of the table: "severity" */
     update_severity_by_pk?: severity
-    /** update data of the table: "ticket_service" */
-    update_ticket_service?: ticket_service_mutation_response
-    /** update single row of the table: "ticket_service" */
-    update_ticket_service_by_pk?: ticket_service
+    /** update data of the table: "subject_service" */
+    update_subject_service?: subject_service_mutation_response
+    /** update single row of the table: "subject_service" */
+    update_subject_service_by_pk?: subject_service
     /** update data of the table: "trigger" */
     update_trigger?: trigger_mutation_response
     /** update single row of the table: "trigger" */
@@ -200,12 +200,12 @@ export interface query_root {
     severity_aggregate: severity_aggregate
     /** fetch data from the table: "severity" using primary key columns */
     severity_by_pk?: severity
-    /** fetch data from the table: "ticket_service" */
-    ticket_service: ticket_service[]
-    /** fetch aggregated fields from the table: "ticket_service" */
-    ticket_service_aggregate: ticket_service_aggregate
-    /** fetch data from the table: "ticket_service" using primary key columns */
-    ticket_service_by_pk?: ticket_service
+    /** fetch data from the table: "subject_service" */
+    subject_service: subject_service[]
+    /** fetch aggregated fields from the table: "subject_service" */
+    subject_service_aggregate: subject_service_aggregate
+    /** fetch data from the table: "subject_service" using primary key columns */
+    subject_service_by_pk?: subject_service
     /** fetch data from the table: "trigger" */
     trigger: trigger[]
     /** fetch aggregated fields from the table: "trigger" */
@@ -287,10 +287,6 @@ export type service_update_column = 'description' | 'name'
 
 /** columns and relationships of "services" */
 export interface services {
-    /** An array relationship */
-    Tickets: ticket_service[]
-    /** An aggregate relationship */
-    Tickets_aggregate: ticket_service_aggregate
     created_at: Scalars['timestamptz']
     customer_id?: Scalars['uuid']
     email_channel: Scalars['Boolean']
@@ -304,6 +300,10 @@ export interface services {
     push_channel: Scalars['Boolean']
     service: service_enum
     sms_channel: Scalars['Boolean']
+    /** An array relationship */
+    subjects: subject_service[]
+    /** An aggregate relationship */
+    subjects_aggregate: subject_service_aggregate
     title: Scalars['String']
     updated_at: Scalars['timestamptz']
     user_id: Scalars['uuid']
@@ -438,6 +438,73 @@ export type severity_select_column = 'description' | 'name'
 /** update columns of table "severity" */
 export type severity_update_column = 'description' | 'name'
 
+
+/** columns and relationships of "subject_service" */
+export interface subject_service {
+    /** An object relationship */
+    notifications?: notifications
+    /** An object relationship */
+    service?: services
+    service_id: Scalars['uuid']
+    subject_id: Scalars['uuid']
+    __typename: 'subject_service'
+}
+
+
+/** aggregated selection of "subject_service" */
+export interface subject_service_aggregate {
+    aggregate?: subject_service_aggregate_fields
+    nodes: subject_service[]
+    __typename: 'subject_service_aggregate'
+}
+
+
+/** aggregate fields of "subject_service" */
+export interface subject_service_aggregate_fields {
+    count: Scalars['Int']
+    max?: subject_service_max_fields
+    min?: subject_service_min_fields
+    __typename: 'subject_service_aggregate_fields'
+}
+
+
+/** unique or primary key constraints on table "subject_service" */
+export type subject_service_constraint = 'ticket_service_pkey'
+
+
+/** aggregate max on columns */
+export interface subject_service_max_fields {
+    service_id?: Scalars['uuid']
+    subject_id?: Scalars['uuid']
+    __typename: 'subject_service_max_fields'
+}
+
+
+/** aggregate min on columns */
+export interface subject_service_min_fields {
+    service_id?: Scalars['uuid']
+    subject_id?: Scalars['uuid']
+    __typename: 'subject_service_min_fields'
+}
+
+
+/** response of any mutation on the table "subject_service" */
+export interface subject_service_mutation_response {
+    /** number of rows affected by the mutation */
+    affected_rows: Scalars['Int']
+    /** data from the rows affected by the mutation */
+    returning: subject_service[]
+    __typename: 'subject_service_mutation_response'
+}
+
+
+/** select columns of table "subject_service" */
+export type subject_service_select_column = 'service_id' | 'subject_id'
+
+
+/** update columns of table "subject_service" */
+export type subject_service_update_column = 'service_id' | 'subject_id'
+
 export interface subscription_root {
     /** fetch data from the table: "notifications" */
     notifications: notifications[]
@@ -463,12 +530,12 @@ export interface subscription_root {
     severity_aggregate: severity_aggregate
     /** fetch data from the table: "severity" using primary key columns */
     severity_by_pk?: severity
-    /** fetch data from the table: "ticket_service" */
-    ticket_service: ticket_service[]
-    /** fetch aggregated fields from the table: "ticket_service" */
-    ticket_service_aggregate: ticket_service_aggregate
-    /** fetch data from the table: "ticket_service" using primary key columns */
-    ticket_service_by_pk?: ticket_service
+    /** fetch data from the table: "subject_service" */
+    subject_service: subject_service[]
+    /** fetch aggregated fields from the table: "subject_service" */
+    subject_service_aggregate: subject_service_aggregate
+    /** fetch data from the table: "subject_service" using primary key columns */
+    subject_service_by_pk?: subject_service
     /** fetch data from the table: "trigger" */
     trigger: trigger[]
     /** fetch aggregated fields from the table: "trigger" */
@@ -483,75 +550,9 @@ export interface subscription_root {
 }
 
 
-/** columns and relationships of "ticket_service" */
-export interface ticket_service {
-    /** An object relationship */
-    Notifications?: notifications
-    /** An object relationship */
-    Service?: services
-    service_id: Scalars['uuid']
-    ticket_id: Scalars['uuid']
-    __typename: 'ticket_service'
-}
-
-
-/** aggregated selection of "ticket_service" */
-export interface ticket_service_aggregate {
-    aggregate?: ticket_service_aggregate_fields
-    nodes: ticket_service[]
-    __typename: 'ticket_service_aggregate'
-}
-
-
-/** aggregate fields of "ticket_service" */
-export interface ticket_service_aggregate_fields {
-    count: Scalars['Int']
-    max?: ticket_service_max_fields
-    min?: ticket_service_min_fields
-    __typename: 'ticket_service_aggregate_fields'
-}
-
-
-/** unique or primary key constraints on table "ticket_service" */
-export type ticket_service_constraint = 'ticket_service_pkey'
-
-
-/** aggregate max on columns */
-export interface ticket_service_max_fields {
-    service_id?: Scalars['uuid']
-    ticket_id?: Scalars['uuid']
-    __typename: 'ticket_service_max_fields'
-}
-
-
-/** aggregate min on columns */
-export interface ticket_service_min_fields {
-    service_id?: Scalars['uuid']
-    ticket_id?: Scalars['uuid']
-    __typename: 'ticket_service_min_fields'
-}
-
-
-/** response of any mutation on the table "ticket_service" */
-export interface ticket_service_mutation_response {
-    /** number of rows affected by the mutation */
-    affected_rows: Scalars['Int']
-    /** data from the rows affected by the mutation */
-    returning: ticket_service[]
-    __typename: 'ticket_service_mutation_response'
-}
-
-
-/** select columns of table "ticket_service" */
-export type ticket_service_select_column = 'service_id' | 'ticket_id'
-
-
-/** update columns of table "ticket_service" */
-export type ticket_service_update_column = 'service_id' | 'ticket_id'
-
-
 /** columns and relationships of "trigger" */
 export interface trigger {
+    description: Scalars['String']
     name: Scalars['String']
     __typename: 'trigger'
 }
@@ -577,11 +578,12 @@ export interface trigger_aggregate_fields {
 /** unique or primary key constraints on table "trigger" */
 export type trigger_constraint = 'trigger_pkey'
 
-export type trigger_enum = 'insert_ticket_message' | 'insert_ticket_user'
+export type trigger_enum = 'insert_calendar_event_attendee' | 'insert_calendar_event_organizer' | 'insert_ticket_message' | 'insert_ticket_user'
 
 
 /** aggregate max on columns */
 export interface trigger_max_fields {
+    description?: Scalars['String']
     name?: Scalars['String']
     __typename: 'trigger_max_fields'
 }
@@ -589,6 +591,7 @@ export interface trigger_max_fields {
 
 /** aggregate min on columns */
 export interface trigger_min_fields {
+    description?: Scalars['String']
     name?: Scalars['String']
     __typename: 'trigger_min_fields'
 }
@@ -605,11 +608,11 @@ export interface trigger_mutation_response {
 
 
 /** select columns of table "trigger" */
-export type trigger_select_column = 'name'
+export type trigger_select_column = 'description' | 'name'
 
 
 /** update columns of table "trigger" */
-export type trigger_update_column = 'name'
+export type trigger_update_column = 'description' | 'name'
 
 
 /** columns and relationships of "users" */
@@ -714,12 +717,12 @@ export interface mutation_rootRequest{
     where: severity_bool_exp},severity_mutation_responseRequest]
     /** delete single row from the table: "severity" */
     delete_severity_by_pk?: [{name: Scalars['String']},severityRequest]
-    /** delete data from the table: "ticket_service" */
-    delete_ticket_service?: [{
+    /** delete data from the table: "subject_service" */
+    delete_subject_service?: [{
     /** filter the rows which have to be deleted */
-    where: ticket_service_bool_exp},ticket_service_mutation_responseRequest]
-    /** delete single row from the table: "ticket_service" */
-    delete_ticket_service_by_pk?: [{service_id: Scalars['uuid'],ticket_id: Scalars['uuid']},ticket_serviceRequest]
+    where: subject_service_bool_exp},subject_service_mutation_responseRequest]
+    /** delete single row from the table: "subject_service" */
+    delete_subject_service_by_pk?: [{service_id: Scalars['uuid'],subject_id: Scalars['uuid']},subject_serviceRequest]
     /** delete data from the table: "trigger" */
     delete_trigger?: [{
     /** filter the rows which have to be deleted */
@@ -774,18 +777,18 @@ export interface mutation_rootRequest{
     object: severity_insert_input,
     /** on conflict condition */
     on_conflict?: (severity_on_conflict | null)},severityRequest]
-    /** insert data into the table: "ticket_service" */
-    insert_ticket_service?: [{
+    /** insert data into the table: "subject_service" */
+    insert_subject_service?: [{
     /** the rows to be inserted */
-    objects: ticket_service_insert_input[],
+    objects: subject_service_insert_input[],
     /** on conflict condition */
-    on_conflict?: (ticket_service_on_conflict | null)},ticket_service_mutation_responseRequest]
-    /** insert a single row into the table: "ticket_service" */
-    insert_ticket_service_one?: [{
+    on_conflict?: (subject_service_on_conflict | null)},subject_service_mutation_responseRequest]
+    /** insert a single row into the table: "subject_service" */
+    insert_subject_service_one?: [{
     /** the row to be inserted */
-    object: ticket_service_insert_input,
+    object: subject_service_insert_input,
     /** on conflict condition */
-    on_conflict?: (ticket_service_on_conflict | null)},ticket_serviceRequest]
+    on_conflict?: (subject_service_on_conflict | null)},subject_serviceRequest]
     /** insert data into the table: "trigger" */
     insert_trigger?: [{
     /** the rows to be inserted */
@@ -838,16 +841,16 @@ export interface mutation_rootRequest{
     update_severity_by_pk?: [{
     /** sets the columns of the filtered rows to the given values */
     _set?: (severity_set_input | null),pk_columns: severity_pk_columns_input},severityRequest]
-    /** update data of the table: "ticket_service" */
-    update_ticket_service?: [{
+    /** update data of the table: "subject_service" */
+    update_subject_service?: [{
     /** sets the columns of the filtered rows to the given values */
-    _set?: (ticket_service_set_input | null),
+    _set?: (subject_service_set_input | null),
     /** filter the rows which have to be updated */
-    where: ticket_service_bool_exp},ticket_service_mutation_responseRequest]
-    /** update single row of the table: "ticket_service" */
-    update_ticket_service_by_pk?: [{
+    where: subject_service_bool_exp},subject_service_mutation_responseRequest]
+    /** update single row of the table: "subject_service" */
+    update_subject_service_by_pk?: [{
     /** sets the columns of the filtered rows to the given values */
-    _set?: (ticket_service_set_input | null),pk_columns: ticket_service_pk_columns_input},ticket_serviceRequest]
+    _set?: (subject_service_set_input | null),pk_columns: subject_service_pk_columns_input},subject_serviceRequest]
     /** update data of the table: "trigger" */
     update_trigger?: [{
     /** sets the columns of the filtered rows to the given values */
@@ -1094,32 +1097,32 @@ export interface query_rootRequest{
     where?: (severity_bool_exp | null)},severity_aggregateRequest] | severity_aggregateRequest
     /** fetch data from the table: "severity" using primary key columns */
     severity_by_pk?: [{name: Scalars['String']},severityRequest]
-    /** fetch data from the table: "ticket_service" */
-    ticket_service?: [{
+    /** fetch data from the table: "subject_service" */
+    subject_service?: [{
     /** distinct select on columns */
-    distinct_on?: (ticket_service_select_column[] | null),
+    distinct_on?: (subject_service_select_column[] | null),
     /** limit the number of rows returned */
     limit?: (Scalars['Int'] | null),
     /** skip the first n rows. Use only with order_by */
     offset?: (Scalars['Int'] | null),
     /** sort the rows by one or more columns */
-    order_by?: (ticket_service_order_by[] | null),
+    order_by?: (subject_service_order_by[] | null),
     /** filter the rows returned */
-    where?: (ticket_service_bool_exp | null)},ticket_serviceRequest] | ticket_serviceRequest
-    /** fetch aggregated fields from the table: "ticket_service" */
-    ticket_service_aggregate?: [{
+    where?: (subject_service_bool_exp | null)},subject_serviceRequest] | subject_serviceRequest
+    /** fetch aggregated fields from the table: "subject_service" */
+    subject_service_aggregate?: [{
     /** distinct select on columns */
-    distinct_on?: (ticket_service_select_column[] | null),
+    distinct_on?: (subject_service_select_column[] | null),
     /** limit the number of rows returned */
     limit?: (Scalars['Int'] | null),
     /** skip the first n rows. Use only with order_by */
     offset?: (Scalars['Int'] | null),
     /** sort the rows by one or more columns */
-    order_by?: (ticket_service_order_by[] | null),
+    order_by?: (subject_service_order_by[] | null),
     /** filter the rows returned */
-    where?: (ticket_service_bool_exp | null)},ticket_service_aggregateRequest] | ticket_service_aggregateRequest
-    /** fetch data from the table: "ticket_service" using primary key columns */
-    ticket_service_by_pk?: [{service_id: Scalars['uuid'],ticket_id: Scalars['uuid']},ticket_serviceRequest]
+    where?: (subject_service_bool_exp | null)},subject_service_aggregateRequest] | subject_service_aggregateRequest
+    /** fetch data from the table: "subject_service" using primary key columns */
+    subject_service_by_pk?: [{service_id: Scalars['uuid'],subject_id: Scalars['uuid']},subject_serviceRequest]
     /** fetch data from the table: "trigger" */
     trigger?: [{
     /** distinct select on columns */
@@ -1262,30 +1265,6 @@ export interface service_set_input {description?: (Scalars['String'] | null),nam
 
 /** columns and relationships of "services" */
 export interface servicesRequest{
-    /** An array relationship */
-    Tickets?: [{
-    /** distinct select on columns */
-    distinct_on?: (ticket_service_select_column[] | null),
-    /** limit the number of rows returned */
-    limit?: (Scalars['Int'] | null),
-    /** skip the first n rows. Use only with order_by */
-    offset?: (Scalars['Int'] | null),
-    /** sort the rows by one or more columns */
-    order_by?: (ticket_service_order_by[] | null),
-    /** filter the rows returned */
-    where?: (ticket_service_bool_exp | null)},ticket_serviceRequest] | ticket_serviceRequest
-    /** An aggregate relationship */
-    Tickets_aggregate?: [{
-    /** distinct select on columns */
-    distinct_on?: (ticket_service_select_column[] | null),
-    /** limit the number of rows returned */
-    limit?: (Scalars['Int'] | null),
-    /** skip the first n rows. Use only with order_by */
-    offset?: (Scalars['Int'] | null),
-    /** sort the rows by one or more columns */
-    order_by?: (ticket_service_order_by[] | null),
-    /** filter the rows returned */
-    where?: (ticket_service_bool_exp | null)},ticket_service_aggregateRequest] | ticket_service_aggregateRequest
     created_at?: boolean | number
     customer_id?: boolean | number
     email_channel?: boolean | number
@@ -1319,6 +1298,30 @@ export interface servicesRequest{
     push_channel?: boolean | number
     service?: boolean | number
     sms_channel?: boolean | number
+    /** An array relationship */
+    subjects?: [{
+    /** distinct select on columns */
+    distinct_on?: (subject_service_select_column[] | null),
+    /** limit the number of rows returned */
+    limit?: (Scalars['Int'] | null),
+    /** skip the first n rows. Use only with order_by */
+    offset?: (Scalars['Int'] | null),
+    /** sort the rows by one or more columns */
+    order_by?: (subject_service_order_by[] | null),
+    /** filter the rows returned */
+    where?: (subject_service_bool_exp | null)},subject_serviceRequest] | subject_serviceRequest
+    /** An aggregate relationship */
+    subjects_aggregate?: [{
+    /** distinct select on columns */
+    distinct_on?: (subject_service_select_column[] | null),
+    /** limit the number of rows returned */
+    limit?: (Scalars['Int'] | null),
+    /** skip the first n rows. Use only with order_by */
+    offset?: (Scalars['Int'] | null),
+    /** sort the rows by one or more columns */
+    order_by?: (subject_service_order_by[] | null),
+    /** filter the rows returned */
+    where?: (subject_service_bool_exp | null)},subject_service_aggregateRequest] | subject_service_aggregateRequest
     title?: boolean | number
     updated_at?: boolean | number
     user_id?: boolean | number
@@ -1347,11 +1350,11 @@ export interface services_aggregate_fieldsRequest{
 
 
 /** Boolean expression to filter rows from the table "services". All fields are combined with a logical 'AND'. */
-export interface services_bool_exp {Tickets?: (ticket_service_bool_exp | null),_and?: (services_bool_exp[] | null),_not?: (services_bool_exp | null),_or?: (services_bool_exp[] | null),created_at?: (timestamptz_comparison_exp | null),customer_id?: (uuid_comparison_exp | null),email_channel?: (Boolean_comparison_exp | null),enabled?: (Boolean_comparison_exp | null),id?: (uuid_comparison_exp | null),message?: (String_comparison_exp | null),notifications?: (notifications_bool_exp | null),push_channel?: (Boolean_comparison_exp | null),service?: (service_enum_comparison_exp | null),sms_channel?: (Boolean_comparison_exp | null),title?: (String_comparison_exp | null),updated_at?: (timestamptz_comparison_exp | null),user_id?: (uuid_comparison_exp | null)}
+export interface services_bool_exp {_and?: (services_bool_exp[] | null),_not?: (services_bool_exp | null),_or?: (services_bool_exp[] | null),created_at?: (timestamptz_comparison_exp | null),customer_id?: (uuid_comparison_exp | null),email_channel?: (Boolean_comparison_exp | null),enabled?: (Boolean_comparison_exp | null),id?: (uuid_comparison_exp | null),message?: (String_comparison_exp | null),notifications?: (notifications_bool_exp | null),push_channel?: (Boolean_comparison_exp | null),service?: (service_enum_comparison_exp | null),sms_channel?: (Boolean_comparison_exp | null),subjects?: (subject_service_bool_exp | null),title?: (String_comparison_exp | null),updated_at?: (timestamptz_comparison_exp | null),user_id?: (uuid_comparison_exp | null)}
 
 
 /** input type for inserting data into table "services" */
-export interface services_insert_input {Tickets?: (ticket_service_arr_rel_insert_input | null),created_at?: (Scalars['timestamptz'] | null),customer_id?: (Scalars['uuid'] | null),email_channel?: (Scalars['Boolean'] | null),enabled?: (Scalars['Boolean'] | null),id?: (Scalars['uuid'] | null),message?: (Scalars['String'] | null),notifications?: (notifications_arr_rel_insert_input | null),push_channel?: (Scalars['Boolean'] | null),service?: (service_enum | null),sms_channel?: (Scalars['Boolean'] | null),title?: (Scalars['String'] | null),updated_at?: (Scalars['timestamptz'] | null),user_id?: (Scalars['uuid'] | null)}
+export interface services_insert_input {created_at?: (Scalars['timestamptz'] | null),customer_id?: (Scalars['uuid'] | null),email_channel?: (Scalars['Boolean'] | null),enabled?: (Scalars['Boolean'] | null),id?: (Scalars['uuid'] | null),message?: (Scalars['String'] | null),notifications?: (notifications_arr_rel_insert_input | null),push_channel?: (Scalars['Boolean'] | null),service?: (service_enum | null),sms_channel?: (Scalars['Boolean'] | null),subjects?: (subject_service_arr_rel_insert_input | null),title?: (Scalars['String'] | null),updated_at?: (Scalars['timestamptz'] | null),user_id?: (Scalars['uuid'] | null)}
 
 
 /** aggregate max on columns */
@@ -1404,7 +1407,7 @@ export interface services_on_conflict {constraint: services_constraint,update_co
 
 
 /** Ordering options when selecting data from "services". */
-export interface services_order_by {Tickets_aggregate?: (ticket_service_aggregate_order_by | null),created_at?: (order_by | null),customer_id?: (order_by | null),email_channel?: (order_by | null),enabled?: (order_by | null),id?: (order_by | null),message?: (order_by | null),notifications_aggregate?: (notifications_aggregate_order_by | null),push_channel?: (order_by | null),service?: (order_by | null),sms_channel?: (order_by | null),title?: (order_by | null),updated_at?: (order_by | null),user_id?: (order_by | null)}
+export interface services_order_by {created_at?: (order_by | null),customer_id?: (order_by | null),email_channel?: (order_by | null),enabled?: (order_by | null),id?: (order_by | null),message?: (order_by | null),notifications_aggregate?: (notifications_aggregate_order_by | null),push_channel?: (order_by | null),service?: (order_by | null),sms_channel?: (order_by | null),subjects_aggregate?: (subject_service_aggregate_order_by | null),title?: (order_by | null),updated_at?: (order_by | null),user_id?: (order_by | null)}
 
 
 /** primary key columns input for table: services */
@@ -1494,6 +1497,109 @@ export interface severity_pk_columns_input {name: Scalars['String']}
 
 /** input type for updating data in table "severity" */
 export interface severity_set_input {description?: (Scalars['String'] | null),name?: (Scalars['String'] | null)}
+
+
+/** columns and relationships of "subject_service" */
+export interface subject_serviceRequest{
+    /** An object relationship */
+    notifications?: notificationsRequest
+    /** An object relationship */
+    service?: servicesRequest
+    service_id?: boolean | number
+    subject_id?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** aggregated selection of "subject_service" */
+export interface subject_service_aggregateRequest{
+    aggregate?: subject_service_aggregate_fieldsRequest
+    nodes?: subject_serviceRequest
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** aggregate fields of "subject_service" */
+export interface subject_service_aggregate_fieldsRequest{
+    count?: [{columns?: (subject_service_select_column[] | null),distinct?: (Scalars['Boolean'] | null)}] | boolean | number
+    max?: subject_service_max_fieldsRequest
+    min?: subject_service_min_fieldsRequest
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** order by aggregate values of table "subject_service" */
+export interface subject_service_aggregate_order_by {count?: (order_by | null),max?: (subject_service_max_order_by | null),min?: (subject_service_min_order_by | null)}
+
+
+/** input type for inserting array relation for remote table "subject_service" */
+export interface subject_service_arr_rel_insert_input {data: subject_service_insert_input[],
+/** on conflict condition */
+on_conflict?: (subject_service_on_conflict | null)}
+
+
+/** Boolean expression to filter rows from the table "subject_service". All fields are combined with a logical 'AND'. */
+export interface subject_service_bool_exp {_and?: (subject_service_bool_exp[] | null),_not?: (subject_service_bool_exp | null),_or?: (subject_service_bool_exp[] | null),notifications?: (notifications_bool_exp | null),service?: (services_bool_exp | null),service_id?: (uuid_comparison_exp | null),subject_id?: (uuid_comparison_exp | null)}
+
+
+/** input type for inserting data into table "subject_service" */
+export interface subject_service_insert_input {notifications?: (notifications_obj_rel_insert_input | null),service?: (services_obj_rel_insert_input | null),service_id?: (Scalars['uuid'] | null),subject_id?: (Scalars['uuid'] | null)}
+
+
+/** aggregate max on columns */
+export interface subject_service_max_fieldsRequest{
+    service_id?: boolean | number
+    subject_id?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** order by max() on columns of table "subject_service" */
+export interface subject_service_max_order_by {service_id?: (order_by | null),subject_id?: (order_by | null)}
+
+
+/** aggregate min on columns */
+export interface subject_service_min_fieldsRequest{
+    service_id?: boolean | number
+    subject_id?: boolean | number
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** order by min() on columns of table "subject_service" */
+export interface subject_service_min_order_by {service_id?: (order_by | null),subject_id?: (order_by | null)}
+
+
+/** response of any mutation on the table "subject_service" */
+export interface subject_service_mutation_responseRequest{
+    /** number of rows affected by the mutation */
+    affected_rows?: boolean | number
+    /** data from the rows affected by the mutation */
+    returning?: subject_serviceRequest
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+
+/** on conflict condition type for table "subject_service" */
+export interface subject_service_on_conflict {constraint: subject_service_constraint,update_columns: subject_service_update_column[],where?: (subject_service_bool_exp | null)}
+
+
+/** Ordering options when selecting data from "subject_service". */
+export interface subject_service_order_by {notifications?: (notifications_order_by | null),service?: (services_order_by | null),service_id?: (order_by | null),subject_id?: (order_by | null)}
+
+
+/** primary key columns input for table: subject_service */
+export interface subject_service_pk_columns_input {service_id: Scalars['uuid'],subject_id: Scalars['uuid']}
+
+
+/** input type for updating data in table "subject_service" */
+export interface subject_service_set_input {service_id?: (Scalars['uuid'] | null),subject_id?: (Scalars['uuid'] | null)}
 
 export interface subscription_rootRequest{
     /** fetch data from the table: "notifications" */
@@ -1600,32 +1706,32 @@ export interface subscription_rootRequest{
     where?: (severity_bool_exp | null)},severity_aggregateRequest] | severity_aggregateRequest
     /** fetch data from the table: "severity" using primary key columns */
     severity_by_pk?: [{name: Scalars['String']},severityRequest]
-    /** fetch data from the table: "ticket_service" */
-    ticket_service?: [{
+    /** fetch data from the table: "subject_service" */
+    subject_service?: [{
     /** distinct select on columns */
-    distinct_on?: (ticket_service_select_column[] | null),
+    distinct_on?: (subject_service_select_column[] | null),
     /** limit the number of rows returned */
     limit?: (Scalars['Int'] | null),
     /** skip the first n rows. Use only with order_by */
     offset?: (Scalars['Int'] | null),
     /** sort the rows by one or more columns */
-    order_by?: (ticket_service_order_by[] | null),
+    order_by?: (subject_service_order_by[] | null),
     /** filter the rows returned */
-    where?: (ticket_service_bool_exp | null)},ticket_serviceRequest] | ticket_serviceRequest
-    /** fetch aggregated fields from the table: "ticket_service" */
-    ticket_service_aggregate?: [{
+    where?: (subject_service_bool_exp | null)},subject_serviceRequest] | subject_serviceRequest
+    /** fetch aggregated fields from the table: "subject_service" */
+    subject_service_aggregate?: [{
     /** distinct select on columns */
-    distinct_on?: (ticket_service_select_column[] | null),
+    distinct_on?: (subject_service_select_column[] | null),
     /** limit the number of rows returned */
     limit?: (Scalars['Int'] | null),
     /** skip the first n rows. Use only with order_by */
     offset?: (Scalars['Int'] | null),
     /** sort the rows by one or more columns */
-    order_by?: (ticket_service_order_by[] | null),
+    order_by?: (subject_service_order_by[] | null),
     /** filter the rows returned */
-    where?: (ticket_service_bool_exp | null)},ticket_service_aggregateRequest] | ticket_service_aggregateRequest
-    /** fetch data from the table: "ticket_service" using primary key columns */
-    ticket_service_by_pk?: [{service_id: Scalars['uuid'],ticket_id: Scalars['uuid']},ticket_serviceRequest]
+    where?: (subject_service_bool_exp | null)},subject_service_aggregateRequest] | subject_service_aggregateRequest
+    /** fetch data from the table: "subject_service" using primary key columns */
+    subject_service_by_pk?: [{service_id: Scalars['uuid'],subject_id: Scalars['uuid']},subject_serviceRequest]
     /** fetch data from the table: "trigger" */
     trigger?: [{
     /** distinct select on columns */
@@ -1681,115 +1787,13 @@ export interface subscription_rootRequest{
 }
 
 
-/** columns and relationships of "ticket_service" */
-export interface ticket_serviceRequest{
-    /** An object relationship */
-    Notifications?: notificationsRequest
-    /** An object relationship */
-    Service?: servicesRequest
-    service_id?: boolean | number
-    ticket_id?: boolean | number
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
-
-
-/** aggregated selection of "ticket_service" */
-export interface ticket_service_aggregateRequest{
-    aggregate?: ticket_service_aggregate_fieldsRequest
-    nodes?: ticket_serviceRequest
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
-
-
-/** aggregate fields of "ticket_service" */
-export interface ticket_service_aggregate_fieldsRequest{
-    count?: [{columns?: (ticket_service_select_column[] | null),distinct?: (Scalars['Boolean'] | null)}] | boolean | number
-    max?: ticket_service_max_fieldsRequest
-    min?: ticket_service_min_fieldsRequest
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
-
-
-/** order by aggregate values of table "ticket_service" */
-export interface ticket_service_aggregate_order_by {count?: (order_by | null),max?: (ticket_service_max_order_by | null),min?: (ticket_service_min_order_by | null)}
-
-
-/** input type for inserting array relation for remote table "ticket_service" */
-export interface ticket_service_arr_rel_insert_input {data: ticket_service_insert_input[],
-/** on conflict condition */
-on_conflict?: (ticket_service_on_conflict | null)}
-
-
-/** Boolean expression to filter rows from the table "ticket_service". All fields are combined with a logical 'AND'. */
-export interface ticket_service_bool_exp {Notifications?: (notifications_bool_exp | null),Service?: (services_bool_exp | null),_and?: (ticket_service_bool_exp[] | null),_not?: (ticket_service_bool_exp | null),_or?: (ticket_service_bool_exp[] | null),service_id?: (uuid_comparison_exp | null),ticket_id?: (uuid_comparison_exp | null)}
-
-
-/** input type for inserting data into table "ticket_service" */
-export interface ticket_service_insert_input {Notifications?: (notifications_obj_rel_insert_input | null),Service?: (services_obj_rel_insert_input | null),service_id?: (Scalars['uuid'] | null),ticket_id?: (Scalars['uuid'] | null)}
-
-
-/** aggregate max on columns */
-export interface ticket_service_max_fieldsRequest{
-    service_id?: boolean | number
-    ticket_id?: boolean | number
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
-
-
-/** order by max() on columns of table "ticket_service" */
-export interface ticket_service_max_order_by {service_id?: (order_by | null),ticket_id?: (order_by | null)}
-
-
-/** aggregate min on columns */
-export interface ticket_service_min_fieldsRequest{
-    service_id?: boolean | number
-    ticket_id?: boolean | number
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
-
-
-/** order by min() on columns of table "ticket_service" */
-export interface ticket_service_min_order_by {service_id?: (order_by | null),ticket_id?: (order_by | null)}
-
-
-/** response of any mutation on the table "ticket_service" */
-export interface ticket_service_mutation_responseRequest{
-    /** number of rows affected by the mutation */
-    affected_rows?: boolean | number
-    /** data from the rows affected by the mutation */
-    returning?: ticket_serviceRequest
-    __typename?: boolean | number
-    __scalar?: boolean | number
-}
-
-
-/** on conflict condition type for table "ticket_service" */
-export interface ticket_service_on_conflict {constraint: ticket_service_constraint,update_columns: ticket_service_update_column[],where?: (ticket_service_bool_exp | null)}
-
-
-/** Ordering options when selecting data from "ticket_service". */
-export interface ticket_service_order_by {Notifications?: (notifications_order_by | null),Service?: (services_order_by | null),service_id?: (order_by | null),ticket_id?: (order_by | null)}
-
-
-/** primary key columns input for table: ticket_service */
-export interface ticket_service_pk_columns_input {service_id: Scalars['uuid'],ticket_id: Scalars['uuid']}
-
-
-/** input type for updating data in table "ticket_service" */
-export interface ticket_service_set_input {service_id?: (Scalars['uuid'] | null),ticket_id?: (Scalars['uuid'] | null)}
-
-
 /** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
 export interface timestamptz_comparison_exp {_eq?: (Scalars['timestamptz'] | null),_gt?: (Scalars['timestamptz'] | null),_gte?: (Scalars['timestamptz'] | null),_in?: (Scalars['timestamptz'][] | null),_is_null?: (Scalars['Boolean'] | null),_lt?: (Scalars['timestamptz'] | null),_lte?: (Scalars['timestamptz'] | null),_neq?: (Scalars['timestamptz'] | null),_nin?: (Scalars['timestamptz'][] | null)}
 
 
 /** columns and relationships of "trigger" */
 export interface triggerRequest{
+    description?: boolean | number
     name?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
@@ -1816,7 +1820,7 @@ export interface trigger_aggregate_fieldsRequest{
 
 
 /** Boolean expression to filter rows from the table "trigger". All fields are combined with a logical 'AND'. */
-export interface trigger_bool_exp {_and?: (trigger_bool_exp[] | null),_not?: (trigger_bool_exp | null),_or?: (trigger_bool_exp[] | null),name?: (String_comparison_exp | null)}
+export interface trigger_bool_exp {_and?: (trigger_bool_exp[] | null),_not?: (trigger_bool_exp | null),_or?: (trigger_bool_exp[] | null),description?: (String_comparison_exp | null),name?: (String_comparison_exp | null)}
 
 
 /** Boolean expression to compare columns of type "trigger_enum". All fields are combined with logical 'AND'. */
@@ -1824,11 +1828,12 @@ export interface trigger_enum_comparison_exp {_eq?: (trigger_enum | null),_in?: 
 
 
 /** input type for inserting data into table "trigger" */
-export interface trigger_insert_input {name?: (Scalars['String'] | null)}
+export interface trigger_insert_input {description?: (Scalars['String'] | null),name?: (Scalars['String'] | null)}
 
 
 /** aggregate max on columns */
 export interface trigger_max_fieldsRequest{
+    description?: boolean | number
     name?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
@@ -1837,6 +1842,7 @@ export interface trigger_max_fieldsRequest{
 
 /** aggregate min on columns */
 export interface trigger_min_fieldsRequest{
+    description?: boolean | number
     name?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
@@ -1859,7 +1865,7 @@ export interface trigger_on_conflict {constraint: trigger_constraint,update_colu
 
 
 /** Ordering options when selecting data from "trigger". */
-export interface trigger_order_by {name?: (order_by | null)}
+export interface trigger_order_by {description?: (order_by | null),name?: (order_by | null)}
 
 
 /** primary key columns input for table: trigger */
@@ -1867,7 +1873,7 @@ export interface trigger_pk_columns_input {name: Scalars['String']}
 
 
 /** input type for updating data in table "trigger" */
-export interface trigger_set_input {name?: (Scalars['String'] | null)}
+export interface trigger_set_input {description?: (Scalars['String'] | null),name?: (Scalars['String'] | null)}
 
 
 /** columns and relationships of "users" */
@@ -2139,58 +2145,58 @@ export const isseverity_mutation_response = (obj?: { __typename?: any } | null):
 
 
 
+const subject_service_possibleTypes = ['subject_service']
+export const issubject_service = (obj?: { __typename?: any } | null): obj is subject_service => {
+  if (!obj?.__typename) throw new Error('__typename is missing in "issubject_service"')
+  return subject_service_possibleTypes.includes(obj.__typename)
+}
+
+
+
+const subject_service_aggregate_possibleTypes = ['subject_service_aggregate']
+export const issubject_service_aggregate = (obj?: { __typename?: any } | null): obj is subject_service_aggregate => {
+  if (!obj?.__typename) throw new Error('__typename is missing in "issubject_service_aggregate"')
+  return subject_service_aggregate_possibleTypes.includes(obj.__typename)
+}
+
+
+
+const subject_service_aggregate_fields_possibleTypes = ['subject_service_aggregate_fields']
+export const issubject_service_aggregate_fields = (obj?: { __typename?: any } | null): obj is subject_service_aggregate_fields => {
+  if (!obj?.__typename) throw new Error('__typename is missing in "issubject_service_aggregate_fields"')
+  return subject_service_aggregate_fields_possibleTypes.includes(obj.__typename)
+}
+
+
+
+const subject_service_max_fields_possibleTypes = ['subject_service_max_fields']
+export const issubject_service_max_fields = (obj?: { __typename?: any } | null): obj is subject_service_max_fields => {
+  if (!obj?.__typename) throw new Error('__typename is missing in "issubject_service_max_fields"')
+  return subject_service_max_fields_possibleTypes.includes(obj.__typename)
+}
+
+
+
+const subject_service_min_fields_possibleTypes = ['subject_service_min_fields']
+export const issubject_service_min_fields = (obj?: { __typename?: any } | null): obj is subject_service_min_fields => {
+  if (!obj?.__typename) throw new Error('__typename is missing in "issubject_service_min_fields"')
+  return subject_service_min_fields_possibleTypes.includes(obj.__typename)
+}
+
+
+
+const subject_service_mutation_response_possibleTypes = ['subject_service_mutation_response']
+export const issubject_service_mutation_response = (obj?: { __typename?: any } | null): obj is subject_service_mutation_response => {
+  if (!obj?.__typename) throw new Error('__typename is missing in "issubject_service_mutation_response"')
+  return subject_service_mutation_response_possibleTypes.includes(obj.__typename)
+}
+
+
+
 const subscription_root_possibleTypes = ['subscription_root']
 export const issubscription_root = (obj?: { __typename?: any } | null): obj is subscription_root => {
   if (!obj?.__typename) throw new Error('__typename is missing in "issubscription_root"')
   return subscription_root_possibleTypes.includes(obj.__typename)
-}
-
-
-
-const ticket_service_possibleTypes = ['ticket_service']
-export const isticket_service = (obj?: { __typename?: any } | null): obj is ticket_service => {
-  if (!obj?.__typename) throw new Error('__typename is missing in "isticket_service"')
-  return ticket_service_possibleTypes.includes(obj.__typename)
-}
-
-
-
-const ticket_service_aggregate_possibleTypes = ['ticket_service_aggregate']
-export const isticket_service_aggregate = (obj?: { __typename?: any } | null): obj is ticket_service_aggregate => {
-  if (!obj?.__typename) throw new Error('__typename is missing in "isticket_service_aggregate"')
-  return ticket_service_aggregate_possibleTypes.includes(obj.__typename)
-}
-
-
-
-const ticket_service_aggregate_fields_possibleTypes = ['ticket_service_aggregate_fields']
-export const isticket_service_aggregate_fields = (obj?: { __typename?: any } | null): obj is ticket_service_aggregate_fields => {
-  if (!obj?.__typename) throw new Error('__typename is missing in "isticket_service_aggregate_fields"')
-  return ticket_service_aggregate_fields_possibleTypes.includes(obj.__typename)
-}
-
-
-
-const ticket_service_max_fields_possibleTypes = ['ticket_service_max_fields']
-export const isticket_service_max_fields = (obj?: { __typename?: any } | null): obj is ticket_service_max_fields => {
-  if (!obj?.__typename) throw new Error('__typename is missing in "isticket_service_max_fields"')
-  return ticket_service_max_fields_possibleTypes.includes(obj.__typename)
-}
-
-
-
-const ticket_service_min_fields_possibleTypes = ['ticket_service_min_fields']
-export const isticket_service_min_fields = (obj?: { __typename?: any } | null): obj is ticket_service_min_fields => {
-  if (!obj?.__typename) throw new Error('__typename is missing in "isticket_service_min_fields"')
-  return ticket_service_min_fields_possibleTypes.includes(obj.__typename)
-}
-
-
-
-const ticket_service_mutation_response_possibleTypes = ['ticket_service_mutation_response']
-export const isticket_service_mutation_response = (obj?: { __typename?: any } | null): obj is ticket_service_mutation_response => {
-  if (!obj?.__typename) throw new Error('__typename is missing in "isticket_service_mutation_response"')
-  return ticket_service_mutation_response_possibleTypes.includes(obj.__typename)
 }
 
 
@@ -2318,13 +2324,13 @@ where: severity_bool_exp}) => severity_mutation_responsePromiseChain & {get: <R 
 /** delete single row from the table: "severity" */
 delete_severity_by_pk: ((args: {name: Scalars['String']}) => severityPromiseChain & {get: <R extends severityRequest>(request: R, defaultValue?: (FieldsSelection<severity, R> | undefined)) => Promise<(FieldsSelection<severity, R> | undefined)>}),
     
-/** delete data from the table: "ticket_service" */
-delete_ticket_service: ((args: {
+/** delete data from the table: "subject_service" */
+delete_subject_service: ((args: {
 /** filter the rows which have to be deleted */
-where: ticket_service_bool_exp}) => ticket_service_mutation_responsePromiseChain & {get: <R extends ticket_service_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<ticket_service_mutation_response, R> | undefined)) => Promise<(FieldsSelection<ticket_service_mutation_response, R> | undefined)>}),
+where: subject_service_bool_exp}) => subject_service_mutation_responsePromiseChain & {get: <R extends subject_service_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<subject_service_mutation_response, R> | undefined)) => Promise<(FieldsSelection<subject_service_mutation_response, R> | undefined)>}),
     
-/** delete single row from the table: "ticket_service" */
-delete_ticket_service_by_pk: ((args: {service_id: Scalars['uuid'],ticket_id: Scalars['uuid']}) => ticket_servicePromiseChain & {get: <R extends ticket_serviceRequest>(request: R, defaultValue?: (FieldsSelection<ticket_service, R> | undefined)) => Promise<(FieldsSelection<ticket_service, R> | undefined)>}),
+/** delete single row from the table: "subject_service" */
+delete_subject_service_by_pk: ((args: {service_id: Scalars['uuid'],subject_id: Scalars['uuid']}) => subject_servicePromiseChain & {get: <R extends subject_serviceRequest>(request: R, defaultValue?: (FieldsSelection<subject_service, R> | undefined)) => Promise<(FieldsSelection<subject_service, R> | undefined)>}),
     
 /** delete data from the table: "trigger" */
 delete_trigger: ((args: {
@@ -2390,19 +2396,19 @@ object: severity_insert_input,
 /** on conflict condition */
 on_conflict?: (severity_on_conflict | null)}) => severityPromiseChain & {get: <R extends severityRequest>(request: R, defaultValue?: (FieldsSelection<severity, R> | undefined)) => Promise<(FieldsSelection<severity, R> | undefined)>}),
     
-/** insert data into the table: "ticket_service" */
-insert_ticket_service: ((args: {
+/** insert data into the table: "subject_service" */
+insert_subject_service: ((args: {
 /** the rows to be inserted */
-objects: ticket_service_insert_input[],
+objects: subject_service_insert_input[],
 /** on conflict condition */
-on_conflict?: (ticket_service_on_conflict | null)}) => ticket_service_mutation_responsePromiseChain & {get: <R extends ticket_service_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<ticket_service_mutation_response, R> | undefined)) => Promise<(FieldsSelection<ticket_service_mutation_response, R> | undefined)>}),
+on_conflict?: (subject_service_on_conflict | null)}) => subject_service_mutation_responsePromiseChain & {get: <R extends subject_service_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<subject_service_mutation_response, R> | undefined)) => Promise<(FieldsSelection<subject_service_mutation_response, R> | undefined)>}),
     
-/** insert a single row into the table: "ticket_service" */
-insert_ticket_service_one: ((args: {
+/** insert a single row into the table: "subject_service" */
+insert_subject_service_one: ((args: {
 /** the row to be inserted */
-object: ticket_service_insert_input,
+object: subject_service_insert_input,
 /** on conflict condition */
-on_conflict?: (ticket_service_on_conflict | null)}) => ticket_servicePromiseChain & {get: <R extends ticket_serviceRequest>(request: R, defaultValue?: (FieldsSelection<ticket_service, R> | undefined)) => Promise<(FieldsSelection<ticket_service, R> | undefined)>}),
+on_conflict?: (subject_service_on_conflict | null)}) => subject_servicePromiseChain & {get: <R extends subject_serviceRequest>(request: R, defaultValue?: (FieldsSelection<subject_service, R> | undefined)) => Promise<(FieldsSelection<subject_service, R> | undefined)>}),
     
 /** insert data into the table: "trigger" */
 insert_trigger: ((args: {
@@ -2466,17 +2472,17 @@ update_severity_by_pk: ((args: {
 /** sets the columns of the filtered rows to the given values */
 _set?: (severity_set_input | null),pk_columns: severity_pk_columns_input}) => severityPromiseChain & {get: <R extends severityRequest>(request: R, defaultValue?: (FieldsSelection<severity, R> | undefined)) => Promise<(FieldsSelection<severity, R> | undefined)>}),
     
-/** update data of the table: "ticket_service" */
-update_ticket_service: ((args: {
+/** update data of the table: "subject_service" */
+update_subject_service: ((args: {
 /** sets the columns of the filtered rows to the given values */
-_set?: (ticket_service_set_input | null),
+_set?: (subject_service_set_input | null),
 /** filter the rows which have to be updated */
-where: ticket_service_bool_exp}) => ticket_service_mutation_responsePromiseChain & {get: <R extends ticket_service_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<ticket_service_mutation_response, R> | undefined)) => Promise<(FieldsSelection<ticket_service_mutation_response, R> | undefined)>}),
+where: subject_service_bool_exp}) => subject_service_mutation_responsePromiseChain & {get: <R extends subject_service_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<subject_service_mutation_response, R> | undefined)) => Promise<(FieldsSelection<subject_service_mutation_response, R> | undefined)>}),
     
-/** update single row of the table: "ticket_service" */
-update_ticket_service_by_pk: ((args: {
+/** update single row of the table: "subject_service" */
+update_subject_service_by_pk: ((args: {
 /** sets the columns of the filtered rows to the given values */
-_set?: (ticket_service_set_input | null),pk_columns: ticket_service_pk_columns_input}) => ticket_servicePromiseChain & {get: <R extends ticket_serviceRequest>(request: R, defaultValue?: (FieldsSelection<ticket_service, R> | undefined)) => Promise<(FieldsSelection<ticket_service, R> | undefined)>}),
+_set?: (subject_service_set_input | null),pk_columns: subject_service_pk_columns_input}) => subject_servicePromiseChain & {get: <R extends subject_serviceRequest>(request: R, defaultValue?: (FieldsSelection<subject_service, R> | undefined)) => Promise<(FieldsSelection<subject_service, R> | undefined)>}),
     
 /** update data of the table: "trigger" */
 update_trigger: ((args: {
@@ -2527,13 +2533,13 @@ where: severity_bool_exp}) => severity_mutation_responseObservableChain & {get: 
 /** delete single row from the table: "severity" */
 delete_severity_by_pk: ((args: {name: Scalars['String']}) => severityObservableChain & {get: <R extends severityRequest>(request: R, defaultValue?: (FieldsSelection<severity, R> | undefined)) => Observable<(FieldsSelection<severity, R> | undefined)>}),
     
-/** delete data from the table: "ticket_service" */
-delete_ticket_service: ((args: {
+/** delete data from the table: "subject_service" */
+delete_subject_service: ((args: {
 /** filter the rows which have to be deleted */
-where: ticket_service_bool_exp}) => ticket_service_mutation_responseObservableChain & {get: <R extends ticket_service_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<ticket_service_mutation_response, R> | undefined)) => Observable<(FieldsSelection<ticket_service_mutation_response, R> | undefined)>}),
+where: subject_service_bool_exp}) => subject_service_mutation_responseObservableChain & {get: <R extends subject_service_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<subject_service_mutation_response, R> | undefined)) => Observable<(FieldsSelection<subject_service_mutation_response, R> | undefined)>}),
     
-/** delete single row from the table: "ticket_service" */
-delete_ticket_service_by_pk: ((args: {service_id: Scalars['uuid'],ticket_id: Scalars['uuid']}) => ticket_serviceObservableChain & {get: <R extends ticket_serviceRequest>(request: R, defaultValue?: (FieldsSelection<ticket_service, R> | undefined)) => Observable<(FieldsSelection<ticket_service, R> | undefined)>}),
+/** delete single row from the table: "subject_service" */
+delete_subject_service_by_pk: ((args: {service_id: Scalars['uuid'],subject_id: Scalars['uuid']}) => subject_serviceObservableChain & {get: <R extends subject_serviceRequest>(request: R, defaultValue?: (FieldsSelection<subject_service, R> | undefined)) => Observable<(FieldsSelection<subject_service, R> | undefined)>}),
     
 /** delete data from the table: "trigger" */
 delete_trigger: ((args: {
@@ -2599,19 +2605,19 @@ object: severity_insert_input,
 /** on conflict condition */
 on_conflict?: (severity_on_conflict | null)}) => severityObservableChain & {get: <R extends severityRequest>(request: R, defaultValue?: (FieldsSelection<severity, R> | undefined)) => Observable<(FieldsSelection<severity, R> | undefined)>}),
     
-/** insert data into the table: "ticket_service" */
-insert_ticket_service: ((args: {
+/** insert data into the table: "subject_service" */
+insert_subject_service: ((args: {
 /** the rows to be inserted */
-objects: ticket_service_insert_input[],
+objects: subject_service_insert_input[],
 /** on conflict condition */
-on_conflict?: (ticket_service_on_conflict | null)}) => ticket_service_mutation_responseObservableChain & {get: <R extends ticket_service_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<ticket_service_mutation_response, R> | undefined)) => Observable<(FieldsSelection<ticket_service_mutation_response, R> | undefined)>}),
+on_conflict?: (subject_service_on_conflict | null)}) => subject_service_mutation_responseObservableChain & {get: <R extends subject_service_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<subject_service_mutation_response, R> | undefined)) => Observable<(FieldsSelection<subject_service_mutation_response, R> | undefined)>}),
     
-/** insert a single row into the table: "ticket_service" */
-insert_ticket_service_one: ((args: {
+/** insert a single row into the table: "subject_service" */
+insert_subject_service_one: ((args: {
 /** the row to be inserted */
-object: ticket_service_insert_input,
+object: subject_service_insert_input,
 /** on conflict condition */
-on_conflict?: (ticket_service_on_conflict | null)}) => ticket_serviceObservableChain & {get: <R extends ticket_serviceRequest>(request: R, defaultValue?: (FieldsSelection<ticket_service, R> | undefined)) => Observable<(FieldsSelection<ticket_service, R> | undefined)>}),
+on_conflict?: (subject_service_on_conflict | null)}) => subject_serviceObservableChain & {get: <R extends subject_serviceRequest>(request: R, defaultValue?: (FieldsSelection<subject_service, R> | undefined)) => Observable<(FieldsSelection<subject_service, R> | undefined)>}),
     
 /** insert data into the table: "trigger" */
 insert_trigger: ((args: {
@@ -2675,17 +2681,17 @@ update_severity_by_pk: ((args: {
 /** sets the columns of the filtered rows to the given values */
 _set?: (severity_set_input | null),pk_columns: severity_pk_columns_input}) => severityObservableChain & {get: <R extends severityRequest>(request: R, defaultValue?: (FieldsSelection<severity, R> | undefined)) => Observable<(FieldsSelection<severity, R> | undefined)>}),
     
-/** update data of the table: "ticket_service" */
-update_ticket_service: ((args: {
+/** update data of the table: "subject_service" */
+update_subject_service: ((args: {
 /** sets the columns of the filtered rows to the given values */
-_set?: (ticket_service_set_input | null),
+_set?: (subject_service_set_input | null),
 /** filter the rows which have to be updated */
-where: ticket_service_bool_exp}) => ticket_service_mutation_responseObservableChain & {get: <R extends ticket_service_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<ticket_service_mutation_response, R> | undefined)) => Observable<(FieldsSelection<ticket_service_mutation_response, R> | undefined)>}),
+where: subject_service_bool_exp}) => subject_service_mutation_responseObservableChain & {get: <R extends subject_service_mutation_responseRequest>(request: R, defaultValue?: (FieldsSelection<subject_service_mutation_response, R> | undefined)) => Observable<(FieldsSelection<subject_service_mutation_response, R> | undefined)>}),
     
-/** update single row of the table: "ticket_service" */
-update_ticket_service_by_pk: ((args: {
+/** update single row of the table: "subject_service" */
+update_subject_service_by_pk: ((args: {
 /** sets the columns of the filtered rows to the given values */
-_set?: (ticket_service_set_input | null),pk_columns: ticket_service_pk_columns_input}) => ticket_serviceObservableChain & {get: <R extends ticket_serviceRequest>(request: R, defaultValue?: (FieldsSelection<ticket_service, R> | undefined)) => Observable<(FieldsSelection<ticket_service, R> | undefined)>}),
+_set?: (subject_service_set_input | null),pk_columns: subject_service_pk_columns_input}) => subject_serviceObservableChain & {get: <R extends subject_serviceRequest>(request: R, defaultValue?: (FieldsSelection<subject_service, R> | undefined)) => Observable<(FieldsSelection<subject_service, R> | undefined)>}),
     
 /** update data of the table: "trigger" */
 update_trigger: ((args: {
@@ -2958,34 +2964,34 @@ where?: (severity_bool_exp | null)}) => severity_aggregatePromiseChain & {get: <
 /** fetch data from the table: "severity" using primary key columns */
 severity_by_pk: ((args: {name: Scalars['String']}) => severityPromiseChain & {get: <R extends severityRequest>(request: R, defaultValue?: (FieldsSelection<severity, R> | undefined)) => Promise<(FieldsSelection<severity, R> | undefined)>}),
     
-/** fetch data from the table: "ticket_service" */
-ticket_service: ((args?: {
+/** fetch data from the table: "subject_service" */
+subject_service: ((args?: {
 /** distinct select on columns */
-distinct_on?: (ticket_service_select_column[] | null),
+distinct_on?: (subject_service_select_column[] | null),
 /** limit the number of rows returned */
 limit?: (Scalars['Int'] | null),
 /** skip the first n rows. Use only with order_by */
 offset?: (Scalars['Int'] | null),
 /** sort the rows by one or more columns */
-order_by?: (ticket_service_order_by[] | null),
+order_by?: (subject_service_order_by[] | null),
 /** filter the rows returned */
-where?: (ticket_service_bool_exp | null)}) => {get: <R extends ticket_serviceRequest>(request: R, defaultValue?: FieldsSelection<ticket_service, R>[]) => Promise<FieldsSelection<ticket_service, R>[]>})&({get: <R extends ticket_serviceRequest>(request: R, defaultValue?: FieldsSelection<ticket_service, R>[]) => Promise<FieldsSelection<ticket_service, R>[]>}),
+where?: (subject_service_bool_exp | null)}) => {get: <R extends subject_serviceRequest>(request: R, defaultValue?: FieldsSelection<subject_service, R>[]) => Promise<FieldsSelection<subject_service, R>[]>})&({get: <R extends subject_serviceRequest>(request: R, defaultValue?: FieldsSelection<subject_service, R>[]) => Promise<FieldsSelection<subject_service, R>[]>}),
     
-/** fetch aggregated fields from the table: "ticket_service" */
-ticket_service_aggregate: ((args?: {
+/** fetch aggregated fields from the table: "subject_service" */
+subject_service_aggregate: ((args?: {
 /** distinct select on columns */
-distinct_on?: (ticket_service_select_column[] | null),
+distinct_on?: (subject_service_select_column[] | null),
 /** limit the number of rows returned */
 limit?: (Scalars['Int'] | null),
 /** skip the first n rows. Use only with order_by */
 offset?: (Scalars['Int'] | null),
 /** sort the rows by one or more columns */
-order_by?: (ticket_service_order_by[] | null),
+order_by?: (subject_service_order_by[] | null),
 /** filter the rows returned */
-where?: (ticket_service_bool_exp | null)}) => ticket_service_aggregatePromiseChain & {get: <R extends ticket_service_aggregateRequest>(request: R, defaultValue?: FieldsSelection<ticket_service_aggregate, R>) => Promise<FieldsSelection<ticket_service_aggregate, R>>})&(ticket_service_aggregatePromiseChain & {get: <R extends ticket_service_aggregateRequest>(request: R, defaultValue?: FieldsSelection<ticket_service_aggregate, R>) => Promise<FieldsSelection<ticket_service_aggregate, R>>}),
+where?: (subject_service_bool_exp | null)}) => subject_service_aggregatePromiseChain & {get: <R extends subject_service_aggregateRequest>(request: R, defaultValue?: FieldsSelection<subject_service_aggregate, R>) => Promise<FieldsSelection<subject_service_aggregate, R>>})&(subject_service_aggregatePromiseChain & {get: <R extends subject_service_aggregateRequest>(request: R, defaultValue?: FieldsSelection<subject_service_aggregate, R>) => Promise<FieldsSelection<subject_service_aggregate, R>>}),
     
-/** fetch data from the table: "ticket_service" using primary key columns */
-ticket_service_by_pk: ((args: {service_id: Scalars['uuid'],ticket_id: Scalars['uuid']}) => ticket_servicePromiseChain & {get: <R extends ticket_serviceRequest>(request: R, defaultValue?: (FieldsSelection<ticket_service, R> | undefined)) => Promise<(FieldsSelection<ticket_service, R> | undefined)>}),
+/** fetch data from the table: "subject_service" using primary key columns */
+subject_service_by_pk: ((args: {service_id: Scalars['uuid'],subject_id: Scalars['uuid']}) => subject_servicePromiseChain & {get: <R extends subject_serviceRequest>(request: R, defaultValue?: (FieldsSelection<subject_service, R> | undefined)) => Promise<(FieldsSelection<subject_service, R> | undefined)>}),
     
 /** fetch data from the table: "trigger" */
 trigger: ((args?: {
@@ -3161,34 +3167,34 @@ where?: (severity_bool_exp | null)}) => severity_aggregateObservableChain & {get
 /** fetch data from the table: "severity" using primary key columns */
 severity_by_pk: ((args: {name: Scalars['String']}) => severityObservableChain & {get: <R extends severityRequest>(request: R, defaultValue?: (FieldsSelection<severity, R> | undefined)) => Observable<(FieldsSelection<severity, R> | undefined)>}),
     
-/** fetch data from the table: "ticket_service" */
-ticket_service: ((args?: {
+/** fetch data from the table: "subject_service" */
+subject_service: ((args?: {
 /** distinct select on columns */
-distinct_on?: (ticket_service_select_column[] | null),
+distinct_on?: (subject_service_select_column[] | null),
 /** limit the number of rows returned */
 limit?: (Scalars['Int'] | null),
 /** skip the first n rows. Use only with order_by */
 offset?: (Scalars['Int'] | null),
 /** sort the rows by one or more columns */
-order_by?: (ticket_service_order_by[] | null),
+order_by?: (subject_service_order_by[] | null),
 /** filter the rows returned */
-where?: (ticket_service_bool_exp | null)}) => {get: <R extends ticket_serviceRequest>(request: R, defaultValue?: FieldsSelection<ticket_service, R>[]) => Observable<FieldsSelection<ticket_service, R>[]>})&({get: <R extends ticket_serviceRequest>(request: R, defaultValue?: FieldsSelection<ticket_service, R>[]) => Observable<FieldsSelection<ticket_service, R>[]>}),
+where?: (subject_service_bool_exp | null)}) => {get: <R extends subject_serviceRequest>(request: R, defaultValue?: FieldsSelection<subject_service, R>[]) => Observable<FieldsSelection<subject_service, R>[]>})&({get: <R extends subject_serviceRequest>(request: R, defaultValue?: FieldsSelection<subject_service, R>[]) => Observable<FieldsSelection<subject_service, R>[]>}),
     
-/** fetch aggregated fields from the table: "ticket_service" */
-ticket_service_aggregate: ((args?: {
+/** fetch aggregated fields from the table: "subject_service" */
+subject_service_aggregate: ((args?: {
 /** distinct select on columns */
-distinct_on?: (ticket_service_select_column[] | null),
+distinct_on?: (subject_service_select_column[] | null),
 /** limit the number of rows returned */
 limit?: (Scalars['Int'] | null),
 /** skip the first n rows. Use only with order_by */
 offset?: (Scalars['Int'] | null),
 /** sort the rows by one or more columns */
-order_by?: (ticket_service_order_by[] | null),
+order_by?: (subject_service_order_by[] | null),
 /** filter the rows returned */
-where?: (ticket_service_bool_exp | null)}) => ticket_service_aggregateObservableChain & {get: <R extends ticket_service_aggregateRequest>(request: R, defaultValue?: FieldsSelection<ticket_service_aggregate, R>) => Observable<FieldsSelection<ticket_service_aggregate, R>>})&(ticket_service_aggregateObservableChain & {get: <R extends ticket_service_aggregateRequest>(request: R, defaultValue?: FieldsSelection<ticket_service_aggregate, R>) => Observable<FieldsSelection<ticket_service_aggregate, R>>}),
+where?: (subject_service_bool_exp | null)}) => subject_service_aggregateObservableChain & {get: <R extends subject_service_aggregateRequest>(request: R, defaultValue?: FieldsSelection<subject_service_aggregate, R>) => Observable<FieldsSelection<subject_service_aggregate, R>>})&(subject_service_aggregateObservableChain & {get: <R extends subject_service_aggregateRequest>(request: R, defaultValue?: FieldsSelection<subject_service_aggregate, R>) => Observable<FieldsSelection<subject_service_aggregate, R>>}),
     
-/** fetch data from the table: "ticket_service" using primary key columns */
-ticket_service_by_pk: ((args: {service_id: Scalars['uuid'],ticket_id: Scalars['uuid']}) => ticket_serviceObservableChain & {get: <R extends ticket_serviceRequest>(request: R, defaultValue?: (FieldsSelection<ticket_service, R> | undefined)) => Observable<(FieldsSelection<ticket_service, R> | undefined)>}),
+/** fetch data from the table: "subject_service" using primary key columns */
+subject_service_by_pk: ((args: {service_id: Scalars['uuid'],subject_id: Scalars['uuid']}) => subject_serviceObservableChain & {get: <R extends subject_serviceRequest>(request: R, defaultValue?: (FieldsSelection<subject_service, R> | undefined)) => Observable<(FieldsSelection<subject_service, R> | undefined)>}),
     
 /** fetch data from the table: "trigger" */
 trigger: ((args?: {
@@ -3343,32 +3349,6 @@ returning: ({get: <R extends serviceRequest>(request: R, defaultValue?: FieldsSe
 
 /** columns and relationships of "services" */
 export interface servicesPromiseChain{
-    
-/** An array relationship */
-Tickets: ((args?: {
-/** distinct select on columns */
-distinct_on?: (ticket_service_select_column[] | null),
-/** limit the number of rows returned */
-limit?: (Scalars['Int'] | null),
-/** skip the first n rows. Use only with order_by */
-offset?: (Scalars['Int'] | null),
-/** sort the rows by one or more columns */
-order_by?: (ticket_service_order_by[] | null),
-/** filter the rows returned */
-where?: (ticket_service_bool_exp | null)}) => {get: <R extends ticket_serviceRequest>(request: R, defaultValue?: FieldsSelection<ticket_service, R>[]) => Promise<FieldsSelection<ticket_service, R>[]>})&({get: <R extends ticket_serviceRequest>(request: R, defaultValue?: FieldsSelection<ticket_service, R>[]) => Promise<FieldsSelection<ticket_service, R>[]>}),
-    
-/** An aggregate relationship */
-Tickets_aggregate: ((args?: {
-/** distinct select on columns */
-distinct_on?: (ticket_service_select_column[] | null),
-/** limit the number of rows returned */
-limit?: (Scalars['Int'] | null),
-/** skip the first n rows. Use only with order_by */
-offset?: (Scalars['Int'] | null),
-/** sort the rows by one or more columns */
-order_by?: (ticket_service_order_by[] | null),
-/** filter the rows returned */
-where?: (ticket_service_bool_exp | null)}) => ticket_service_aggregatePromiseChain & {get: <R extends ticket_service_aggregateRequest>(request: R, defaultValue?: FieldsSelection<ticket_service_aggregate, R>) => Promise<FieldsSelection<ticket_service_aggregate, R>>})&(ticket_service_aggregatePromiseChain & {get: <R extends ticket_service_aggregateRequest>(request: R, defaultValue?: FieldsSelection<ticket_service_aggregate, R>) => Promise<FieldsSelection<ticket_service_aggregate, R>>}),
     created_at: ({get: (request?: boolean|number, defaultValue?: Scalars['timestamptz']) => Promise<Scalars['timestamptz']>}),
     customer_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>}),
     email_channel: ({get: (request?: boolean|number, defaultValue?: Scalars['Boolean']) => Promise<Scalars['Boolean']>}),
@@ -3404,6 +3384,32 @@ where?: (notifications_bool_exp | null)}) => notifications_aggregatePromiseChain
     push_channel: ({get: (request?: boolean|number, defaultValue?: Scalars['Boolean']) => Promise<Scalars['Boolean']>}),
     service: ({get: (request?: boolean|number, defaultValue?: service_enum) => Promise<service_enum>}),
     sms_channel: ({get: (request?: boolean|number, defaultValue?: Scalars['Boolean']) => Promise<Scalars['Boolean']>}),
+    
+/** An array relationship */
+subjects: ((args?: {
+/** distinct select on columns */
+distinct_on?: (subject_service_select_column[] | null),
+/** limit the number of rows returned */
+limit?: (Scalars['Int'] | null),
+/** skip the first n rows. Use only with order_by */
+offset?: (Scalars['Int'] | null),
+/** sort the rows by one or more columns */
+order_by?: (subject_service_order_by[] | null),
+/** filter the rows returned */
+where?: (subject_service_bool_exp | null)}) => {get: <R extends subject_serviceRequest>(request: R, defaultValue?: FieldsSelection<subject_service, R>[]) => Promise<FieldsSelection<subject_service, R>[]>})&({get: <R extends subject_serviceRequest>(request: R, defaultValue?: FieldsSelection<subject_service, R>[]) => Promise<FieldsSelection<subject_service, R>[]>}),
+    
+/** An aggregate relationship */
+subjects_aggregate: ((args?: {
+/** distinct select on columns */
+distinct_on?: (subject_service_select_column[] | null),
+/** limit the number of rows returned */
+limit?: (Scalars['Int'] | null),
+/** skip the first n rows. Use only with order_by */
+offset?: (Scalars['Int'] | null),
+/** sort the rows by one or more columns */
+order_by?: (subject_service_order_by[] | null),
+/** filter the rows returned */
+where?: (subject_service_bool_exp | null)}) => subject_service_aggregatePromiseChain & {get: <R extends subject_service_aggregateRequest>(request: R, defaultValue?: FieldsSelection<subject_service_aggregate, R>) => Promise<FieldsSelection<subject_service_aggregate, R>>})&(subject_service_aggregatePromiseChain & {get: <R extends subject_service_aggregateRequest>(request: R, defaultValue?: FieldsSelection<subject_service_aggregate, R>) => Promise<FieldsSelection<subject_service_aggregate, R>>}),
     title: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Promise<Scalars['String']>}),
     updated_at: ({get: (request?: boolean|number, defaultValue?: Scalars['timestamptz']) => Promise<Scalars['timestamptz']>}),
     user_id: ({get: (request?: boolean|number, defaultValue?: Scalars['uuid']) => Promise<Scalars['uuid']>})
@@ -3412,32 +3418,6 @@ where?: (notifications_bool_exp | null)}) => notifications_aggregatePromiseChain
 
 /** columns and relationships of "services" */
 export interface servicesObservableChain{
-    
-/** An array relationship */
-Tickets: ((args?: {
-/** distinct select on columns */
-distinct_on?: (ticket_service_select_column[] | null),
-/** limit the number of rows returned */
-limit?: (Scalars['Int'] | null),
-/** skip the first n rows. Use only with order_by */
-offset?: (Scalars['Int'] | null),
-/** sort the rows by one or more columns */
-order_by?: (ticket_service_order_by[] | null),
-/** filter the rows returned */
-where?: (ticket_service_bool_exp | null)}) => {get: <R extends ticket_serviceRequest>(request: R, defaultValue?: FieldsSelection<ticket_service, R>[]) => Observable<FieldsSelection<ticket_service, R>[]>})&({get: <R extends ticket_serviceRequest>(request: R, defaultValue?: FieldsSelection<ticket_service, R>[]) => Observable<FieldsSelection<ticket_service, R>[]>}),
-    
-/** An aggregate relationship */
-Tickets_aggregate: ((args?: {
-/** distinct select on columns */
-distinct_on?: (ticket_service_select_column[] | null),
-/** limit the number of rows returned */
-limit?: (Scalars['Int'] | null),
-/** skip the first n rows. Use only with order_by */
-offset?: (Scalars['Int'] | null),
-/** sort the rows by one or more columns */
-order_by?: (ticket_service_order_by[] | null),
-/** filter the rows returned */
-where?: (ticket_service_bool_exp | null)}) => ticket_service_aggregateObservableChain & {get: <R extends ticket_service_aggregateRequest>(request: R, defaultValue?: FieldsSelection<ticket_service_aggregate, R>) => Observable<FieldsSelection<ticket_service_aggregate, R>>})&(ticket_service_aggregateObservableChain & {get: <R extends ticket_service_aggregateRequest>(request: R, defaultValue?: FieldsSelection<ticket_service_aggregate, R>) => Observable<FieldsSelection<ticket_service_aggregate, R>>}),
     created_at: ({get: (request?: boolean|number, defaultValue?: Scalars['timestamptz']) => Observable<Scalars['timestamptz']>}),
     customer_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>}),
     email_channel: ({get: (request?: boolean|number, defaultValue?: Scalars['Boolean']) => Observable<Scalars['Boolean']>}),
@@ -3473,6 +3453,32 @@ where?: (notifications_bool_exp | null)}) => notifications_aggregateObservableCh
     push_channel: ({get: (request?: boolean|number, defaultValue?: Scalars['Boolean']) => Observable<Scalars['Boolean']>}),
     service: ({get: (request?: boolean|number, defaultValue?: service_enum) => Observable<service_enum>}),
     sms_channel: ({get: (request?: boolean|number, defaultValue?: Scalars['Boolean']) => Observable<Scalars['Boolean']>}),
+    
+/** An array relationship */
+subjects: ((args?: {
+/** distinct select on columns */
+distinct_on?: (subject_service_select_column[] | null),
+/** limit the number of rows returned */
+limit?: (Scalars['Int'] | null),
+/** skip the first n rows. Use only with order_by */
+offset?: (Scalars['Int'] | null),
+/** sort the rows by one or more columns */
+order_by?: (subject_service_order_by[] | null),
+/** filter the rows returned */
+where?: (subject_service_bool_exp | null)}) => {get: <R extends subject_serviceRequest>(request: R, defaultValue?: FieldsSelection<subject_service, R>[]) => Observable<FieldsSelection<subject_service, R>[]>})&({get: <R extends subject_serviceRequest>(request: R, defaultValue?: FieldsSelection<subject_service, R>[]) => Observable<FieldsSelection<subject_service, R>[]>}),
+    
+/** An aggregate relationship */
+subjects_aggregate: ((args?: {
+/** distinct select on columns */
+distinct_on?: (subject_service_select_column[] | null),
+/** limit the number of rows returned */
+limit?: (Scalars['Int'] | null),
+/** skip the first n rows. Use only with order_by */
+offset?: (Scalars['Int'] | null),
+/** sort the rows by one or more columns */
+order_by?: (subject_service_order_by[] | null),
+/** filter the rows returned */
+where?: (subject_service_bool_exp | null)}) => subject_service_aggregateObservableChain & {get: <R extends subject_service_aggregateRequest>(request: R, defaultValue?: FieldsSelection<subject_service_aggregate, R>) => Observable<FieldsSelection<subject_service_aggregate, R>>})&(subject_service_aggregateObservableChain & {get: <R extends subject_service_aggregateRequest>(request: R, defaultValue?: FieldsSelection<subject_service_aggregate, R>) => Observable<FieldsSelection<subject_service_aggregate, R>>}),
     title: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Observable<Scalars['String']>}),
     updated_at: ({get: (request?: boolean|number, defaultValue?: Scalars['timestamptz']) => Observable<Scalars['timestamptz']>}),
     user_id: ({get: (request?: boolean|number, defaultValue?: Scalars['uuid']) => Observable<Scalars['uuid']>})
@@ -3672,6 +3678,112 @@ affected_rows: ({get: (request?: boolean|number, defaultValue?: Scalars['Int']) 
 returning: ({get: <R extends severityRequest>(request: R, defaultValue?: FieldsSelection<severity, R>[]) => Observable<FieldsSelection<severity, R>[]>})
 }
 
+
+/** columns and relationships of "subject_service" */
+export interface subject_servicePromiseChain{
+    
+/** An object relationship */
+notifications: (notificationsPromiseChain & {get: <R extends notificationsRequest>(request: R, defaultValue?: (FieldsSelection<notifications, R> | undefined)) => Promise<(FieldsSelection<notifications, R> | undefined)>}),
+    
+/** An object relationship */
+service: (servicesPromiseChain & {get: <R extends servicesRequest>(request: R, defaultValue?: (FieldsSelection<services, R> | undefined)) => Promise<(FieldsSelection<services, R> | undefined)>}),
+    service_id: ({get: (request?: boolean|number, defaultValue?: Scalars['uuid']) => Promise<Scalars['uuid']>}),
+    subject_id: ({get: (request?: boolean|number, defaultValue?: Scalars['uuid']) => Promise<Scalars['uuid']>})
+}
+
+
+/** columns and relationships of "subject_service" */
+export interface subject_serviceObservableChain{
+    
+/** An object relationship */
+notifications: (notificationsObservableChain & {get: <R extends notificationsRequest>(request: R, defaultValue?: (FieldsSelection<notifications, R> | undefined)) => Observable<(FieldsSelection<notifications, R> | undefined)>}),
+    
+/** An object relationship */
+service: (servicesObservableChain & {get: <R extends servicesRequest>(request: R, defaultValue?: (FieldsSelection<services, R> | undefined)) => Observable<(FieldsSelection<services, R> | undefined)>}),
+    service_id: ({get: (request?: boolean|number, defaultValue?: Scalars['uuid']) => Observable<Scalars['uuid']>}),
+    subject_id: ({get: (request?: boolean|number, defaultValue?: Scalars['uuid']) => Observable<Scalars['uuid']>})
+}
+
+
+/** aggregated selection of "subject_service" */
+export interface subject_service_aggregatePromiseChain{
+    aggregate: (subject_service_aggregate_fieldsPromiseChain & {get: <R extends subject_service_aggregate_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<subject_service_aggregate_fields, R> | undefined)) => Promise<(FieldsSelection<subject_service_aggregate_fields, R> | undefined)>}),
+    nodes: ({get: <R extends subject_serviceRequest>(request: R, defaultValue?: FieldsSelection<subject_service, R>[]) => Promise<FieldsSelection<subject_service, R>[]>})
+}
+
+
+/** aggregated selection of "subject_service" */
+export interface subject_service_aggregateObservableChain{
+    aggregate: (subject_service_aggregate_fieldsObservableChain & {get: <R extends subject_service_aggregate_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<subject_service_aggregate_fields, R> | undefined)) => Observable<(FieldsSelection<subject_service_aggregate_fields, R> | undefined)>}),
+    nodes: ({get: <R extends subject_serviceRequest>(request: R, defaultValue?: FieldsSelection<subject_service, R>[]) => Observable<FieldsSelection<subject_service, R>[]>})
+}
+
+
+/** aggregate fields of "subject_service" */
+export interface subject_service_aggregate_fieldsPromiseChain{
+    count: ((args?: {columns?: (subject_service_select_column[] | null),distinct?: (Scalars['Boolean'] | null)}) => {get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Promise<Scalars['Int']>})&({get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Promise<Scalars['Int']>}),
+    max: (subject_service_max_fieldsPromiseChain & {get: <R extends subject_service_max_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<subject_service_max_fields, R> | undefined)) => Promise<(FieldsSelection<subject_service_max_fields, R> | undefined)>}),
+    min: (subject_service_min_fieldsPromiseChain & {get: <R extends subject_service_min_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<subject_service_min_fields, R> | undefined)) => Promise<(FieldsSelection<subject_service_min_fields, R> | undefined)>})
+}
+
+
+/** aggregate fields of "subject_service" */
+export interface subject_service_aggregate_fieldsObservableChain{
+    count: ((args?: {columns?: (subject_service_select_column[] | null),distinct?: (Scalars['Boolean'] | null)}) => {get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Observable<Scalars['Int']>})&({get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Observable<Scalars['Int']>}),
+    max: (subject_service_max_fieldsObservableChain & {get: <R extends subject_service_max_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<subject_service_max_fields, R> | undefined)) => Observable<(FieldsSelection<subject_service_max_fields, R> | undefined)>}),
+    min: (subject_service_min_fieldsObservableChain & {get: <R extends subject_service_min_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<subject_service_min_fields, R> | undefined)) => Observable<(FieldsSelection<subject_service_min_fields, R> | undefined)>})
+}
+
+
+/** aggregate max on columns */
+export interface subject_service_max_fieldsPromiseChain{
+    service_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>}),
+    subject_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>})
+}
+
+
+/** aggregate max on columns */
+export interface subject_service_max_fieldsObservableChain{
+    service_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>}),
+    subject_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>})
+}
+
+
+/** aggregate min on columns */
+export interface subject_service_min_fieldsPromiseChain{
+    service_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>}),
+    subject_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>})
+}
+
+
+/** aggregate min on columns */
+export interface subject_service_min_fieldsObservableChain{
+    service_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>}),
+    subject_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>})
+}
+
+
+/** response of any mutation on the table "subject_service" */
+export interface subject_service_mutation_responsePromiseChain{
+    
+/** number of rows affected by the mutation */
+affected_rows: ({get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Promise<Scalars['Int']>}),
+    
+/** data from the rows affected by the mutation */
+returning: ({get: <R extends subject_serviceRequest>(request: R, defaultValue?: FieldsSelection<subject_service, R>[]) => Promise<FieldsSelection<subject_service, R>[]>})
+}
+
+
+/** response of any mutation on the table "subject_service" */
+export interface subject_service_mutation_responseObservableChain{
+    
+/** number of rows affected by the mutation */
+affected_rows: ({get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Observable<Scalars['Int']>}),
+    
+/** data from the rows affected by the mutation */
+returning: ({get: <R extends subject_serviceRequest>(request: R, defaultValue?: FieldsSelection<subject_service, R>[]) => Observable<FieldsSelection<subject_service, R>[]>})
+}
+
 export interface subscription_rootPromiseChain{
     
 /** fetch data from the table: "notifications" */
@@ -3790,34 +3902,34 @@ where?: (severity_bool_exp | null)}) => severity_aggregatePromiseChain & {get: <
 /** fetch data from the table: "severity" using primary key columns */
 severity_by_pk: ((args: {name: Scalars['String']}) => severityPromiseChain & {get: <R extends severityRequest>(request: R, defaultValue?: (FieldsSelection<severity, R> | undefined)) => Promise<(FieldsSelection<severity, R> | undefined)>}),
     
-/** fetch data from the table: "ticket_service" */
-ticket_service: ((args?: {
+/** fetch data from the table: "subject_service" */
+subject_service: ((args?: {
 /** distinct select on columns */
-distinct_on?: (ticket_service_select_column[] | null),
+distinct_on?: (subject_service_select_column[] | null),
 /** limit the number of rows returned */
 limit?: (Scalars['Int'] | null),
 /** skip the first n rows. Use only with order_by */
 offset?: (Scalars['Int'] | null),
 /** sort the rows by one or more columns */
-order_by?: (ticket_service_order_by[] | null),
+order_by?: (subject_service_order_by[] | null),
 /** filter the rows returned */
-where?: (ticket_service_bool_exp | null)}) => {get: <R extends ticket_serviceRequest>(request: R, defaultValue?: FieldsSelection<ticket_service, R>[]) => Promise<FieldsSelection<ticket_service, R>[]>})&({get: <R extends ticket_serviceRequest>(request: R, defaultValue?: FieldsSelection<ticket_service, R>[]) => Promise<FieldsSelection<ticket_service, R>[]>}),
+where?: (subject_service_bool_exp | null)}) => {get: <R extends subject_serviceRequest>(request: R, defaultValue?: FieldsSelection<subject_service, R>[]) => Promise<FieldsSelection<subject_service, R>[]>})&({get: <R extends subject_serviceRequest>(request: R, defaultValue?: FieldsSelection<subject_service, R>[]) => Promise<FieldsSelection<subject_service, R>[]>}),
     
-/** fetch aggregated fields from the table: "ticket_service" */
-ticket_service_aggregate: ((args?: {
+/** fetch aggregated fields from the table: "subject_service" */
+subject_service_aggregate: ((args?: {
 /** distinct select on columns */
-distinct_on?: (ticket_service_select_column[] | null),
+distinct_on?: (subject_service_select_column[] | null),
 /** limit the number of rows returned */
 limit?: (Scalars['Int'] | null),
 /** skip the first n rows. Use only with order_by */
 offset?: (Scalars['Int'] | null),
 /** sort the rows by one or more columns */
-order_by?: (ticket_service_order_by[] | null),
+order_by?: (subject_service_order_by[] | null),
 /** filter the rows returned */
-where?: (ticket_service_bool_exp | null)}) => ticket_service_aggregatePromiseChain & {get: <R extends ticket_service_aggregateRequest>(request: R, defaultValue?: FieldsSelection<ticket_service_aggregate, R>) => Promise<FieldsSelection<ticket_service_aggregate, R>>})&(ticket_service_aggregatePromiseChain & {get: <R extends ticket_service_aggregateRequest>(request: R, defaultValue?: FieldsSelection<ticket_service_aggregate, R>) => Promise<FieldsSelection<ticket_service_aggregate, R>>}),
+where?: (subject_service_bool_exp | null)}) => subject_service_aggregatePromiseChain & {get: <R extends subject_service_aggregateRequest>(request: R, defaultValue?: FieldsSelection<subject_service_aggregate, R>) => Promise<FieldsSelection<subject_service_aggregate, R>>})&(subject_service_aggregatePromiseChain & {get: <R extends subject_service_aggregateRequest>(request: R, defaultValue?: FieldsSelection<subject_service_aggregate, R>) => Promise<FieldsSelection<subject_service_aggregate, R>>}),
     
-/** fetch data from the table: "ticket_service" using primary key columns */
-ticket_service_by_pk: ((args: {service_id: Scalars['uuid'],ticket_id: Scalars['uuid']}) => ticket_servicePromiseChain & {get: <R extends ticket_serviceRequest>(request: R, defaultValue?: (FieldsSelection<ticket_service, R> | undefined)) => Promise<(FieldsSelection<ticket_service, R> | undefined)>}),
+/** fetch data from the table: "subject_service" using primary key columns */
+subject_service_by_pk: ((args: {service_id: Scalars['uuid'],subject_id: Scalars['uuid']}) => subject_servicePromiseChain & {get: <R extends subject_serviceRequest>(request: R, defaultValue?: (FieldsSelection<subject_service, R> | undefined)) => Promise<(FieldsSelection<subject_service, R> | undefined)>}),
     
 /** fetch data from the table: "trigger" */
 trigger: ((args?: {
@@ -3993,34 +4105,34 @@ where?: (severity_bool_exp | null)}) => severity_aggregateObservableChain & {get
 /** fetch data from the table: "severity" using primary key columns */
 severity_by_pk: ((args: {name: Scalars['String']}) => severityObservableChain & {get: <R extends severityRequest>(request: R, defaultValue?: (FieldsSelection<severity, R> | undefined)) => Observable<(FieldsSelection<severity, R> | undefined)>}),
     
-/** fetch data from the table: "ticket_service" */
-ticket_service: ((args?: {
+/** fetch data from the table: "subject_service" */
+subject_service: ((args?: {
 /** distinct select on columns */
-distinct_on?: (ticket_service_select_column[] | null),
+distinct_on?: (subject_service_select_column[] | null),
 /** limit the number of rows returned */
 limit?: (Scalars['Int'] | null),
 /** skip the first n rows. Use only with order_by */
 offset?: (Scalars['Int'] | null),
 /** sort the rows by one or more columns */
-order_by?: (ticket_service_order_by[] | null),
+order_by?: (subject_service_order_by[] | null),
 /** filter the rows returned */
-where?: (ticket_service_bool_exp | null)}) => {get: <R extends ticket_serviceRequest>(request: R, defaultValue?: FieldsSelection<ticket_service, R>[]) => Observable<FieldsSelection<ticket_service, R>[]>})&({get: <R extends ticket_serviceRequest>(request: R, defaultValue?: FieldsSelection<ticket_service, R>[]) => Observable<FieldsSelection<ticket_service, R>[]>}),
+where?: (subject_service_bool_exp | null)}) => {get: <R extends subject_serviceRequest>(request: R, defaultValue?: FieldsSelection<subject_service, R>[]) => Observable<FieldsSelection<subject_service, R>[]>})&({get: <R extends subject_serviceRequest>(request: R, defaultValue?: FieldsSelection<subject_service, R>[]) => Observable<FieldsSelection<subject_service, R>[]>}),
     
-/** fetch aggregated fields from the table: "ticket_service" */
-ticket_service_aggregate: ((args?: {
+/** fetch aggregated fields from the table: "subject_service" */
+subject_service_aggregate: ((args?: {
 /** distinct select on columns */
-distinct_on?: (ticket_service_select_column[] | null),
+distinct_on?: (subject_service_select_column[] | null),
 /** limit the number of rows returned */
 limit?: (Scalars['Int'] | null),
 /** skip the first n rows. Use only with order_by */
 offset?: (Scalars['Int'] | null),
 /** sort the rows by one or more columns */
-order_by?: (ticket_service_order_by[] | null),
+order_by?: (subject_service_order_by[] | null),
 /** filter the rows returned */
-where?: (ticket_service_bool_exp | null)}) => ticket_service_aggregateObservableChain & {get: <R extends ticket_service_aggregateRequest>(request: R, defaultValue?: FieldsSelection<ticket_service_aggregate, R>) => Observable<FieldsSelection<ticket_service_aggregate, R>>})&(ticket_service_aggregateObservableChain & {get: <R extends ticket_service_aggregateRequest>(request: R, defaultValue?: FieldsSelection<ticket_service_aggregate, R>) => Observable<FieldsSelection<ticket_service_aggregate, R>>}),
+where?: (subject_service_bool_exp | null)}) => subject_service_aggregateObservableChain & {get: <R extends subject_service_aggregateRequest>(request: R, defaultValue?: FieldsSelection<subject_service_aggregate, R>) => Observable<FieldsSelection<subject_service_aggregate, R>>})&(subject_service_aggregateObservableChain & {get: <R extends subject_service_aggregateRequest>(request: R, defaultValue?: FieldsSelection<subject_service_aggregate, R>) => Observable<FieldsSelection<subject_service_aggregate, R>>}),
     
-/** fetch data from the table: "ticket_service" using primary key columns */
-ticket_service_by_pk: ((args: {service_id: Scalars['uuid'],ticket_id: Scalars['uuid']}) => ticket_serviceObservableChain & {get: <R extends ticket_serviceRequest>(request: R, defaultValue?: (FieldsSelection<ticket_service, R> | undefined)) => Observable<(FieldsSelection<ticket_service, R> | undefined)>}),
+/** fetch data from the table: "subject_service" using primary key columns */
+subject_service_by_pk: ((args: {service_id: Scalars['uuid'],subject_id: Scalars['uuid']}) => subject_serviceObservableChain & {get: <R extends subject_serviceRequest>(request: R, defaultValue?: (FieldsSelection<subject_service, R> | undefined)) => Observable<(FieldsSelection<subject_service, R> | undefined)>}),
     
 /** fetch data from the table: "trigger" */
 trigger: ((args?: {
@@ -4079,120 +4191,16 @@ where?: (users_bool_exp | null)}) => users_aggregateObservableChain & {get: <R e
 }
 
 
-/** columns and relationships of "ticket_service" */
-export interface ticket_servicePromiseChain{
-    
-/** An object relationship */
-Notifications: (notificationsPromiseChain & {get: <R extends notificationsRequest>(request: R, defaultValue?: (FieldsSelection<notifications, R> | undefined)) => Promise<(FieldsSelection<notifications, R> | undefined)>}),
-    
-/** An object relationship */
-Service: (servicesPromiseChain & {get: <R extends servicesRequest>(request: R, defaultValue?: (FieldsSelection<services, R> | undefined)) => Promise<(FieldsSelection<services, R> | undefined)>}),
-    service_id: ({get: (request?: boolean|number, defaultValue?: Scalars['uuid']) => Promise<Scalars['uuid']>}),
-    ticket_id: ({get: (request?: boolean|number, defaultValue?: Scalars['uuid']) => Promise<Scalars['uuid']>})
-}
-
-
-/** columns and relationships of "ticket_service" */
-export interface ticket_serviceObservableChain{
-    
-/** An object relationship */
-Notifications: (notificationsObservableChain & {get: <R extends notificationsRequest>(request: R, defaultValue?: (FieldsSelection<notifications, R> | undefined)) => Observable<(FieldsSelection<notifications, R> | undefined)>}),
-    
-/** An object relationship */
-Service: (servicesObservableChain & {get: <R extends servicesRequest>(request: R, defaultValue?: (FieldsSelection<services, R> | undefined)) => Observable<(FieldsSelection<services, R> | undefined)>}),
-    service_id: ({get: (request?: boolean|number, defaultValue?: Scalars['uuid']) => Observable<Scalars['uuid']>}),
-    ticket_id: ({get: (request?: boolean|number, defaultValue?: Scalars['uuid']) => Observable<Scalars['uuid']>})
-}
-
-
-/** aggregated selection of "ticket_service" */
-export interface ticket_service_aggregatePromiseChain{
-    aggregate: (ticket_service_aggregate_fieldsPromiseChain & {get: <R extends ticket_service_aggregate_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<ticket_service_aggregate_fields, R> | undefined)) => Promise<(FieldsSelection<ticket_service_aggregate_fields, R> | undefined)>}),
-    nodes: ({get: <R extends ticket_serviceRequest>(request: R, defaultValue?: FieldsSelection<ticket_service, R>[]) => Promise<FieldsSelection<ticket_service, R>[]>})
-}
-
-
-/** aggregated selection of "ticket_service" */
-export interface ticket_service_aggregateObservableChain{
-    aggregate: (ticket_service_aggregate_fieldsObservableChain & {get: <R extends ticket_service_aggregate_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<ticket_service_aggregate_fields, R> | undefined)) => Observable<(FieldsSelection<ticket_service_aggregate_fields, R> | undefined)>}),
-    nodes: ({get: <R extends ticket_serviceRequest>(request: R, defaultValue?: FieldsSelection<ticket_service, R>[]) => Observable<FieldsSelection<ticket_service, R>[]>})
-}
-
-
-/** aggregate fields of "ticket_service" */
-export interface ticket_service_aggregate_fieldsPromiseChain{
-    count: ((args?: {columns?: (ticket_service_select_column[] | null),distinct?: (Scalars['Boolean'] | null)}) => {get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Promise<Scalars['Int']>})&({get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Promise<Scalars['Int']>}),
-    max: (ticket_service_max_fieldsPromiseChain & {get: <R extends ticket_service_max_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<ticket_service_max_fields, R> | undefined)) => Promise<(FieldsSelection<ticket_service_max_fields, R> | undefined)>}),
-    min: (ticket_service_min_fieldsPromiseChain & {get: <R extends ticket_service_min_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<ticket_service_min_fields, R> | undefined)) => Promise<(FieldsSelection<ticket_service_min_fields, R> | undefined)>})
-}
-
-
-/** aggregate fields of "ticket_service" */
-export interface ticket_service_aggregate_fieldsObservableChain{
-    count: ((args?: {columns?: (ticket_service_select_column[] | null),distinct?: (Scalars['Boolean'] | null)}) => {get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Observable<Scalars['Int']>})&({get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Observable<Scalars['Int']>}),
-    max: (ticket_service_max_fieldsObservableChain & {get: <R extends ticket_service_max_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<ticket_service_max_fields, R> | undefined)) => Observable<(FieldsSelection<ticket_service_max_fields, R> | undefined)>}),
-    min: (ticket_service_min_fieldsObservableChain & {get: <R extends ticket_service_min_fieldsRequest>(request: R, defaultValue?: (FieldsSelection<ticket_service_min_fields, R> | undefined)) => Observable<(FieldsSelection<ticket_service_min_fields, R> | undefined)>})
-}
-
-
-/** aggregate max on columns */
-export interface ticket_service_max_fieldsPromiseChain{
-    service_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>}),
-    ticket_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>})
-}
-
-
-/** aggregate max on columns */
-export interface ticket_service_max_fieldsObservableChain{
-    service_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>}),
-    ticket_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>})
-}
-
-
-/** aggregate min on columns */
-export interface ticket_service_min_fieldsPromiseChain{
-    service_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>}),
-    ticket_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Promise<(Scalars['uuid'] | undefined)>})
-}
-
-
-/** aggregate min on columns */
-export interface ticket_service_min_fieldsObservableChain{
-    service_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>}),
-    ticket_id: ({get: (request?: boolean|number, defaultValue?: (Scalars['uuid'] | undefined)) => Observable<(Scalars['uuid'] | undefined)>})
-}
-
-
-/** response of any mutation on the table "ticket_service" */
-export interface ticket_service_mutation_responsePromiseChain{
-    
-/** number of rows affected by the mutation */
-affected_rows: ({get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Promise<Scalars['Int']>}),
-    
-/** data from the rows affected by the mutation */
-returning: ({get: <R extends ticket_serviceRequest>(request: R, defaultValue?: FieldsSelection<ticket_service, R>[]) => Promise<FieldsSelection<ticket_service, R>[]>})
-}
-
-
-/** response of any mutation on the table "ticket_service" */
-export interface ticket_service_mutation_responseObservableChain{
-    
-/** number of rows affected by the mutation */
-affected_rows: ({get: (request?: boolean|number, defaultValue?: Scalars['Int']) => Observable<Scalars['Int']>}),
-    
-/** data from the rows affected by the mutation */
-returning: ({get: <R extends ticket_serviceRequest>(request: R, defaultValue?: FieldsSelection<ticket_service, R>[]) => Observable<FieldsSelection<ticket_service, R>[]>})
-}
-
-
 /** columns and relationships of "trigger" */
 export interface triggerPromiseChain{
+    description: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Promise<Scalars['String']>}),
     name: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Promise<Scalars['String']>})
 }
 
 
 /** columns and relationships of "trigger" */
 export interface triggerObservableChain{
+    description: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Observable<Scalars['String']>}),
     name: ({get: (request?: boolean|number, defaultValue?: Scalars['String']) => Observable<Scalars['String']>})
 }
 
@@ -4229,24 +4237,28 @@ export interface trigger_aggregate_fieldsObservableChain{
 
 /** aggregate max on columns */
 export interface trigger_max_fieldsPromiseChain{
+    description: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Promise<(Scalars['String'] | undefined)>}),
     name: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Promise<(Scalars['String'] | undefined)>})
 }
 
 
 /** aggregate max on columns */
 export interface trigger_max_fieldsObservableChain{
+    description: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Observable<(Scalars['String'] | undefined)>}),
     name: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Observable<(Scalars['String'] | undefined)>})
 }
 
 
 /** aggregate min on columns */
 export interface trigger_min_fieldsPromiseChain{
+    description: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Promise<(Scalars['String'] | undefined)>}),
     name: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Promise<(Scalars['String'] | undefined)>})
 }
 
 
 /** aggregate min on columns */
 export interface trigger_min_fieldsObservableChain{
+    description: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Observable<(Scalars['String'] | undefined)>}),
     name: ({get: (request?: boolean|number, defaultValue?: (Scalars['String'] | undefined)) => Observable<(Scalars['String'] | undefined)>})
 }
 

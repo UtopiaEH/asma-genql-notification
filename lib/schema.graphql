@@ -136,17 +136,17 @@ type mutation_root {
   delete_severity_by_pk(name: String!): severity
 
   """
-  delete data from the table: "ticket_service"
+  delete data from the table: "subject_service"
   """
-  delete_ticket_service(
+  delete_subject_service(
     """filter the rows which have to be deleted"""
-    where: ticket_service_bool_exp!
-  ): ticket_service_mutation_response
+    where: subject_service_bool_exp!
+  ): subject_service_mutation_response
 
   """
-  delete single row from the table: "ticket_service"
+  delete single row from the table: "subject_service"
   """
-  delete_ticket_service_by_pk(service_id: uuid!, ticket_id: uuid!): ticket_service
+  delete_subject_service_by_pk(service_id: uuid!, subject_id: uuid!): subject_service
 
   """
   delete data from the table: "trigger"
@@ -250,26 +250,26 @@ type mutation_root {
   ): severity
 
   """
-  insert data into the table: "ticket_service"
+  insert data into the table: "subject_service"
   """
-  insert_ticket_service(
+  insert_subject_service(
     """the rows to be inserted"""
-    objects: [ticket_service_insert_input!]!
+    objects: [subject_service_insert_input!]!
 
     """on conflict condition"""
-    on_conflict: ticket_service_on_conflict
-  ): ticket_service_mutation_response
+    on_conflict: subject_service_on_conflict
+  ): subject_service_mutation_response
 
   """
-  insert a single row into the table: "ticket_service"
+  insert a single row into the table: "subject_service"
   """
-  insert_ticket_service_one(
+  insert_subject_service_one(
     """the row to be inserted"""
-    object: ticket_service_insert_input!
+    object: subject_service_insert_input!
 
     """on conflict condition"""
-    on_conflict: ticket_service_on_conflict
-  ): ticket_service
+    on_conflict: subject_service_on_conflict
+  ): subject_service
 
   """
   insert data into the table: "trigger"
@@ -374,24 +374,24 @@ type mutation_root {
   ): severity
 
   """
-  update data of the table: "ticket_service"
+  update data of the table: "subject_service"
   """
-  update_ticket_service(
+  update_subject_service(
     """sets the columns of the filtered rows to the given values"""
-    _set: ticket_service_set_input
+    _set: subject_service_set_input
 
     """filter the rows which have to be updated"""
-    where: ticket_service_bool_exp!
-  ): ticket_service_mutation_response
+    where: subject_service_bool_exp!
+  ): subject_service_mutation_response
 
   """
-  update single row of the table: "ticket_service"
+  update single row of the table: "subject_service"
   """
-  update_ticket_service_by_pk(
+  update_subject_service_by_pk(
     """sets the columns of the filtered rows to the given values"""
-    _set: ticket_service_set_input
-    pk_columns: ticket_service_pk_columns_input!
-  ): ticket_service
+    _set: subject_service_set_input
+    pk_columns: subject_service_pk_columns_input!
+  ): subject_service
 
   """
   update data of the table: "trigger"
@@ -895,11 +895,11 @@ type query_root {
   severity_by_pk(name: String!): severity
 
   """
-  fetch data from the table: "ticket_service"
+  fetch data from the table: "subject_service"
   """
-  ticket_service(
+  subject_service(
     """distinct select on columns"""
-    distinct_on: [ticket_service_select_column!]
+    distinct_on: [subject_service_select_column!]
 
     """limit the number of rows returned"""
     limit: Int
@@ -908,18 +908,18 @@ type query_root {
     offset: Int
 
     """sort the rows by one or more columns"""
-    order_by: [ticket_service_order_by!]
+    order_by: [subject_service_order_by!]
 
     """filter the rows returned"""
-    where: ticket_service_bool_exp
-  ): [ticket_service!]!
+    where: subject_service_bool_exp
+  ): [subject_service!]!
 
   """
-  fetch aggregated fields from the table: "ticket_service"
+  fetch aggregated fields from the table: "subject_service"
   """
-  ticket_service_aggregate(
+  subject_service_aggregate(
     """distinct select on columns"""
-    distinct_on: [ticket_service_select_column!]
+    distinct_on: [subject_service_select_column!]
 
     """limit the number of rows returned"""
     limit: Int
@@ -928,14 +928,14 @@ type query_root {
     offset: Int
 
     """sort the rows by one or more columns"""
-    order_by: [ticket_service_order_by!]
+    order_by: [subject_service_order_by!]
 
     """filter the rows returned"""
-    where: ticket_service_bool_exp
-  ): ticket_service_aggregate!
+    where: subject_service_bool_exp
+  ): subject_service_aggregate!
 
-  """fetch data from the table: "ticket_service" using primary key columns"""
-  ticket_service_by_pk(service_id: uuid!, ticket_id: uuid!): ticket_service
+  """fetch data from the table: "subject_service" using primary key columns"""
+  subject_service_by_pk(service_id: uuid!, subject_id: uuid!): subject_service
 
   """
   fetch data from the table: "trigger"
@@ -1172,41 +1172,6 @@ enum service_update_column {
 columns and relationships of "services"
 """
 type services {
-  """An array relationship"""
-  Tickets(
-    """distinct select on columns"""
-    distinct_on: [ticket_service_select_column!]
-
-    """limit the number of rows returned"""
-    limit: Int
-
-    """skip the first n rows. Use only with order_by"""
-    offset: Int
-
-    """sort the rows by one or more columns"""
-    order_by: [ticket_service_order_by!]
-
-    """filter the rows returned"""
-    where: ticket_service_bool_exp
-  ): [ticket_service!]!
-
-  """An aggregate relationship"""
-  Tickets_aggregate(
-    """distinct select on columns"""
-    distinct_on: [ticket_service_select_column!]
-
-    """limit the number of rows returned"""
-    limit: Int
-
-    """skip the first n rows. Use only with order_by"""
-    offset: Int
-
-    """sort the rows by one or more columns"""
-    order_by: [ticket_service_order_by!]
-
-    """filter the rows returned"""
-    where: ticket_service_bool_exp
-  ): ticket_service_aggregate!
   created_at: timestamptz!
   customer_id: uuid
   email_channel: Boolean!
@@ -1254,6 +1219,42 @@ type services {
   push_channel: Boolean!
   service: service_enum!
   sms_channel: Boolean!
+
+  """An array relationship"""
+  subjects(
+    """distinct select on columns"""
+    distinct_on: [subject_service_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [subject_service_order_by!]
+
+    """filter the rows returned"""
+    where: subject_service_bool_exp
+  ): [subject_service!]!
+
+  """An aggregate relationship"""
+  subjects_aggregate(
+    """distinct select on columns"""
+    distinct_on: [subject_service_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [subject_service_order_by!]
+
+    """filter the rows returned"""
+    where: subject_service_bool_exp
+  ): subject_service_aggregate!
   title: String!
   updated_at: timestamptz!
   user_id: uuid!
@@ -1280,7 +1281,6 @@ type services_aggregate_fields {
 Boolean expression to filter rows from the table "services". All fields are combined with a logical 'AND'.
 """
 input services_bool_exp {
-  Tickets: ticket_service_bool_exp
   _and: [services_bool_exp!]
   _not: services_bool_exp
   _or: [services_bool_exp!]
@@ -1294,6 +1294,7 @@ input services_bool_exp {
   push_channel: Boolean_comparison_exp
   service: service_enum_comparison_exp
   sms_channel: Boolean_comparison_exp
+  subjects: subject_service_bool_exp
   title: String_comparison_exp
   updated_at: timestamptz_comparison_exp
   user_id: uuid_comparison_exp
@@ -1311,7 +1312,6 @@ enum services_constraint {
 input type for inserting data into table "services"
 """
 input services_insert_input {
-  Tickets: ticket_service_arr_rel_insert_input
   created_at: timestamptz
   customer_id: uuid
   email_channel: Boolean
@@ -1322,6 +1322,7 @@ input services_insert_input {
   push_channel: Boolean
   service: service_enum
   sms_channel: Boolean
+  subjects: subject_service_arr_rel_insert_input
   title: String
   updated_at: timestamptz
   user_id: uuid
@@ -1381,7 +1382,6 @@ input services_on_conflict {
 
 """Ordering options when selecting data from "services"."""
 input services_order_by {
-  Tickets_aggregate: ticket_service_aggregate_order_by
   created_at: order_by
   customer_id: order_by
   email_channel: order_by
@@ -1392,6 +1392,7 @@ input services_order_by {
   push_channel: order_by
   service: order_by
   sms_channel: order_by
+  subjects_aggregate: subject_service_aggregate_order_by
   title: order_by
   updated_at: order_by
   user_id: order_by
@@ -1627,6 +1628,178 @@ enum severity_update_column {
   name
 }
 
+"""
+columns and relationships of "subject_service"
+"""
+type subject_service {
+  """An object relationship"""
+  notifications: notifications
+
+  """An object relationship"""
+  service: services
+  service_id: uuid!
+  subject_id: uuid!
+}
+
+"""
+aggregated selection of "subject_service"
+"""
+type subject_service_aggregate {
+  aggregate: subject_service_aggregate_fields
+  nodes: [subject_service!]!
+}
+
+"""
+aggregate fields of "subject_service"
+"""
+type subject_service_aggregate_fields {
+  count(columns: [subject_service_select_column!], distinct: Boolean): Int!
+  max: subject_service_max_fields
+  min: subject_service_min_fields
+}
+
+"""
+order by aggregate values of table "subject_service"
+"""
+input subject_service_aggregate_order_by {
+  count: order_by
+  max: subject_service_max_order_by
+  min: subject_service_min_order_by
+}
+
+"""
+input type for inserting array relation for remote table "subject_service"
+"""
+input subject_service_arr_rel_insert_input {
+  data: [subject_service_insert_input!]!
+
+  """on conflict condition"""
+  on_conflict: subject_service_on_conflict
+}
+
+"""
+Boolean expression to filter rows from the table "subject_service". All fields are combined with a logical 'AND'.
+"""
+input subject_service_bool_exp {
+  _and: [subject_service_bool_exp!]
+  _not: subject_service_bool_exp
+  _or: [subject_service_bool_exp!]
+  notifications: notifications_bool_exp
+  service: services_bool_exp
+  service_id: uuid_comparison_exp
+  subject_id: uuid_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "subject_service"
+"""
+enum subject_service_constraint {
+  """unique or primary key constraint"""
+  ticket_service_pkey
+}
+
+"""
+input type for inserting data into table "subject_service"
+"""
+input subject_service_insert_input {
+  notifications: notifications_obj_rel_insert_input
+  service: services_obj_rel_insert_input
+  service_id: uuid
+  subject_id: uuid
+}
+
+"""aggregate max on columns"""
+type subject_service_max_fields {
+  service_id: uuid
+  subject_id: uuid
+}
+
+"""
+order by max() on columns of table "subject_service"
+"""
+input subject_service_max_order_by {
+  service_id: order_by
+  subject_id: order_by
+}
+
+"""aggregate min on columns"""
+type subject_service_min_fields {
+  service_id: uuid
+  subject_id: uuid
+}
+
+"""
+order by min() on columns of table "subject_service"
+"""
+input subject_service_min_order_by {
+  service_id: order_by
+  subject_id: order_by
+}
+
+"""
+response of any mutation on the table "subject_service"
+"""
+type subject_service_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+
+  """data from the rows affected by the mutation"""
+  returning: [subject_service!]!
+}
+
+"""
+on conflict condition type for table "subject_service"
+"""
+input subject_service_on_conflict {
+  constraint: subject_service_constraint!
+  update_columns: [subject_service_update_column!]! = []
+  where: subject_service_bool_exp
+}
+
+"""Ordering options when selecting data from "subject_service"."""
+input subject_service_order_by {
+  notifications: notifications_order_by
+  service: services_order_by
+  service_id: order_by
+  subject_id: order_by
+}
+
+"""primary key columns input for table: subject_service"""
+input subject_service_pk_columns_input {
+  service_id: uuid!
+  subject_id: uuid!
+}
+
+"""
+select columns of table "subject_service"
+"""
+enum subject_service_select_column {
+  """column name"""
+  service_id
+
+  """column name"""
+  subject_id
+}
+
+"""
+input type for updating data in table "subject_service"
+"""
+input subject_service_set_input {
+  service_id: uuid
+  subject_id: uuid
+}
+
+"""
+update columns of table "subject_service"
+"""
+enum subject_service_update_column {
+  """column name"""
+  service_id
+
+  """column name"""
+  subject_id
+}
+
 type subscription_root {
   """
   fetch data from the table: "notifications"
@@ -1799,11 +1972,11 @@ type subscription_root {
   severity_by_pk(name: String!): severity
 
   """
-  fetch data from the table: "ticket_service"
+  fetch data from the table: "subject_service"
   """
-  ticket_service(
+  subject_service(
     """distinct select on columns"""
-    distinct_on: [ticket_service_select_column!]
+    distinct_on: [subject_service_select_column!]
 
     """limit the number of rows returned"""
     limit: Int
@@ -1812,18 +1985,18 @@ type subscription_root {
     offset: Int
 
     """sort the rows by one or more columns"""
-    order_by: [ticket_service_order_by!]
+    order_by: [subject_service_order_by!]
 
     """filter the rows returned"""
-    where: ticket_service_bool_exp
-  ): [ticket_service!]!
+    where: subject_service_bool_exp
+  ): [subject_service!]!
 
   """
-  fetch aggregated fields from the table: "ticket_service"
+  fetch aggregated fields from the table: "subject_service"
   """
-  ticket_service_aggregate(
+  subject_service_aggregate(
     """distinct select on columns"""
-    distinct_on: [ticket_service_select_column!]
+    distinct_on: [subject_service_select_column!]
 
     """limit the number of rows returned"""
     limit: Int
@@ -1832,14 +2005,14 @@ type subscription_root {
     offset: Int
 
     """sort the rows by one or more columns"""
-    order_by: [ticket_service_order_by!]
+    order_by: [subject_service_order_by!]
 
     """filter the rows returned"""
-    where: ticket_service_bool_exp
-  ): ticket_service_aggregate!
+    where: subject_service_bool_exp
+  ): subject_service_aggregate!
 
-  """fetch data from the table: "ticket_service" using primary key columns"""
-  ticket_service_by_pk(service_id: uuid!, ticket_id: uuid!): ticket_service
+  """fetch data from the table: "subject_service" using primary key columns"""
+  subject_service_by_pk(service_id: uuid!, subject_id: uuid!): subject_service
 
   """
   fetch data from the table: "trigger"
@@ -1925,178 +2098,6 @@ type subscription_root {
   ): users_aggregate!
 }
 
-"""
-columns and relationships of "ticket_service"
-"""
-type ticket_service {
-  """An object relationship"""
-  Notifications: notifications
-
-  """An object relationship"""
-  Service: services
-  service_id: uuid!
-  ticket_id: uuid!
-}
-
-"""
-aggregated selection of "ticket_service"
-"""
-type ticket_service_aggregate {
-  aggregate: ticket_service_aggregate_fields
-  nodes: [ticket_service!]!
-}
-
-"""
-aggregate fields of "ticket_service"
-"""
-type ticket_service_aggregate_fields {
-  count(columns: [ticket_service_select_column!], distinct: Boolean): Int!
-  max: ticket_service_max_fields
-  min: ticket_service_min_fields
-}
-
-"""
-order by aggregate values of table "ticket_service"
-"""
-input ticket_service_aggregate_order_by {
-  count: order_by
-  max: ticket_service_max_order_by
-  min: ticket_service_min_order_by
-}
-
-"""
-input type for inserting array relation for remote table "ticket_service"
-"""
-input ticket_service_arr_rel_insert_input {
-  data: [ticket_service_insert_input!]!
-
-  """on conflict condition"""
-  on_conflict: ticket_service_on_conflict
-}
-
-"""
-Boolean expression to filter rows from the table "ticket_service". All fields are combined with a logical 'AND'.
-"""
-input ticket_service_bool_exp {
-  Notifications: notifications_bool_exp
-  Service: services_bool_exp
-  _and: [ticket_service_bool_exp!]
-  _not: ticket_service_bool_exp
-  _or: [ticket_service_bool_exp!]
-  service_id: uuid_comparison_exp
-  ticket_id: uuid_comparison_exp
-}
-
-"""
-unique or primary key constraints on table "ticket_service"
-"""
-enum ticket_service_constraint {
-  """unique or primary key constraint"""
-  ticket_service_pkey
-}
-
-"""
-input type for inserting data into table "ticket_service"
-"""
-input ticket_service_insert_input {
-  Notifications: notifications_obj_rel_insert_input
-  Service: services_obj_rel_insert_input
-  service_id: uuid
-  ticket_id: uuid
-}
-
-"""aggregate max on columns"""
-type ticket_service_max_fields {
-  service_id: uuid
-  ticket_id: uuid
-}
-
-"""
-order by max() on columns of table "ticket_service"
-"""
-input ticket_service_max_order_by {
-  service_id: order_by
-  ticket_id: order_by
-}
-
-"""aggregate min on columns"""
-type ticket_service_min_fields {
-  service_id: uuid
-  ticket_id: uuid
-}
-
-"""
-order by min() on columns of table "ticket_service"
-"""
-input ticket_service_min_order_by {
-  service_id: order_by
-  ticket_id: order_by
-}
-
-"""
-response of any mutation on the table "ticket_service"
-"""
-type ticket_service_mutation_response {
-  """number of rows affected by the mutation"""
-  affected_rows: Int!
-
-  """data from the rows affected by the mutation"""
-  returning: [ticket_service!]!
-}
-
-"""
-on conflict condition type for table "ticket_service"
-"""
-input ticket_service_on_conflict {
-  constraint: ticket_service_constraint!
-  update_columns: [ticket_service_update_column!]! = []
-  where: ticket_service_bool_exp
-}
-
-"""Ordering options when selecting data from "ticket_service"."""
-input ticket_service_order_by {
-  Notifications: notifications_order_by
-  Service: services_order_by
-  service_id: order_by
-  ticket_id: order_by
-}
-
-"""primary key columns input for table: ticket_service"""
-input ticket_service_pk_columns_input {
-  service_id: uuid!
-  ticket_id: uuid!
-}
-
-"""
-select columns of table "ticket_service"
-"""
-enum ticket_service_select_column {
-  """column name"""
-  service_id
-
-  """column name"""
-  ticket_id
-}
-
-"""
-input type for updating data in table "ticket_service"
-"""
-input ticket_service_set_input {
-  service_id: uuid
-  ticket_id: uuid
-}
-
-"""
-update columns of table "ticket_service"
-"""
-enum ticket_service_update_column {
-  """column name"""
-  service_id
-
-  """column name"""
-  ticket_id
-}
-
 scalar timestamptz
 
 """
@@ -2118,6 +2119,7 @@ input timestamptz_comparison_exp {
 columns and relationships of "trigger"
 """
 type trigger {
+  description: String!
   name: String!
 }
 
@@ -2145,6 +2147,7 @@ input trigger_bool_exp {
   _and: [trigger_bool_exp!]
   _not: trigger_bool_exp
   _or: [trigger_bool_exp!]
+  description: String_comparison_exp
   name: String_comparison_exp
 }
 
@@ -2157,7 +2160,16 @@ enum trigger_constraint {
 }
 
 enum trigger_enum {
+  """"""
+  insert_calendar_event_attendee
+
+  """"""
+  insert_calendar_event_organizer
+
+  """"""
   insert_ticket_message
+
+  """"""
   insert_ticket_user
 }
 
@@ -2176,16 +2188,19 @@ input trigger_enum_comparison_exp {
 input type for inserting data into table "trigger"
 """
 input trigger_insert_input {
+  description: String
   name: String
 }
 
 """aggregate max on columns"""
 type trigger_max_fields {
+  description: String
   name: String
 }
 
 """aggregate min on columns"""
 type trigger_min_fields {
+  description: String
   name: String
 }
 
@@ -2211,6 +2226,7 @@ input trigger_on_conflict {
 
 """Ordering options when selecting data from "trigger"."""
 input trigger_order_by {
+  description: order_by
   name: order_by
 }
 
@@ -2224,6 +2240,9 @@ select columns of table "trigger"
 """
 enum trigger_select_column {
   """column name"""
+  description
+
+  """column name"""
   name
 }
 
@@ -2231,6 +2250,7 @@ enum trigger_select_column {
 input type for updating data in table "trigger"
 """
 input trigger_set_input {
+  description: String
   name: String
 }
 
@@ -2238,6 +2258,9 @@ input trigger_set_input {
 update columns of table "trigger"
 """
 enum trigger_update_column {
+  """column name"""
+  description
+
   """column name"""
   name
 }

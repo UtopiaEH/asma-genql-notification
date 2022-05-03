@@ -175,18 +175,18 @@ export declare const enumseverityUpdateColumn: {
   readonly name: 'name'
 }
 
-export declare const enumticketServiceConstraint: {
+export declare const enumsubjectServiceConstraint: {
   readonly ticket_service_pkey: 'ticket_service_pkey'
 }
 
-export declare const enumticketServiceSelectColumn: {
+export declare const enumsubjectServiceSelectColumn: {
   readonly service_id: 'service_id'
-  readonly ticket_id: 'ticket_id'
+  readonly subject_id: 'subject_id'
 }
 
-export declare const enumticketServiceUpdateColumn: {
+export declare const enumsubjectServiceUpdateColumn: {
   readonly service_id: 'service_id'
-  readonly ticket_id: 'ticket_id'
+  readonly subject_id: 'subject_id'
 }
 
 export declare const enumtriggerConstraint: {
@@ -194,15 +194,19 @@ export declare const enumtriggerConstraint: {
 }
 
 export declare const enumtriggerEnum: {
+  readonly insert_calendar_event_attendee: 'insert_calendar_event_attendee'
+  readonly insert_calendar_event_organizer: 'insert_calendar_event_organizer'
   readonly insert_ticket_message: 'insert_ticket_message'
   readonly insert_ticket_user: 'insert_ticket_user'
 }
 
 export declare const enumtriggerSelectColumn: {
+  readonly description: 'description'
   readonly name: 'name'
 }
 
 export declare const enumtriggerUpdateColumn: {
+  readonly description: 'description'
   readonly name: 'name'
 }
 
